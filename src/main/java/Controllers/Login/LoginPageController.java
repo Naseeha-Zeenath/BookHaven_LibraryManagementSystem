@@ -1,4 +1,4 @@
-package Controllers;
+package Controllers.Login;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -44,7 +44,8 @@ public class LoginPageController {
 
     @FXML
     void btnResetOnAction(ActionEvent event) {
-
+        txtUserName.clear();
+        txtPassword.clear();
     }
 
 }

@@ -1,4 +1,4 @@
-package Controllers;
+package Controllers.Login;
 
 public class LoginController {
     public boolean checkUserNameAndPassword(String userName, String password) {
