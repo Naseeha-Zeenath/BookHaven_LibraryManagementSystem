@@ -44,7 +44,8 @@ public class LoginPageController {
 
     @FXML
     void btnResetOnAction(ActionEvent event) {
-
+        txtUserName.clear();
+        txtPassword.clear();
     }
 
 }
