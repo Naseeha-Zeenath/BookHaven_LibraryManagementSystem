@@ -139,7 +139,7 @@
                   </Label>
                </children>
             </Pane>
-            <Button fx:id="btnDashboard" mnemonicParsing="false" onAction="#btnDashboardOnAction" prefHeight="30.0" prefWidth="212.0" text="Dashboard ">
+            <Button fx:id="btnDashboard" disable="true" mnemonicParsing="false" onAction="#btnDashboardOnAction" prefHeight="30.0" prefWidth="212.0" text="Dashboard ">
                <font>
                   <Font size="14.0" />
                </font>

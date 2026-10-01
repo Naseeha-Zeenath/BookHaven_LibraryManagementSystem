@@ -3,6 +3,7 @@ package Controllers.Login;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
@@ -31,7 +32,8 @@ public class LoginPageController {
     void btnLoginOnAction(ActionEvent event) {
 
         if (loginController.checkUserNameAndPassword(txtUserName.getText(),txtPassword.getText())){
-            Stage stage = new Stage();
+
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
             try {
                 stage.setScene(new Scene(FXMLLoader.load(getClass().getResource("/view/Home_Page.fxml"))));
             } catch (IOException e) {
@@ -39,6 +41,8 @@ public class LoginPageController {
             }
             stage.show();
         }
+
+
 
     }
 
