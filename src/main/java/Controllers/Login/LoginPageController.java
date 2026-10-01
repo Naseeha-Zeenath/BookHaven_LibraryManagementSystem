@@ -33,7 +33,7 @@ public class LoginPageController {
         if (loginController.checkUserNameAndPassword(txtUserName.getText(),txtPassword.getText())){
             Stage stage = new Stage();
             try {
-                stage.setScene(new Scene(FXMLLoader.load(getClass().getResource("/view/Home_page.fxml"))));
+                stage.setScene(new Scene(FXMLLoader.load(getClass().getResource("/view/Home_Page.fxml"))));
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }
