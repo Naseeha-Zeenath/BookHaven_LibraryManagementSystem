@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="361.0" prefWidth="762.0" style="-fx-background-color: #c6c6c6;" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.HomePageController">
+<AnchorPane prefHeight="403.0" prefWidth="762.0" styleClass="dashboard-root" stylesheets="@../css/style.css" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.HomePageController">
    <children>
       <Label layoutX="226.0" layoutY="14.0" text="Dashboard" textAlignment="CENTER">
          <font>
@@ -20,7 +20,7 @@
       </Label>
       <Pane accessibleRole="BUTTON" layoutX="220.0" layoutY="93.0" prefHeight="113.0" prefWidth="241.0">
          <children>
-            <Button fx:id="totalBooksViewPanel" mnemonicParsing="false" onAction="#btnTotalBooksOnAction" prefHeight="107.0" prefWidth="241.0" style="-fx-background-color: ffffdf; -fx-border-color: #ff8700; -fx-border-radius: 2;">
+            <Button fx:id="totalBooksViewPanel" mnemonicParsing="false" onAction="#btnTotalBooksOnAction" prefHeight="107.0" prefWidth="241.0" styleClass="stat-card">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>
@@ -30,7 +30,7 @@
                   <Font name="Georgia Italic" size="18.0" />
                </font>
             </Label>
-            <TextField fx:id="txtTotalBooksCount" depthTest="DISABLE" editable="false" layoutX="73.0" layoutY="39.0" prefHeight="60.0" prefWidth="95.0" style="-fx-background-color: ffffdf;" text="--------">
+            <TextField fx:id="txtTotalBooksCount" depthTest="DISABLE" editable="false" layoutX="73.0" layoutY="39.0" prefHeight="60.0" prefWidth="95.0" style="-fx-background-color: #FFFFFF; -fx-border-width: 0;" text="--------">
                <font>
                   <Font name="System Bold Italic" size="24.0" />
                </font>
@@ -42,7 +42,7 @@
       </Pane>
       <Pane layoutX="483.0" layoutY="218.0" prefHeight="113.0" prefWidth="241.0">
          <children>
-            <Button fx:id="overdueBooksViewPanel" mnemonicParsing="false" onAction="#btnOverdueBooksOnAction" prefHeight="107.0" prefWidth="241.0" style="-fx-background-color: dfdfff; -fx-border-color: #000080; -fx-border-radius: 2;">
+            <Button fx:id="overdueBooksViewPanel" mnemonicParsing="false" onAction="#btnOverdueBooksOnAction" prefHeight="107.0" prefWidth="241.0" styleClass="stat-card">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>
@@ -52,7 +52,7 @@
                   <Font name="Georgia Italic" size="18.0" />
                </font>
             </Label>
-            <TextField fx:id="txtOverdueBooksCount" editable="false" layoutX="87.0" layoutY="39.0" prefHeight="60.0" prefWidth="95.0" style="-fx-background-color: dfdfff;" text="------">
+            <TextField fx:id="txtOverdueBooksCount" editable="false" layoutX="87.0" layoutY="39.0" prefHeight="60.0" prefWidth="95.0" style="-fx-background-color: #FFFFFF; -fx-border-width: 0;" text="------">
                <font>
                   <Font name="System Bold Italic" size="24.0" />
                </font>
@@ -64,7 +64,7 @@
       </Pane>
       <Pane layoutX="220.0" layoutY="218.0" prefHeight="113.0" prefWidth="241.0">
          <children>
-            <Button fx:id="currentlyBorrowedBooksViewPanel" mnemonicParsing="false" onAction="#btnCurrentlyBorrowedBooksOnAction" prefHeight="107.0" prefWidth="241.0" style="-fx-background-color: dfffdf; -fx-border-color: #008000; -fx-border-radius: 2;">
+            <Button fx:id="currentlyBorrowedBooksViewPanel" mnemonicParsing="false" onAction="#btnCurrentlyBorrowedBooksOnAction" prefHeight="107.0" prefWidth="241.0" styleClass="stat-card">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>
@@ -74,7 +74,7 @@
                   <Font name="Georgia Italic" size="18.0" />
                </font>
             </Label>
-            <TextField fx:id="txtCurrentlyBorrowedBooksCount" editable="false" layoutX="84.0" layoutY="39.0" prefHeight="60.0" prefWidth="95.0" style="-fx-background-color: dfffdf;" text="-----">
+            <TextField fx:id="txtCurrentlyBorrowedBooksCount" editable="false" layoutX="84.0" layoutY="39.0" prefHeight="60.0" prefWidth="95.0" style="-fx-background-color: #FFFFFF; -fx-border-width: 0;" styleClass="stat-value" text="-----">
                <font>
                   <Font name="System Bold Italic" size="24.0" />
                </font>
@@ -86,7 +86,7 @@
       </Pane>
       <Pane layoutX="483.0" layoutY="93.0" prefHeight="113.0" prefWidth="241.0">
          <children>
-            <Button fx:id="totalMembersViewPanel" mnemonicParsing="false" onAction="#btnTotalMembersOnAction" prefHeight="107.0" prefWidth="241.0" style="-fx-background-color: ffdfaf; -fx-border-color: #800000; -fx-border-radius: 2;">
+            <Button fx:id="totalMembersViewPanel" mnemonicParsing="false" onAction="#btnTotalMembersOnAction" prefHeight="107.0" prefWidth="241.0" styleClass="stat-card">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>
@@ -96,7 +96,7 @@
                   <Font name="Georgia Italic" size="18.0" />
                </font>
             </Label>
-            <TextField fx:id="txtTotalMembersCount" editable="false" layoutX="80.0" layoutY="39.0" prefHeight="60.0" prefWidth="95.0" style="-fx-background-color: ffdfaf;" text="------">
+            <TextField fx:id="txtTotalMembersCount" editable="false" layoutX="80.0" layoutY="39.0" prefHeight="60.0" prefWidth="95.0" style="-fx-background-color: #FFFFFF; -fx-border-width: 0;" text="------">
                <font>
                   <Font name="System Bold Italic" size="24.0" />
                </font>
@@ -108,12 +108,12 @@
       </Pane>
       <Pane layoutX="540.0" layoutY="41.0" prefHeight="52.0" prefWidth="184.0">
          <children>
-            <Label layoutX="12.0" layoutY="14.0" text="Issue Books :">
+            <Label layoutX="12.0" layoutY="14.0" stylesheets="@../css/style.css" text="Issue Books :">
                <font>
                   <Font name="Georgia Italic" size="18.0" />
                </font>
             </Label>
-            <TextField fx:id="txtIssueBooksCount" editable="false" layoutX="120.0" layoutY="4.0" prefHeight="41.0" prefWidth="60.0" style="-fx-background-color: #c6c6c6;" text="----">
+            <TextField fx:id="txtIssueBooksCount" editable="false" layoutX="120.0" layoutY="4.0" prefHeight="41.0" prefWidth="60.0" style="-fx-background-color: #f4f5f7; -fx-border-width: 0;" text="----">
                <font>
                   <Font name="System Bold Italic" size="18.0" />
                </font>
@@ -123,7 +123,7 @@
             </TextField>
          </children>
       </Pane>
-      <VBox prefHeight="368.0" prefWidth="199.0" style="-fx-background-color: #ffffff;">
+      <VBox prefHeight="403.0" prefWidth="199.0" styleClass="sidebar" stylesheets="@../css/style.css">
          <children>
             <Pane prefHeight="61.0" prefWidth="213.0" style="-fx-background-color: #ffffff;">
                <children>
@@ -139,42 +139,42 @@
                   </Label>
                </children>
             </Pane>
-            <Button fx:id="btnDashboard" disable="true" mnemonicParsing="false" onAction="#btnDashboardOnAction" prefHeight="30.0" prefWidth="212.0" text="Dashboard ">
+            <Button fx:id="btnDashboard" disable="true" mnemonicParsing="false" onAction="#btnDashboardOnAction" prefHeight="30.0" prefWidth="212.0" styleClass="nav-button" stylesheets="@../css/style.css" text="Dashboard ">
                <font>
                   <Font size="14.0" />
                </font>
             </Button>
-            <Button fx:id="btnAddBook" mnemonicParsing="false" onAction="#btnAddBookOnAction" prefHeight="30.0" prefWidth="206.0" text="Add Book ">
+            <Button fx:id="btnAddBook" mnemonicParsing="false" onAction="#btnAddBookOnAction" prefHeight="30.0" prefWidth="206.0" styleClass="nav-button" stylesheets="@../css/style.css" text="Add Book ">
                <font>
                   <Font size="14.0" />
                </font>
             </Button>
-            <Button fx:id="btnAddMember" mnemonicParsing="false" onAction="#btnAddMemberOnAction" prefHeight="30.0" prefWidth="211.0" text="Add Member">
+            <Button fx:id="btnAddMember" mnemonicParsing="false" onAction="#btnAddMemberOnAction" prefHeight="30.0" prefWidth="211.0" styleClass="nav-button" stylesheets="@../css/style.css" text="Add Member">
                <font>
                   <Font size="14.0" />
                </font>
             </Button>
-            <Button fx:id="btnManageMembers" mnemonicParsing="false" onAction="#btnManageMembersOnAction" prefHeight="30.0" prefWidth="208.0" text="Manage Members">
+            <Button fx:id="btnManageMembers" mnemonicParsing="false" onAction="#btnManageMembersOnAction" prefHeight="30.0" prefWidth="208.0" styleClass="nav-button" stylesheets="@../css/style.css" text="Manage Members">
                <font>
                   <Font size="14.0" />
                </font>
             </Button>
-            <Button fx:id="btnIssueBook" mnemonicParsing="false" onAction="#btnIssueBookOnAction" prefHeight="30.0" prefWidth="213.0" text="Issue Book ">
+            <Button fx:id="btnIssueBook" mnemonicParsing="false" onAction="#btnIssueBookOnAction" prefHeight="30.0" prefWidth="213.0" styleClass="nav-button" stylesheets="@../css/style.css" text="Issue Book ">
                <font>
                   <Font size="14.0" />
                </font>
             </Button>
-            <Button fx:id="btnReturnBook" mnemonicParsing="false" onAction="#btnReturnBookOnAction" prefHeight="30.0" prefWidth="207.0" text="Return Book">
+            <Button fx:id="btnReturnBook" mnemonicParsing="false" onAction="#btnReturnBookOnAction" prefHeight="30.0" prefWidth="207.0" styleClass="nav-button" stylesheets="@../css/style.css" text="Return Book">
                <font>
                   <Font size="14.0" />
                </font>
             </Button>
-            <Button fx:id="btnBorrowingHistory" mnemonicParsing="false" onAction="#btnBorrowingHistoryOnAction" prefHeight="30.0" prefWidth="205.0" text="Borrowing History">
+            <Button fx:id="btnBorrowingHistory" mnemonicParsing="false" onAction="#btnBorrowingHistoryOnAction" prefHeight="30.0" prefWidth="205.0" styleClass="nav-button" stylesheets="@../css/style.css" text="Borrowing History">
                <font>
                   <Font size="14.0" />
                </font>
             </Button>
-            <Button fx:id="btnLogOut" mnemonicParsing="false" onAction="#btnLogOutOnAction" prefHeight="51.0" prefWidth="201.0" text="Logout" textFill="#dd1717">
+            <Button fx:id="btnLogOut" mnemonicParsing="false" onAction="#btnLogOutOnAction" prefHeight="47.0" prefWidth="198.0" styleClass="logout-button" stylesheets="@../css/style.css" text="Logout" textFill="#dd1717">
                <font>
                   <Font size="18.0" />
                </font>
