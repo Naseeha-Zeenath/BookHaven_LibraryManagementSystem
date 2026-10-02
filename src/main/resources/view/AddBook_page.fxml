@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.SplitMenuButton?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="607.0" prefWidth="731.0" styleClass="dashboard-root" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.AddBookController">
+   <children>
+      <VBox prefHeight="609.0" prefWidth="201.0" styleClass="sidebar" stylesheets="@../css/style.css">
+         <children>
+            <Pane prefHeight="61.0" prefWidth="213.0" style="-fx-background-color: #ffffff;">
+               <children>
+                  <ImageView fitHeight="83.0" fitWidth="82.0" layoutX="7.0" layoutY="5.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../img/book.jpg" />
+                     </image>
+                  </ImageView>
+                  <Label layoutX="89.0" layoutY="21.0" text="BookHaven">
+                     <font>
+                        <Font name="Georgia Italic" size="18.0" />
+                     </font>
+                  </Label>
+               </children>
+            </Pane>
+            <Button fx:id="btnDashboard" mnemonicParsing="false" onAction="#btnDashboardOnAction" prefHeight="30.0" prefWidth="212.0" styleClass="nav-button" stylesheets="@../css/style.css" text="Dashboard ">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Button>
+            <Button fx:id="btnAddBook" disable="true" mnemonicParsing="false" onAction="#btnAddBookOnAction" prefHeight="30.0" prefWidth="206.0" styleClass="nav-button" stylesheets="@../css/style.css" text="Add Book ">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Button>
+            <Button fx:id="btnAddMember" mnemonicParsing="false" onAction="#btnAddMemberOnAction" prefHeight="30.0" prefWidth="211.0" styleClass="nav-button" stylesheets="@../css/style.css" text="Add Member">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Button>
+            <Button fx:id="btnManageMembers" mnemonicParsing="false" onAction="#btnManageMembersOnAction" prefHeight="30.0" prefWidth="208.0" styleClass="nav-button" stylesheets="@../css/style.css" text="Manage Members">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Button>
+            <Button fx:id="btnIssueBook" mnemonicParsing="false" onAction="#btnIssueBookOnAction" prefHeight="30.0" prefWidth="213.0" styleClass="nav-button" stylesheets="@../css/style.css" text="Issue Book ">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Button>
+            <Button fx:id="btnReturnBook" mnemonicParsing="false" onAction="#btnReturnBookOnAction" prefHeight="30.0" prefWidth="207.0" styleClass="nav-button" stylesheets="@../css/style.css" text="Return Book">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Button>
+            <Button fx:id="btnBorrowingHistory" mnemonicParsing="false" onAction="#btnBorrowingHistoryOnAction" prefHeight="30.0" prefWidth="205.0" styleClass="nav-button" stylesheets="@../css/style.css" text="Borrowing History">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Button>
+            <Button fx:id="btnLogOut" mnemonicParsing="false" onAction="#btnLogOutOnAction" prefHeight="47.0" prefWidth="198.0" styleClass="logout-button" stylesheets="@../css/style.css" text="Logout" textFill="#dd1717">
+               <font>
+                  <Font size="18.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+         </children>
+      </VBox>
+      <Label layoutX="235.0" layoutY="24.0" text="Add New Books" textAlignment="CENTER">
+         <font>
+            <Font name="Georgia Bold" size="24.0" />
+         </font>
+      </Label>
+      <Pane layoutX="226.0" layoutY="76.0" prefHeight="489.0" prefWidth="459.0" styleClass="stat-card" stylesheets="@../css/style.css">
+         <children>
+            <Label layoutX="21.0" layoutY="24.0" text="Book Title">
+               <font>
+                  <Font name="Georgia Italic" size="14.0" />
+               </font>
+            </Label>
+            <TextField fx:id="txtAddNewBook_BookTitle" layoutX="144.0" layoutY="15.0" prefHeight="10.0" prefWidth="287.0">
+               <font>
+                  <Font size="10.0" />
+               </font>
+            </TextField>
+            <Label layoutX="19.0" layoutY="67.0" text="Category">
+               <font>
+                  <Font name="Georgia Italic" size="14.0" />
+               </font>
+            </Label>
+            <SplitMenuButton fx:id="SelectorAddNewBook_Category" layoutX="144.0" layoutY="63.0" mnemonicParsing="false" onAction="#SelectorNewBookCategoryOnAction" prefHeight="21.0" prefWidth="175.0">
+              <items>
+                <MenuItem mnemonicParsing="false" text="Action 1" />
+                <MenuItem mnemonicParsing="false" text="Action 2" />
+              </items>
+               <font>
+                  <Font size="10.0" />
+               </font>
+            </SplitMenuButton>
+            <Label layoutX="19.0" layoutY="110.0" text="Author">
+               <font>
+                  <Font name="Georgia Italic" size="14.0" />
+               </font>
+            </Label>
+            <TextField fx:id="txtAddNewBook_Author" layoutX="142.0" layoutY="101.0" prefHeight="10.0" prefWidth="287.0">
+               <font>
+                  <Font size="10.0" />
+               </font>
+            </TextField>
+            <Label layoutX="19.0" layoutY="161.0" text="Book copies">
+               <font>
+                  <Font name="Georgia Italic" size="14.0" />
+               </font>
+            </Label>
+            <TextField fx:id="txtAddNewBook_BookCopies" layoutX="142.0" layoutY="152.0" prefHeight="35.0" prefWidth="75.0">
+               <font>
+                  <Font size="10.0" />
+               </font>
+            </TextField>
+            <Label layoutX="21.0" layoutY="208.0" text="Book publication">
+               <font>
+                  <Font name="Georgia Italic" size="14.0" />
+               </font>
+            </Label>
+            <TextField fx:id="txtAddNewBook_BookPublication" layoutX="144.0" layoutY="199.0" prefHeight="10.0" prefWidth="287.0">
+               <font>
+                  <Font size="10.0" />
+               </font>
+            </TextField>
+            <Label layoutX="20.0" layoutY="254.0" text="Publisher Name">
+               <font>
+                  <Font name="Georgia Italic" size="14.0" />
+               </font>
+            </Label>
+            <TextField fx:id="txtAddNewBook_PublisherName" layoutX="143.0" layoutY="245.0" prefHeight="10.0" prefWidth="287.0">
+               <font>
+                  <Font size="10.0" />
+               </font>
+            </TextField>
+            <Label layoutX="20.0" layoutY="302.0" text="ISBN">
+               <font>
+                  <Font name="Georgia Italic" size="14.0" />
+               </font>
+            </Label>
+            <TextField fx:id="txtAddNewBook_ISBN" layoutX="143.0" layoutY="293.0" prefHeight="10.0" prefWidth="287.0">
+               <font>
+                  <Font size="10.0" />
+               </font>
+            </TextField>
+            <Label layoutX="20.0" layoutY="351.0" text="Copyright Year">
+               <font>
+                  <Font name="Georgia Italic" size="14.0" />
+               </font>
+            </Label>
+            <TextField fx:id="txtAddNewBook_CopyrightYear" layoutX="142.0" layoutY="345.0" prefHeight="35.0" prefWidth="75.0">
+               <font>
+                  <Font size="10.0" />
+               </font>
+            </TextField>
+            <Label layoutX="19.0" layoutY="400.0" text="Status">
+               <font>
+                  <Font name="Georgia Italic" size="14.0" />
+               </font>
+            </Label>
+            <SplitMenuButton fx:id="SelectorAddNewBook_Status" layoutX="144.0" layoutY="396.0" mnemonicParsing="false" onAction="#SelectorNewBookStatusOnAction" prefHeight="21.0" prefWidth="175.0">
+               <items>
+                  <MenuItem mnemonicParsing="false" text="Action 1" />
+                  <MenuItem mnemonicParsing="false" text="Action 2" />
+               </items>
+               <font>
+                  <Font size="10.0" />
+               </font>
+            </SplitMenuButton>
+         </children>
+      </Pane>
+      <Button fx:id="btnNewBookSave" layoutX="226.0" layoutY="525.0" mnemonicParsing="false" onAction="#btnNewBookSaveOnAction" prefHeight="47.0" prefWidth="459.0" styleClass="save-button" stylesheets="@../css/style.css" text="Save" />
+   </children>
+</AnchorPane>
