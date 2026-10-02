@@ -11,16 +11,16 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="403.0" prefWidth="762.0" styleClass="dashboard-root" stylesheets="@../css/style.css" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.HomePageController">
+<AnchorPane styleClass="dashboard-root" stylesheets="@../css/style.css" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.HomePageController">
    <children>
       <Label layoutX="226.0" layoutY="14.0" text="Dashboard" textAlignment="CENTER">
          <font>
-            <Font name="Georgia Bold" size="36.0" />
+            <Font name="Georgia Bold" size="24.0" />
          </font>
       </Label>
-      <Pane accessibleRole="BUTTON" layoutX="220.0" layoutY="93.0" prefHeight="113.0" prefWidth="241.0">
+      <Pane accessibleRole="BUTTON" layoutX="210.0" layoutY="93.0" prefHeight="113.0" prefWidth="241.0">
          <children>
-            <Button fx:id="totalBooksViewPanel" mnemonicParsing="false" onAction="#btnTotalBooksOnAction" prefHeight="107.0" prefWidth="241.0" styleClass="stat-card">
+            <Button fx:id="totalBooksViewPanel" layoutY="3.0" mnemonicParsing="false" onAction="#btnTotalBooksOnAction" prefHeight="107.0" prefWidth="241.0" styleClass="stat-card">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>
@@ -42,7 +42,7 @@
       </Pane>
       <Pane layoutX="483.0" layoutY="218.0" prefHeight="113.0" prefWidth="241.0">
          <children>
-            <Button fx:id="overdueBooksViewPanel" mnemonicParsing="false" onAction="#btnOverdueBooksOnAction" prefHeight="107.0" prefWidth="241.0" styleClass="stat-card">
+            <Button fx:id="overdueBooksViewPanel" layoutX="-14.0" layoutY="3.0" mnemonicParsing="false" onAction="#btnOverdueBooksOnAction" prefHeight="107.0" prefWidth="241.0" styleClass="stat-card">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>
@@ -62,7 +62,7 @@
             </TextField>
          </children>
       </Pane>
-      <Pane layoutX="220.0" layoutY="218.0" prefHeight="113.0" prefWidth="241.0">
+      <Pane layoutX="210.0" layoutY="218.0" prefHeight="113.0" prefWidth="241.0">
          <children>
             <Button fx:id="currentlyBorrowedBooksViewPanel" mnemonicParsing="false" onAction="#btnCurrentlyBorrowedBooksOnAction" prefHeight="107.0" prefWidth="241.0" styleClass="stat-card">
                <cursor>
@@ -86,7 +86,7 @@
       </Pane>
       <Pane layoutX="483.0" layoutY="93.0" prefHeight="113.0" prefWidth="241.0">
          <children>
-            <Button fx:id="totalMembersViewPanel" mnemonicParsing="false" onAction="#btnTotalMembersOnAction" prefHeight="107.0" prefWidth="241.0" styleClass="stat-card">
+            <Button fx:id="totalMembersViewPanel" layoutX="-14.0" layoutY="3.0" mnemonicParsing="false" onAction="#btnTotalMembersOnAction" prefHeight="107.0" prefWidth="241.0" styleClass="stat-card">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>
@@ -106,7 +106,7 @@
             </TextField>
          </children>
       </Pane>
-      <Pane layoutX="540.0" layoutY="41.0" prefHeight="52.0" prefWidth="184.0">
+      <Pane layoutX="526.0" layoutY="43.0" prefHeight="52.0" prefWidth="184.0">
          <children>
             <Label layoutX="12.0" layoutY="14.0" stylesheets="@../css/style.css" text="Issue Books :">
                <font>

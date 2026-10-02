@@ -285,3 +285,22 @@
 
     -fx-padding: 0;
 }
+
+
+.save-button {
+    -fx-background-color:  #315C4A;
+    -fx-text-fill: white;
+
+    -fx-font-weight: bold;
+
+
+}
+
+.save-button:hover {
+    -fx-background-color: #2E7D32;
+}
+
+.save-button:pressed {
+    -fx-background-color: #388E3C;
+    -fx-translate-y: 2px;
+}
