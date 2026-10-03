@@ -6,19 +6,13 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.SplitMenuButton;
+import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
 import java.io.IOException;
 
-public class AddBookController {
-
-    @FXML
-    private SplitMenuButton SelectorAddNewBook_Category;
-
-    @FXML
-    private SplitMenuButton SelectorAddNewBook_Status;
+public class AddMemberController {
 
     @FXML
     private Button btnAddBook;
@@ -42,55 +36,39 @@ public class AddBookController {
     private Button btnManageMembers;
 
     @FXML
-    private Button btnNewBookSave;
+    private Button btnNewMemberSave;
 
     @FXML
     private Button btnReturnBook;
 
     @FXML
-    private TextField txtAddNewBook_Author;
+    private TextArea txtAddNewMembers_Address;
 
     @FXML
-    private TextField txtAddNewBook_BookCopies;
+    private TextField txtAddNewMembers_ContactNumber;
 
     @FXML
-    private TextField txtAddNewBook_BookPublication;
+    private TextField txtAddNewMembers_Email;
 
     @FXML
-    private TextField txtAddNewBook_BookTitle;
+    private TextField txtAddNewMembers_FirstName;
 
     @FXML
-    private TextField txtAddNewBook_CopyrightYear;
-
-    @FXML
-    private TextField txtAddNewBook_ISBN;
-
-    @FXML
-    private TextField txtAddNewBook_PublisherName;
-
-    @FXML
-    void SelectorNewBookCategoryOnAction(ActionEvent event) {
-
-    }
-
-    @FXML
-    void SelectorNewBookStatusOnAction(ActionEvent event) {
-
-    }
+    private TextField txtAddNewMembers_LastName;
 
     @FXML
     void btnAddBookOnAction(ActionEvent event) {
-
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        try {
+            stage.setScene(new Scene(FXMLLoader.load(getClass().getResource("/view/AddBook_page.fxml"))));
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     @FXML
     void btnAddMemberOnAction(ActionEvent event) {
-        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        try {
-            stage.setScene(new Scene(FXMLLoader.load(getClass().getResource("/view/AddMember_page.fxml"))));
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
+
     }
 
     @FXML
@@ -107,7 +85,6 @@ public class AddBookController {
             throw new RuntimeException(e);
         }
         stage.show();
-
     }
 
     @FXML
@@ -126,7 +103,7 @@ public class AddBookController {
     }
 
     @FXML
-    void btnNewBookSaveOnAction(ActionEvent event) {
+    void btnNewMemberSaveOnAction(ActionEvent event) {
 
     }
 

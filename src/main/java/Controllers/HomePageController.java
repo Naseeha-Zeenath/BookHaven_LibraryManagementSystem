@@ -76,7 +76,12 @@ public class HomePageController {
 
     @FXML
     void btnAddMemberOnAction(ActionEvent event) {
-
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        try {
+            stage.setScene(new Scene(FXMLLoader.load(getClass().getResource("/view/AddMember_page.fxml"))));
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     @FXML
