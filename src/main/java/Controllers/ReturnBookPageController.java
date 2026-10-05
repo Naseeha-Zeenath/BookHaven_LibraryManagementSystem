@@ -12,19 +12,10 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
-public class ManageMembersPageController {
+public class ReturnBookPageController {
 
     @FXML
     private Button btnLogOut;
-
-    @FXML
-    private Button btnManageMember_PageNext;
-
-    @FXML
-    private Button btnManageMember_PagePrev;
-
-    @FXML
-    private Button btnMemebersSearch;
 
     @FXML
     private Button btnNavAddBook;
@@ -48,31 +39,46 @@ public class ManageMembersPageController {
     private Button btnNavReturnBook;
 
     @FXML
+    private Button btnReturnBook;
+
+    @FXML
+    private Button btnReturnBookClear;
+
+    @FXML
+    private Button btnReturnBookSearch;
+
+    @FXML
+    private Label txtBookTitle;
+
+    @FXML
+    private Label txtBorrowedDate;
+
+    @FXML
+    private Label txtDueDate;
+
+    @FXML
+    private Label txtEmail;
+
+    @FXML
+    private Label txtISBN;
+
+    @FXML
     private TextField txtManageMember_MembersSearchBar;
 
     @FXML
-    private TextField txtManageMember_PageNumber;
+    private Label txtMemberId;
 
     @FXML
-    private Label txtManageMember_TotalMemberCount;
+    private Label txtMemberName;
+
+    @FXML
+    private Label txtPhoneNo;
+
+    @FXML
+    private Label txtReturnDate;
 
     @FXML
     void btnLogOutOnAction(ActionEvent event) {
-
-    }
-
-    @FXML
-    void btnManageMember_PageNextOnAction(ActionEvent event) {
-
-    }
-
-    @FXML
-    void btnManageMember_PagePrevOnAction(ActionEvent event) {
-
-    }
-
-    @FXML
-    void btnMemebersSearchOnAction(ActionEvent event) {
 
     }
 
@@ -96,7 +102,6 @@ public class ManageMembersPageController {
             throw new RuntimeException(e);
         }
         stage.show();
-
     }
 
     @FXML
@@ -128,18 +133,33 @@ public class ManageMembersPageController {
 
     @FXML
     void btnNavManageMembersOnAction(ActionEvent event) {
-
-    }
-
-    @FXML
-    void btnNavReturnBookOnAction(ActionEvent event) {
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         try {
-            stage.setScene(new Scene(FXMLLoader.load(getClass().getResource("/view/ReturnBook_page.fxml"))));
+            stage.setScene(new Scene(FXMLLoader.load(getClass().getResource("/view/ManageMembers_page.fxml"))));
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
         stage.show();
+    }
+
+    @FXML
+    void btnNavReturnBookOnAction(ActionEvent event) {
+
+    }
+
+    @FXML
+    void btnReturnBookClearOnAction(ActionEvent event) {
+
+    }
+
+    @FXML
+    void btnReturnBookOnAction(ActionEvent event) {
+
+    }
+
+    @FXML
+    void btnReturnBookSearchOnAction(ActionEvent event) {
+
     }
 
 }
