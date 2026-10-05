@@ -6,16 +6,35 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
+import javafx.scene.control.ComboBox;
+import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
 import java.io.IOException;
 
-public class ReturnBookPageController {
+public class BorrowingHistoryPageController {
+
+    @FXML
+    private DatePicker SelecterBorrowingHistory_FromDate;
+
+    @FXML
+    private ComboBox<?> SelecterBorrowingHistory_MemeberID;
+
+    @FXML
+    private DatePicker SelecterBorrowingHistory_ToDate;
+
+    @FXML
+    private Button btnBorrowingHistorySearch;
 
     @FXML
     private Button btnLogOut;
+
+    @FXML
+    private Button btnManageMember_PageNext;
+
+    @FXML
+    private Button btnManageMember_PagePrev;
 
     @FXML
     private Button btnNavAddBook;
@@ -39,46 +58,25 @@ public class ReturnBookPageController {
     private Button btnNavReturnBook;
 
     @FXML
-    private Button btnReturnBook;
+    private TextField txtManageMember_PageNumber;
 
     @FXML
-    private Button btnReturnBookClear;
+    void btnBorrowingHistorySearchOnAction(ActionEvent event) {
 
-    @FXML
-    private Button btnReturnBookSearch;
-
-    @FXML
-    private Label txtBookTitle;
-
-    @FXML
-    private Label txtBorrowedDate;
-
-    @FXML
-    private Label txtDueDate;
-
-    @FXML
-    private Label txtEmail;
-
-    @FXML
-    private Label txtISBN;
-
-    @FXML
-    private TextField txtManageMember_MembersSearchBar;
-
-    @FXML
-    private Label txtMemberId;
-
-    @FXML
-    private Label txtMemberName;
-
-    @FXML
-    private Label txtPhoneNo;
-
-    @FXML
-    private Label txtReturnDate;
+    }
 
     @FXML
     void btnLogOutOnAction(ActionEvent event) {
+
+    }
+
+    @FXML
+    void btnManageMember_PageNextOnAction(ActionEvent event) {
+
+    }
+
+    @FXML
+    void btnManageMember_PagePrevOnAction(ActionEvent event) {
 
     }
 
@@ -91,6 +89,7 @@ public class ReturnBookPageController {
             throw new RuntimeException(e);
         }
         stage.show();
+
     }
 
     @FXML
@@ -102,17 +101,12 @@ public class ReturnBookPageController {
             throw new RuntimeException(e);
         }
         stage.show();
+
     }
 
     @FXML
     void btnNavBorrowingHistoryOnAction(ActionEvent event) {
-        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        try {
-            stage.setScene(new Scene(FXMLLoader.load(getClass().getResource("/view/BorrowingHistory_page.fxml"))));
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-        stage.show();
+
     }
 
     @FXML
@@ -124,6 +118,7 @@ public class ReturnBookPageController {
             throw new RuntimeException(e);
         }
         stage.show();
+
     }
 
     @FXML
@@ -135,6 +130,7 @@ public class ReturnBookPageController {
             throw new RuntimeException(e);
         }
         stage.show();
+
     }
 
     @FXML
@@ -146,25 +142,18 @@ public class ReturnBookPageController {
             throw new RuntimeException(e);
         }
         stage.show();
+
     }
 
     @FXML
     void btnNavReturnBookOnAction(ActionEvent event) {
-
-    }
-
-    @FXML
-    void btnReturnBookClearOnAction(ActionEvent event) {
-
-    }
-
-    @FXML
-    void btnReturnBookOnAction(ActionEvent event) {
-
-    }
-
-    @FXML
-    void btnReturnBookSearchOnAction(ActionEvent event) {
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        try {
+            stage.setScene(new Scene(FXMLLoader.load(getClass().getResource("/view/ReturnBook_page.fxml"))));
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        stage.show();
 
     }
 
