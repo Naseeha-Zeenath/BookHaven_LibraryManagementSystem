@@ -3,7 +3,8 @@
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -12,7 +13,8 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="500.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.AddMemberPageController">
+<AnchorPane prefHeight="500.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.ManageMembersPageController">
+
    <children>
       <VBox prefHeight="497.0" prefWidth="202.0" styleClass="sidebar" stylesheets="@../css/style.css">
          <children>
@@ -40,12 +42,12 @@
                   <Font size="14.0" />
                </font>
             </Button>
-            <Button fx:id="btnNavAddMember" disable="true" mnemonicParsing="false" onAction="#btnNavAddMemberOnAction" prefHeight="30.0" prefWidth="211.0" styleClass="nav-button" stylesheets="@../css/style.css" text="Add Member">
+            <Button fx:id="btnNavAddMember" mnemonicParsing="false" onAction="#btnNavAddMemberOnAction" prefHeight="30.0" prefWidth="211.0" styleClass="nav-button" stylesheets="@../css/style.css" text="Add Member">
                <font>
                   <Font size="14.0" />
                </font>
             </Button>
-            <Button fx:id="btnNavManageMembers" mnemonicParsing="false" onAction="#btnNavManageMembersOnAction" prefHeight="30.0" prefWidth="208.0" styleClass="nav-button" stylesheets="@../css/style.css" text="Manage Members">
+            <Button fx:id="btnNavManageMembers" disable="true" mnemonicParsing="false" onAction="#btnNavManageMembersOnAction" prefHeight="30.0" prefWidth="208.0" styleClass="nav-button" stylesheets="@../css/style.css" text="Manage Members">
                <font>
                   <Font size="14.0" />
                </font>
@@ -75,65 +77,33 @@
             </Button>
          </children>
       </VBox>
-      <Label layoutX="245.0" layoutY="34.0" text="Add Members" textAlignment="CENTER">
+      <Label layoutX="227.0" layoutY="22.0" text="Manage Members" textAlignment="CENTER">
          <font>
             <Font name="Georgia Bold" size="24.0" />
          </font>
       </Label>
-      <Pane layoutX="262.0" layoutY="88.0" prefHeight="378.0" prefWidth="479.0" styleClass="stat-card" stylesheets="@../css/style.css">
+      <Pane layoutX="211.0" layoutY="60.0" prefHeight="429.0" prefWidth="583.0" styleClass="stat-card" stylesheets="@../css/style.css">
          <children>
-            <Label layoutX="33.0" layoutY="24.0" text="Member Id">
+            <TextField fx:id="txtManageMember_MembersSearchBar" layoutX="23.0" layoutY="14.0" prefHeight="35.0" prefWidth="476.0" promptText="Search member by name , Id or email..." />
+            <TableView layoutX="10.0" layoutY="75.0" prefHeight="306.0" prefWidth="564.0">
+               <columns>
+                  <TableColumn prefWidth="75.0" text="ID" />
+                  <TableColumn prefWidth="75.0" text="Name" />
+                  <TableColumn prefWidth="88.0" text="Email" />
+                  <TableColumn prefWidth="97.0" text="Contact No" />
+                  <TableColumn prefWidth="104.0" text="Address" />
+                  <TableColumn prefWidth="125.0" text="Action" />
+               </columns>
+            </TableView>
+            <Button fx:id="btnManageMember_PageNext" alignment="CENTER" layoutX="542.0" layoutY="386.0" mnemonicParsing="false" onAction="#btnManageMember_PageNextOnAction" text="&gt;" />
+            <Button fx:id="btnManageMember_PagePrev" alignment="CENTER" layoutX="471.0" layoutY="386.0" mnemonicParsing="false" onAction="#btnManageMember_PagePrevOnAction" text="&lt;" />
+            <Label fx:id="txtManageMember_TotalMemberCount" layoutX="23.0" layoutY="392.0" text="Total Members : ">
                <font>
-                  <Font name="Georgia Italic" size="14.0" />
+                  <Font name="Georgia" size="13.0" />
                </font>
             </Label>
-            <TextField fx:id="txtAddNewMembers_MemberId" layoutX="156.0" layoutY="15.0" prefHeight="10.0" prefWidth="287.0">
-               <font>
-                  <Font size="10.0" />
-               </font>
-            </TextField>
-            <Label layoutX="31.0" layoutY="67.0" text="Full  Name">
-               <font>
-                  <Font name="Georgia Italic" size="14.0" />
-               </font>
-            </Label>
-            <Label layoutX="31.0" layoutY="110.0" text="Contact Number">
-               <font>
-                  <Font name="Georgia Italic" size="14.0" />
-               </font>
-            </Label>
-            <TextField fx:id="txtAddNewMembers_ContactNumber" layoutX="154.0" layoutY="101.0" prefHeight="10.0" prefWidth="287.0">
-               <font>
-                  <Font size="10.0" />
-               </font>
-            </TextField>
-            <Label layoutX="31.0" layoutY="161.0" text="Email">
-               <font>
-                  <Font name="Georgia Italic" size="14.0" />
-               </font>
-            </Label>
-            <Label layoutX="33.0" layoutY="208.0" text="Address">
-               <font>
-                  <Font name="Georgia Italic" size="14.0" />
-               </font>
-            </Label>
-            <TextField fx:id="txtAddNewMembers_FullName" layoutX="154.0" layoutY="58.0" prefHeight="10.0" prefWidth="287.0">
-               <font>
-                  <Font size="10.0" />
-               </font>
-            </TextField>
-            <TextField fx:id="txtAddNewMembers_Email" layoutX="156.0" layoutY="153.0" prefHeight="10.0" prefWidth="287.0">
-               <font>
-                  <Font size="10.0" />
-               </font>
-            </TextField>
-            <TextArea fx:id="txtAddNewMembers_Address" layoutX="156.0" layoutY="208.0" prefHeight="84.0" prefWidth="287.0" />
-            <Button fx:id="btnRegisterMember" layoutX="245.0" layoutY="317.0" mnemonicParsing="false" onAction="#btnRegisterMemberOnAction" prefHeight="47.0" prefWidth="198.0" styleClass="save-button" stylesheets="@../css/style.css" text="Register Member" />
-            <Button fx:id="btnRegisterMemberClear" layoutX="26.0" layoutY="317.0" mnemonicParsing="false" onAction="#btnRegisterMemberClearOnAction" prefHeight="47.0" prefWidth="201.0" styleClass="clear-button" text="Clear">
-               <font>
-                  <Font name="System Bold" size="12.0" />
-               </font>
-            </Button>
+            <Button fx:id="btnMemebersSearch" alignment="CENTER" layoutX="507.0" layoutY="17.0" mnemonicParsing="false" onAction="#btnMemebersSearchOnAction" prefHeight="30.0" prefWidth="69.0" text="Search" />
+            <TextField fx:id="txtManageMember_PageNumber" layoutX="507.0" layoutY="383.0" prefHeight="29.0" prefWidth="28.0" />
          </children>
       </Pane>
    </children>

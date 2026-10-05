@@ -6,36 +6,37 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
 import java.io.IOException;
 
-public class HomePageController {
-
-    @FXML
-    private Button btnAddBook;
-
-    @FXML
-    private Button btnAddMember;
-
-    @FXML
-    private Button btnBorrowingHistory;
-
-    @FXML
-    private Button btnDashboard;
-
-    @FXML
-    private Button btnIssueBook;
+public class DashboardPageController {
 
     @FXML
     private Button btnLogOut;
 
     @FXML
-    private Button btnManageMembers;
+    private Button btnNavAddBook;
 
     @FXML
-    private Button btnReturnBook;
+    private Button btnNavAddMember;
+
+    @FXML
+    private Button btnNavBorrowingHistory;
+
+    @FXML
+    private Button btnNavDashboard;
+
+    @FXML
+    private Button btnNavIssueBook;
+
+    @FXML
+    private Button btnNavManageMembers;
+
+    @FXML
+    private Button btnNavReturnBook;
 
     @FXML
     private Button currentlyBorrowedBooksViewPanel;
@@ -50,10 +51,16 @@ public class HomePageController {
     private Button totalMembersViewPanel;
 
     @FXML
+    private Label txtActiveMembersCount;
+
+    @FXML
+    private Label txtAvailableBookCount;
+
+    @FXML
     private TextField txtCurrentlyBorrowedBooksCount;
 
     @FXML
-    private TextField txtIssueBooksCount;
+    private Label txtIssuedCount;
 
     @FXML
     private TextField txtOverdueBooksCount;
@@ -65,42 +72,10 @@ public class HomePageController {
     private TextField txtTotalMembersCount;
 
     @FXML
-    void btnAddBookOnAction(ActionEvent event) {
-        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        try {
-            stage.setScene(new Scene(FXMLLoader.load(getClass().getResource("/view/AddBook_page.fxml"))));
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-    }
-
-    @FXML
-    void btnAddMemberOnAction(ActionEvent event) {
-        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        try {
-            stage.setScene(new Scene(FXMLLoader.load(getClass().getResource("/view/AddMember_page.fxml"))));
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-    }
-
-    @FXML
-    void btnBorrowingHistoryOnAction(ActionEvent event) {
-
-    }
+    private Label txtWelcomeUsername;
 
     @FXML
     void btnCurrentlyBorrowedBooksOnAction(ActionEvent event) {
-
-    }
-
-    @FXML
-    void btnDashboardOnAction(ActionEvent event) {
-
-    }
-
-    @FXML
-    void btnIssueBookOnAction(ActionEvent event) {
 
     }
 
@@ -110,17 +85,69 @@ public class HomePageController {
     }
 
     @FXML
-    void btnManageMembersOnAction(ActionEvent event) {
+    void btnNavAddBookOnAction(ActionEvent event) {
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        try {
+            stage.setScene(new Scene(FXMLLoader.load(getClass().getResource("/view/AddBook_page.fxml"))));
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        stage.show();
+
+    }
+
+    @FXML
+    void btnNavAddMemberOnAction(ActionEvent event) {
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        try {
+            stage.setScene(new Scene(FXMLLoader.load(getClass().getResource("/view/AddMember_page.fxml"))));
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        stage.show();
+
+    }
+
+    @FXML
+    void btnNavBorrowingHistoryOnAction(ActionEvent event) {
+
+    }
+
+    @FXML
+    void btnNavDashboardOnAction(ActionEvent event) {
+
+    }
+
+    @FXML
+    void btnNavIssueBookOnAction(ActionEvent event) {
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        try {
+            stage.setScene(new Scene(FXMLLoader.load(getClass().getResource("/view/IssueBook_page.fxml"))));
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        stage.show();
+    }
+
+    @FXML
+    void btnNavManageMembersOnAction(ActionEvent event) {
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        try {
+            stage.setScene(new Scene(FXMLLoader.load(getClass().getResource("/view/ManageMembers_page.fxml"))));
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        stage.show();
+
+    }
+
+    @FXML
+    void btnNavReturnBookOnAction(ActionEvent event) {
 
     }
 
     @FXML
     void btnOverdueBooksOnAction(ActionEvent event) {
-
-    }
-
-    @FXML
-    void btnReturnBookOnAction(ActionEvent event) {
 
     }
 
