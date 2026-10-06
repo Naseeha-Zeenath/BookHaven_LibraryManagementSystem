@@ -2,9 +2,11 @@
 
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.TextArea?>
-<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -12,7 +14,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="500.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.AddMemberPageController">
+<AnchorPane prefHeight="500.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.IssueBookPageController">
    <children>
       <VBox prefHeight="497.0" prefWidth="202.0" styleClass="sidebar" stylesheets="@../css/style.css">
          <children>
@@ -40,7 +42,7 @@
                   <Font size="14.0" />
                </font>
             </Button>
-            <Button fx:id="btnNavAddMember" disable="true" mnemonicParsing="false" onAction="#btnNavAddMemberOnAction" prefHeight="30.0" prefWidth="211.0" styleClass="nav-button" stylesheets="@../css/style.css" text="Add Member">
+            <Button fx:id="btnNavAddMember" mnemonicParsing="false" onAction="#btnNavAddMemberOnAction" prefHeight="30.0" prefWidth="211.0" styleClass="nav-button" stylesheets="@../css/style.css" text="Add Member">
                <font>
                   <Font size="14.0" />
                </font>
@@ -50,7 +52,7 @@
                   <Font size="14.0" />
                </font>
             </Button>
-            <Button fx:id="btnNavIssueBook" mnemonicParsing="false" onAction="#btnNavIssueBookOnAction" prefHeight="30.0" prefWidth="213.0" styleClass="nav-button" stylesheets="@../css/style.css" text="Issue Book ">
+            <Button fx:id="btnNavIssueBook" disable="true" mnemonicParsing="false" onAction="#btnNavIssueBookOnAction" prefHeight="30.0" prefWidth="213.0" styleClass="nav-button" stylesheets="@../css/style.css" text="Issue Book ">
                <font>
                   <Font size="14.0" />
                </font>
@@ -75,65 +77,57 @@
             </Button>
          </children>
       </VBox>
-      <Label layoutX="245.0" layoutY="34.0" text="Add Members" textAlignment="CENTER">
+      <Label layoutX="227.0" layoutY="22.0" text="Issue Book " textAlignment="CENTER">
          <font>
             <Font name="Georgia Bold" size="24.0" />
          </font>
       </Label>
-      <Pane layoutX="262.0" layoutY="88.0" prefHeight="378.0" prefWidth="479.0" styleClass="stat-card" stylesheets="@../css/style.css">
+      <Pane layoutX="211.0" layoutY="59.0" prefHeight="204.0" prefWidth="460.0" styleClass="stat-card" stylesheets="@../css/style.css">
          <children>
-            <Label layoutX="33.0" layoutY="24.0" text="Member Id">
+            <Label layoutX="37.0" layoutY="27.0" text="Select Member">
                <font>
                   <Font name="Georgia Italic" size="14.0" />
                </font>
             </Label>
-            <TextField fx:id="txtAddNewMembers_MemberId" layoutX="156.0" layoutY="15.0" prefHeight="10.0" prefWidth="287.0">
-               <font>
-                  <Font size="10.0" />
-               </font>
-            </TextField>
-            <Label layoutX="31.0" layoutY="67.0" text="Full  Name">
+            <Label layoutX="247.0" layoutY="29.0" text="Select Book">
                <font>
                   <Font name="Georgia Italic" size="14.0" />
                </font>
             </Label>
-            <Label layoutX="31.0" layoutY="110.0" text="Contact Number">
+            <ComboBox fx:id="SelecterIssueBook_SelectMemeber" layoutX="35.0" layoutY="52.0" prefHeight="25.0" prefWidth="178.0" />
+            <ComboBox fx:id="SelecterIssueBook_SelectBook" layoutX="247.0" layoutY="54.0" prefHeight="25.0" prefWidth="178.0" />
+            <DatePicker fx:id="SelecterIssueBook_SelectIssueDate" layoutX="35.0" layoutY="105.0" prefHeight="35.0" prefWidth="178.0" />
+            <Label layoutX="42.0" layoutY="87.0" text="Issue Date">
                <font>
                   <Font name="Georgia Italic" size="14.0" />
                </font>
             </Label>
-            <TextField fx:id="txtAddNewMembers_ContactNumber" layoutX="154.0" layoutY="101.0" prefHeight="10.0" prefWidth="287.0">
-               <font>
-                  <Font size="10.0" />
-               </font>
-            </TextField>
-            <Label layoutX="31.0" layoutY="161.0" text="Email">
+            <DatePicker fx:id="SelecterIssueBook_SelectDueDate" layoutX="247.0" layoutY="105.0" prefHeight="35.0" prefWidth="178.0" />
+            <Label layoutX="252.0" layoutY="87.0" text="Due Date">
                <font>
                   <Font name="Georgia Italic" size="14.0" />
                </font>
             </Label>
-            <Label layoutX="33.0" layoutY="208.0" text="Address">
+            <Button fx:id="btnIssueBook" layoutX="33.0" layoutY="160.0" mnemonicParsing="false" onAction="#btnIssueBookOnAction" prefHeight="30.0" prefWidth="395.0" styleClass="save-button" text="Issue Book" />
+         </children>
+      </Pane>
+      <Pane layoutX="211.0" layoutY="274.0" prefHeight="217.0" prefWidth="583.0" styleClass="stat-card" stylesheets="@../css/style.css">
+         <children>
+            <TableView layoutX="10.0" layoutY="48.0" prefHeight="150.0" prefWidth="564.0">
+               <columns>
+                  <TableColumn prefWidth="75.0" text="Issue ID" />
+                  <TableColumn prefWidth="110.0" text="Member Name" />
+                  <TableColumn prefWidth="130.0" text="Book Title" />
+                  <TableColumn prefWidth="84.0" text="Issue Date" />
+                  <TableColumn text="Due Date" />
+                  <TableColumn prefWidth="85.0" text="Status" />
+               </columns>
+            </TableView>
+            <Label layoutX="13.0" layoutY="14.0" text="Recent Issues">
                <font>
-                  <Font name="Georgia Italic" size="14.0" />
+                  <Font name="Georgia Italic" size="18.0" />
                </font>
             </Label>
-            <TextField fx:id="txtAddNewMembers_FullName" layoutX="154.0" layoutY="58.0" prefHeight="10.0" prefWidth="287.0">
-               <font>
-                  <Font size="10.0" />
-               </font>
-            </TextField>
-            <TextField fx:id="txtAddNewMembers_Email" layoutX="156.0" layoutY="153.0" prefHeight="10.0" prefWidth="287.0">
-               <font>
-                  <Font size="10.0" />
-               </font>
-            </TextField>
-            <TextArea fx:id="txtAddNewMembers_Address" layoutX="156.0" layoutY="208.0" prefHeight="84.0" prefWidth="287.0" />
-            <Button fx:id="btnRegisterMember" layoutX="245.0" layoutY="317.0" mnemonicParsing="false" onAction="#btnRegisterMemberOnAction" prefHeight="47.0" prefWidth="198.0" styleClass="save-button" stylesheets="@../css/style.css" text="Register Member" />
-            <Button fx:id="btnRegisterMemberClear" layoutX="26.0" layoutY="317.0" mnemonicParsing="false" onAction="#btnRegisterMemberClearOnAction" prefHeight="47.0" prefWidth="201.0" styleClass="clear-button" text="Clear">
-               <font>
-                  <Font name="System Bold" size="12.0" />
-               </font>
-            </Button>
          </children>
       </Pane>
    </children>

@@ -304,3 +304,11 @@
     -fx-background-color: #388E3C;
     -fx-translate-y: 2px;
 }
+
+
+.clear-button{
+}
+
+.clear-button:pressed{
+  -fx-translate-y: 2px;
+}
