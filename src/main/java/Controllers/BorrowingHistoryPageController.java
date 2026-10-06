@@ -28,13 +28,13 @@ public class BorrowingHistoryPageController {
     private Button btnBorrowingHistorySearch;
 
     @FXML
+    private Button btnBorrowingHistory_PageNext;
+
+    @FXML
+    private Button btnBorrowingHistory_PagePrev;
+
+    @FXML
     private Button btnLogOut;
-
-    @FXML
-    private Button btnManageMember_PageNext;
-
-    @FXML
-    private Button btnManageMember_PagePrev;
 
     @FXML
     private Button btnNavAddBook;
@@ -58,7 +58,7 @@ public class BorrowingHistoryPageController {
     private Button btnNavReturnBook;
 
     @FXML
-    private TextField txtManageMember_PageNumber;
+    private TextField txtBorrowingHistory_PageNumber;
 
     @FXML
     void btnBorrowingHistorySearchOnAction(ActionEvent event) {
@@ -66,17 +66,17 @@ public class BorrowingHistoryPageController {
     }
 
     @FXML
+    void btnBorrowingHistory_PageNextOnAction(ActionEvent event) {
+
+    }
+
+    @FXML
+    void btnBorrowingHistory_PagePrevOnAction(ActionEvent event) {
+
+    }
+
+    @FXML
     void btnLogOutOnAction(ActionEvent event) {
-
-    }
-
-    @FXML
-    void btnManageMember_PageNextOnAction(ActionEvent event) {
-
-    }
-
-    @FXML
-    void btnManageMember_PagePrevOnAction(ActionEvent event) {
 
     }
 
@@ -89,7 +89,6 @@ public class BorrowingHistoryPageController {
             throw new RuntimeException(e);
         }
         stage.show();
-
     }
 
     @FXML
@@ -101,7 +100,6 @@ public class BorrowingHistoryPageController {
             throw new RuntimeException(e);
         }
         stage.show();
-
     }
 
     @FXML
@@ -118,7 +116,6 @@ public class BorrowingHistoryPageController {
             throw new RuntimeException(e);
         }
         stage.show();
-
     }
 
     @FXML
@@ -130,7 +127,6 @@ public class BorrowingHistoryPageController {
             throw new RuntimeException(e);
         }
         stage.show();
-
     }
 
     @FXML
@@ -142,7 +138,6 @@ public class BorrowingHistoryPageController {
             throw new RuntimeException(e);
         }
         stage.show();
-
     }
 
     @FXML
@@ -154,7 +149,6 @@ public class BorrowingHistoryPageController {
             throw new RuntimeException(e);
         }
         stage.show();
-
     }
 
 }

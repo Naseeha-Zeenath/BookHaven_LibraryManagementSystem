@@ -1,4 +1,4 @@
-package Controllers;
+package Controllers.DashBoardContent;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -6,13 +6,21 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
 import java.io.IOException;
 
-public class DashboardPageController {
+public class CurrentlyBorrowedBooksPageController {
+
+    @FXML
+    private Button btnCurrentlyBorrowedBooks_PageNext;
+
+    @FXML
+    private Button btnCurrentlyBorrowedBooks_PagePrev;
+
+    @FXML
+    private Button btnCurrentlyBorrowedBooks_Search;
 
     @FXML
     private Button btnLogOut;
@@ -39,41 +47,28 @@ public class DashboardPageController {
     private Button btnNavReturnBook;
 
     @FXML
-    private Button currentlyBorrowedBooksViewPanel;
-
-    @FXML
-    private Button overdueBooksViewPanel;
-
-    @FXML
-    private Button totalBooksViewPanel;
-
-    @FXML
-    private Button totalMembersViewPanel;
-
-    @FXML
-    private Label txtActiveMembersCount;
-
-    @FXML
-    private Label txtAvailableBookCount;
-
-    @FXML
     private TextField txtCurrentlyBorrowedBooksCount;
 
     @FXML
-    private Label txtIssuedCount;
+    private TextField txtCurrentlyBorrowedBooks_PageNumber;
 
     @FXML
-    private TextField txtOverdueBooksCount;
+    private TextField txtCurrentlyBorrowedBooks_SearchBar;
 
     @FXML
-    private TextField txtTotalBooksCount;
+    void btnCurrentlyBorrowedBooks_PageNextOnAction(ActionEvent event) {
+
+    }
 
     @FXML
-    private TextField txtTotalMembersCount;
+    void btnCurrentlyBorrowedBooks_PagePrevOnAction(ActionEvent event) {
+
+    }
 
     @FXML
-    private Label txtWelcomeUsername;
+    void btnCurrentlyBorrowedBooks_SearchOnAction(ActionEvent event) {
 
+    }
 
     @FXML
     void btnLogOutOnAction(ActionEvent event) {
@@ -115,7 +110,13 @@ public class DashboardPageController {
 
     @FXML
     void btnNavDashboardOnAction(ActionEvent event) {
-
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        try {
+            stage.setScene(new Scene(FXMLLoader.load(getClass().getResource("/view/Dashboard_page.fxml"))));
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        stage.show();
     }
 
     @FXML
@@ -151,48 +152,5 @@ public class DashboardPageController {
         stage.show();
     }
 
-    @FXML
-    void btnOverdueBooksOnAction(ActionEvent event) {
-        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        try {
-            stage.setScene(new Scene(FXMLLoader.load(getClass().getResource("/view/DahboardContentView/OverdueBooks_page.fxml"))));
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-        stage.show();
-    }
-
-    @FXML
-    void btnTotalBooksOnAction(ActionEvent event) {
-        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        try {
-            stage.setScene(new Scene(FXMLLoader.load(getClass().getResource("/view/DahboardContentView/TotalBooks_page.fxml"))));
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-        stage.show();
-    }
-
-    @FXML
-    void btnTotalMembersOnAction(ActionEvent event) {
-        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        try {
-            stage.setScene(new Scene(FXMLLoader.load(getClass().getResource("/view/DahboardContentView/TotalMembers_page.fxml"))));
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-        stage.show();
-    }
-
-    @FXML
-    void btnCurrentlyBorrowedBooksOnAction(ActionEvent event) {
-        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        try {
-            stage.setScene(new Scene(FXMLLoader.load(getClass().getResource("/view/DahboardContentView/CurrentlyBorrowedBooks_page.fxml"))));
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-        stage.show();
-    }
-
 }
+

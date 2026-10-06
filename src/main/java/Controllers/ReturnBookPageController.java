@@ -62,8 +62,9 @@ public class ReturnBookPageController {
     @FXML
     private Label txtISBN;
 
+
     @FXML
-    private TextField txtManageMember_MembersSearchBar;
+    private TextField txtReturnBook_SearchBar;
 
     @FXML
     private Label txtMemberId;
@@ -76,6 +77,9 @@ public class ReturnBookPageController {
 
     @FXML
     private Label txtReturnDate;
+
+    @FXML
+    private Label txtReturnBook_OverdueDaysCount;
 
     @FXML
     void btnLogOutOnAction(ActionEvent event) {

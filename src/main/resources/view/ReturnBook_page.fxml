@@ -81,7 +81,7 @@
       </Label>
       <Pane layoutX="211.0" layoutY="60.0" prefHeight="429.0" prefWidth="583.0" styleClass="stat-card" stylesheets="@../css/style.css">
          <children>
-            <TextField fx:id="txtManageMember_MembersSearchBar" layoutX="15.0" layoutY="14.0" prefHeight="35.0" prefWidth="476.0" promptText="Search member by Member ID, Book Title or ISBN..." />
+            <TextField fx:id="txtReturnBook_SearchBar" layoutX="15.0" layoutY="14.0" prefHeight="35.0" prefWidth="476.0" promptText="Search member by Member ID, Book Title or ISBN..." />
             <Button fx:id="btnReturnBookSearch" alignment="CENTER" layoutX="499.0" layoutY="17.0" mnemonicParsing="false" onAction="#btnReturnBookSearchOnAction" prefHeight="30.0" prefWidth="69.0" text="Search" />
             <Pane layoutX="19.0" layoutY="83.0" prefHeight="182.0" prefWidth="265.0" styleClass="stat-card" stylesheets="@../css/style.css">
                <children>
@@ -162,6 +162,11 @@
                   <Label fx:id="txtReturnDate" layoutX="140.0" layoutY="185.0" text="___" />
                </children>
             </Pane>
+            <Label fx:id="txtReturnBook_OverdueDaysCount" layoutX="162.0" layoutY="284.0" prefHeight="21.0" prefWidth="69.0" text="___">
+               <font>
+                  <Font name="Georgia Italic" size="18.0" />
+               </font>
+            </Label>
          </children>
       </Pane>
    </children>

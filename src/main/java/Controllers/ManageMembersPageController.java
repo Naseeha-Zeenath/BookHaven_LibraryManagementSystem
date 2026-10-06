@@ -96,7 +96,6 @@ public class ManageMembersPageController {
             throw new RuntimeException(e);
         }
         stage.show();
-
     }
 
     @FXML
