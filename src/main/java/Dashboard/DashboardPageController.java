@@ -1,4 +1,4 @@
-package Controllers;
+package Dashboard;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -7,12 +7,12 @@ import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
 import java.io.IOException;
 
 public class DashboardPageController {
+
 
     @FXML
     private Button btnLogOut;
@@ -57,23 +57,30 @@ public class DashboardPageController {
     private Label txtAvailableBookCount;
 
     @FXML
-    private TextField txtCurrentlyBorrowedBooksCount;
+    private Label txtCurrentlyBorrowedBooksCount;
 
     @FXML
     private Label txtIssuedCount;
 
     @FXML
-    private TextField txtOverdueBooksCount;
+    private Label txtOverdueBooksCount;
 
     @FXML
-    private TextField txtTotalBooksCount;
+    private Label txtTotalBooksCount;
 
     @FXML
-    private TextField txtTotalMembersCount;
+    private Label txtTotalMembersCount;
 
     @FXML
     private Label txtWelcomeUsername;
 
+    GetMemberCount getMemberCount = new GetMemberCount();
+    GetBookCount getBookCount = new GetBookCount();
+    @FXML
+    public void initialize() {
+        txtTotalMembersCount.setText(getMemberCount.memberCount());
+        txtTotalBooksCount.setText(getBookCount.bookCount());
+    }
 
     @FXML
     void btnLogOutOnAction(ActionEvent event) {

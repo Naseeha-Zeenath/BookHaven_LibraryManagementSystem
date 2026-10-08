@@ -59,6 +59,7 @@ public class AddMemberPageController {
     @FXML
     private TextField txtAddNewMembers_MemberId;
 
+
     @FXML
     void btnLogOutOnAction(ActionEvent event) {
 
