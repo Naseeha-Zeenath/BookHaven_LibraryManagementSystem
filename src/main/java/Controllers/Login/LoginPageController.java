@@ -6,6 +6,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
@@ -28,6 +29,10 @@ public class LoginPageController {
     @FXML
     private TextField txtUserName;
 
+
+    @FXML
+    private Label txtInvalidUser;
+
     @FXML
     void btnLoginOnAction(ActionEvent event) {
 
@@ -40,6 +45,8 @@ public class LoginPageController {
                 throw new RuntimeException(e);
             }
             stage.show();
+        } else {
+            txtInvalidUser.setText("Invalid Username or Password");
         }
 
 
@@ -50,6 +57,7 @@ public class LoginPageController {
     void btnResetOnAction(ActionEvent event) {
         txtUserName.clear();
         txtPassword.clear();
+        txtInvalidUser.setText(null);
     }
 
 }
