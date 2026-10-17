@@ -10,7 +10,6 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-
 <AnchorPane prefHeight="411.0" prefWidth="371.0" style="-fx-background-color: #ffffff;" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.Login.LoginPageController">
    <children>
       <ImageView fitHeight="94.0" fitWidth="132.0" layoutX="28.0" layoutY="46.0" pickOnBounds="true" preserveRatio="true">
@@ -40,7 +39,7 @@
       </Label>
       <TextField fx:id="txtUserName" layoutX="160.0" layoutY="180.0" prefHeight="27.0" prefWidth="163.0" />
       <PasswordField fx:id="txtPassword" layoutX="160.0" layoutY="234.0" prefHeight="27.0" prefWidth="163.0" />
-      <Button fx:id="btnLogin" layoutX="192.0" layoutY="300.0" mnemonicParsing="false" onAction="#btnLoginOnAction" prefHeight="38.0" prefWidth="105.0" text="Login" textFill="#067206">
+      <Button fx:id="btnLogin" layoutX="195.0" layoutY="320.0" mnemonicParsing="false" onAction="#btnLoginOnAction" prefHeight="38.0" prefWidth="105.0" styleClass="save-button" stylesheets="@../css/style.css" text="Login" textFill="#067206">
          <font>
             <Font name="Georgia" size="18.0" />
          </font>
@@ -48,7 +47,7 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </Button>
-      <Button fx:id="btnReset" layoutX="70.0" layoutY="300.0" mnemonicParsing="false" onAction="#btnResetOnAction" prefHeight="38.0" prefWidth="105.0" style="-fx-background-image: red;" text="Reset" textFill="#b51d1d">
+      <Button fx:id="btnReset" layoutX="73.0" layoutY="320.0" mnemonicParsing="false" onAction="#btnResetOnAction" prefHeight="38.0" prefWidth="105.0" styleClass="clear-button" stylesheets="@../css/style.css" text="Reset" textFill="#b51d1d">
          <font>
             <Font name="Georgia" size="18.0" />
          </font>
@@ -56,5 +55,10 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </Button>
+      <Label fx:id="txtInvalidUser" alignment="CENTER" contentDisplay="CENTER" layoutX="59.0" layoutY="277.0" prefHeight="27.0" prefWidth="254.0" textAlignment="CENTER" textFill="#c82909">
+         <font>
+            <Font name="Georgia Bold" size="14.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>
