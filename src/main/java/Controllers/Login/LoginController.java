@@ -9,7 +9,7 @@ import java.sql.SQLException;
 
 public class LoginController {
 
-    Connection connection = DBConnection.getConnection();
+    Connection connection = DBConnection.getInstance().getConnection();
 
     public boolean checkUserNameAndPassword(String userName, String password) {
 

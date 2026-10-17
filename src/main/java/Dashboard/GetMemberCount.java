@@ -6,7 +6,7 @@ import java.sql.*;
 
 public class GetMemberCount {
 
-    Connection connection = DBConnection.getConnection();
+    Connection connection = DBConnection.getInstance().getConnection();
 
     public  String memberCount() {
         String sql = "SELECT COUNT(*) FROM members;";
