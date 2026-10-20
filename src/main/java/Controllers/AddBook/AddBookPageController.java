@@ -23,7 +23,7 @@ public class AddBookPageController implements Initializable {
     private ComboBox<String> SelectorAddNewBook_Author;
 
     @FXML
-    private ComboBox<?> SelectorAddNewBook_Category;
+    private ComboBox<String> SelectorAddNewBook_Category;
 
 
 
@@ -173,11 +173,17 @@ public class AddBookPageController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         setAuthor();
+        setCategory();
     }
     LoadAuthorController loadAuthorController = new LoadAuthorController();
 
     public void setAuthor(){
         SelectorAddNewBook_Author.setItems(loadAuthorController.author());
+    }
+
+    LoadCategoryController loadCategoryController = new LoadCategoryController();
+    public void setCategory(){
+        SelectorAddNewBook_Category.setItems(loadCategoryController.category());
     }
 
 

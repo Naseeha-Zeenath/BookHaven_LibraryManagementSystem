@@ -17,7 +17,6 @@ public class LoadAuthorController {
     Connection connection = DBConnection.getInstance().getConnection();
 
     String SQL = "SELECT * FROM authors;";
-    String name = null;
 
 
     private ObservableList<String> getDbAuthor(){
@@ -41,7 +40,6 @@ public class LoadAuthorController {
 
 
     public ObservableList<String> author() {
-        ObservableList<String> authorList = getDbAuthor();
-        return authorList;
+        return getDbAuthor();
     }
 }
