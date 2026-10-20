@@ -3,19 +3,29 @@ package Controllers.AddBook;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.SplitMenuButton;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.net.URL;
+import java.util.ResourceBundle;
 
-public class AddBookPageController {
+public class AddBookPageController implements Initializable {
+
+    AddBookController addBookController =  new AddBookController();
 
     @FXML
-    private SplitMenuButton SelectorAddNewBook_Category;
+    private ComboBox<String> SelectorAddNewBook_Author;
+
+    @FXML
+    private ComboBox<?> SelectorAddNewBook_Category;
+
+
 
     @FXML
     private Button btnAddNewBook;
@@ -47,8 +57,7 @@ public class AddBookPageController {
     @FXML
     private Button btnNavReturnBook;
 
-    @FXML
-    private TextField txtAddNewBook_Author;
+
 
     @FXML
     private TextField txtAddNewBook_BookTitle;
@@ -62,23 +71,24 @@ public class AddBookPageController {
     @FXML
     private TextField txtAddNewBook_Quantity;
 
-    @FXML
-    void SelectorNewBookCategoryOnAction(ActionEvent event) {
-
-    }
 
     @FXML
     void btnAddNewBookClearOnAction(ActionEvent event) {
         txtAddNewBook_ISBN.clear();
         txtAddNewBook_BookTitle.clear();
-        txtAddNewBook_Author.clear();
         txtAddNewBook_PublishedYear.clear();
         txtAddNewBook_Quantity.clear();
     }
 
+
     @FXML
     void btnAddNewBookOnAction(ActionEvent event) {
-
+        addBookController.InsertBookOnDB(
+                txtAddNewBook_ISBN.getText(),
+                txtAddNewBook_BookTitle.getText(),
+                txtAddNewBook_PublishedYear.getText(),
+                txtAddNewBook_Quantity.getText()
+        );
     }
 
     @FXML
@@ -159,5 +169,18 @@ public class AddBookPageController {
         }
         stage.show();
     }
+
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        setAuthor();
+    }
+    LoadAuthorController loadAuthorController = new LoadAuthorController();
+
+    public void setAuthor(){
+        SelectorAddNewBook_Author.setItems(loadAuthorController.author());
+    }
+
+
+
 
 }

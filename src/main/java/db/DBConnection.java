@@ -14,7 +14,7 @@ public class DBConnection {
             connection =DriverManager.getConnection(
                     "jdbc:mysql://localhost:3306/BookHevanLB_db",
                     "root",
-                    "******");
+                    "");
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
