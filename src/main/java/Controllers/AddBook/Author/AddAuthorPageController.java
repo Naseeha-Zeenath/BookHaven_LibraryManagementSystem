@@ -31,7 +31,7 @@ public class AddAuthorPageController {
 
     @FXML
     void btnAddAuthorOnAction(ActionEvent event) {
-        addAuthorController.addAuther(txtAuthorName.getText(),txtInvalidAuthor.getText());
+        txtInvalidAuthor.setText(addAuthorController.addAuther(txtAuthorName.getText()));
     }
 
 }

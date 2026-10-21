@@ -1,4 +1,4 @@
-package Dashboard;
+package Controllers.Dashboard;
 
 import db.DBConnection;
 

@@ -32,8 +32,8 @@ public class AddCategoryController {
             } catch (SQLException e) {
                 throw new RuntimeException(e);
             }
-
             return "Success!";
         }
+
     }
 }
