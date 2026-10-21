@@ -87,7 +87,9 @@ public class AddBookPageController implements Initializable {
                 txtAddNewBook_ISBN.getText(),
                 txtAddNewBook_BookTitle.getText(),
                 txtAddNewBook_PublishedYear.getText(),
-                txtAddNewBook_Quantity.getText()
+                txtAddNewBook_Quantity.getText(),
+                SelectorAddNewBook_Author.getValue(),
+                SelectorAddNewBook_Category.getValue()
         );
     }
 

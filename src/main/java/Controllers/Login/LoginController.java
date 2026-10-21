@@ -19,8 +19,6 @@ public class LoginController {
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
             ResultSet resultSet = preparedStatement.executeQuery();
 
-            System.out.println(resultSet);
-
             while (resultSet.next()){
                 return true;
             }

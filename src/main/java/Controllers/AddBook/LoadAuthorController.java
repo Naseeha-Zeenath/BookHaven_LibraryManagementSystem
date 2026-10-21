@@ -12,11 +12,9 @@ import java.sql.SQLException;
 
 public class LoadAuthorController {
 
-
-
     Connection connection = DBConnection.getInstance().getConnection();
 
-    String SQL = "SELECT * FROM authors;";
+    String SQL = "SELECT * FROM authors  ORDER BY author_id ASC;";
 
 
     private ObservableList<String> getDbAuthor(){
@@ -25,17 +23,20 @@ public class LoadAuthorController {
         try {
             PreparedStatement preparedStatement = connection.prepareStatement(SQL);
             ResultSet resultSet = preparedStatement.executeQuery();
-            System.out.println(resultSet);
+//            System.out.println(connection);
 
             while (resultSet.next()){
+                String dbAuthorId = resultSet.getString("author_id");
                 String dbAuthorName = resultSet.getString("author_name");
-                authorList.add(dbAuthorName);
+
+                authorList.add(dbAuthorId+" -"+dbAuthorName);
             }
 
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
         return  authorList;
+
     }
 
 
