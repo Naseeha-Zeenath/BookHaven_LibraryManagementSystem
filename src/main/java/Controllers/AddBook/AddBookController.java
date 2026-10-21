@@ -5,7 +5,6 @@ import db.DBConnection;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
-import java.sql.SQLOutput;
 
 public class AddBookController {
 
@@ -31,7 +30,6 @@ public class AddBookController {
             preparedStatement.setString(7,SelectorAddNewBook_Category.charAt(0) + "");
 
             int executeUpdate = preparedStatement.executeUpdate();
-            System.out.println("Insert new book Sucessfully ");
 
         } catch (SQLException e) {
             throw new RuntimeException(e);

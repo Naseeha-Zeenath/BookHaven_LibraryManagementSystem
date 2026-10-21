@@ -8,6 +8,8 @@ import javafx.scene.control.TextField;
 
 public class AddAuthorPageController {
 
+    AddAuthorController addAuthorController = new AddAuthorController();
+
     @FXML
     private Button btnAddAuthor;
 
@@ -18,16 +20,18 @@ public class AddAuthorPageController {
     private TextField txtAuthorName;
 
     @FXML
-    private Label txtInvalidUser;
+    private Label txtInvalidAuthor;
 
     @FXML
     void btnAddAuthorClearOnAction(ActionEvent event) {
+        txtAuthorName.clear();
+        txtInvalidAuthor.setText("");
 
     }
 
     @FXML
     void btnAddAuthorOnAction(ActionEvent event) {
-
+        addAuthorController.addAuther(txtAuthorName.getText(),txtInvalidAuthor.getText());
     }
 
 }

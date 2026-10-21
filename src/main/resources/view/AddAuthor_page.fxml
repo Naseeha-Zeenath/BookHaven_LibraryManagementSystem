@@ -26,7 +26,7 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </Button>
-      <Label fx:id="txtInvalidUser" alignment="CENTER" contentDisplay="CENTER" layoutX="23.0" layoutY="178.0" prefHeight="27.0" prefWidth="322.0" textAlignment="CENTER" textFill="#c82909">
+      <Label fx:id="txtInvalidAuthor" alignment="CENTER" contentDisplay="CENTER" layoutX="23.0" layoutY="178.0" prefHeight="27.0" prefWidth="322.0" textAlignment="CENTER" textFill="#c82909">
          <font>
             <Font name="Georgia Bold" size="14.0" />
          </font>
