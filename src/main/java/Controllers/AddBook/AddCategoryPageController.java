@@ -8,6 +8,8 @@ import javafx.scene.control.TextField;
 
 public class AddCategoryPageController {
 
+    AddCategoryController addCategoryController = new AddCategoryController();
+
     @FXML
     private Button btnAddCategory;
 
@@ -22,12 +24,13 @@ public class AddCategoryPageController {
 
     @FXML
     void btnAddCategoryClearOnAction(ActionEvent event) {
-
+        txtCategoryName.clear();
+        txtInvalidCategory.setText("");
     }
 
     @FXML
     void btnAddCategoryOnAction(ActionEvent event) {
-
+        addCategoryController.addCategory(txtCategoryName.getText(), txtInvalidCategory.getText());
     }
 
 }
