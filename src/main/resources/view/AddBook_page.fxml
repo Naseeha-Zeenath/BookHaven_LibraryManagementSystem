@@ -80,14 +80,14 @@
             <Font name="Georgia Bold" size="24.0" />
          </font>
       </Label>
-      <Pane layoutX="270.0" layoutY="78.0" prefHeight="366.0" prefWidth="471.0" styleClass="stat-card" stylesheets="@../css/style.css">
+      <Pane layoutX="225.0" layoutY="83.0" prefHeight="396.0" prefWidth="550.0" styleClass="stat-card" stylesheets="@../css/style.css">
          <children>
             <Label layoutX="29.0" layoutY="84.0" text="Book Title">
                <font>
                   <Font name="Georgia Italic" size="14.0" />
                </font>
             </Label>
-            <TextField fx:id="txtAddNewBook_BookTitle" layoutX="152.0" layoutY="75.0" prefHeight="10.0" prefWidth="287.0">
+            <TextField fx:id="txtAddNewBook_BookTitle" layoutX="152.0" layoutY="75.0" prefHeight="33.0" prefWidth="375.0">
                <font>
                   <Font size="10.0" />
                </font>
@@ -102,12 +102,12 @@
                   <Font name="Georgia Italic" size="14.0" />
                </font>
             </Label>
-            <Label layoutX="293.0" layoutY="222.0" text="Quantity">
+            <Label layoutX="323.0" layoutY="249.0" text="Quantity">
                <font>
                   <Font name="Georgia Italic" size="14.0" />
                </font>
             </Label>
-            <TextField fx:id="txtAddNewBook_Quantity" layoutX="362.0" layoutY="212.0" prefHeight="35.0" prefWidth="82.0">
+            <TextField fx:id="txtAddNewBook_Quantity" layoutX="409.0" layoutY="239.0" prefHeight="35.0" prefWidth="101.0">
                <font>
                   <Font size="10.0" />
                </font>
@@ -117,25 +117,27 @@
                   <Font name="Georgia Italic" size="14.0" />
                </font>
             </Label>
-            <TextField fx:id="txtAddNewBook_ISBN" layoutX="151.0" layoutY="30.0" prefHeight="10.0" prefWidth="287.0">
+            <TextField fx:id="txtAddNewBook_ISBN" layoutX="151.0" layoutY="30.0" prefHeight="33.0" prefWidth="375.0">
                <font>
                   <Font size="10.0" />
                </font>
             </TextField>
-            <Label layoutX="34.0" layoutY="218.0" text="Published Year">
+            <Label layoutX="28.0" layoutY="249.0" text="Published Year">
                <font>
                   <Font name="Georgia Italic" size="14.0" />
                </font>
             </Label>
-            <TextField fx:id="txtAddNewBook_PublishedYear" layoutX="153.0" layoutY="212.0" prefHeight="35.0" prefWidth="94.0">
+            <TextField fx:id="txtAddNewBook_PublishedYear" layoutX="153.0" layoutY="239.0" prefHeight="35.0" prefWidth="101.0">
                <font>
                   <Font size="10.0" />
                </font>
             </TextField>
-            <Button fx:id="btnAddNewBook" layoutX="254.0" layoutY="299.0" mnemonicParsing="false" onAction="#btnAddNewBookOnAction" prefHeight="47.0" prefWidth="201.0" styleClass="save-button" stylesheets="@../css/style.css" text="+   Add Book" />
-            <Button fx:id="btnAddNewBookClear" layoutX="26.0" layoutY="299.0" mnemonicParsing="false" onAction="#btnAddNewBookClearOnAction" prefHeight="47.0" prefWidth="201.0" styleClass="clear-button" text="Clear" />
-            <ComboBox fx:id="SelectorAddNewBook_Author" layoutX="152.0" layoutY="125.0" prefHeight="25.0" prefWidth="175.0" />
-            <ComboBox fx:id="SelectorAddNewBook_Category" layoutX="152.0" layoutY="171.0" prefHeight="25.0" prefWidth="175.0" />
+            <Button fx:id="btnAddNewBook" layoutX="297.0" layoutY="323.0" mnemonicParsing="false" onAction="#btnAddNewBookOnAction" prefHeight="47.0" prefWidth="235.0" styleClass="save-button" stylesheets="@../css/style.css" text="+   Add Book" />
+            <Button fx:id="btnAddNewBookClear" layoutX="28.0" layoutY="323.0" mnemonicParsing="false" onAction="#btnAddNewBookClearOnAction" prefHeight="47.0" prefWidth="235.0" styleClass="clear-button" text="Clear" />
+            <ComboBox fx:id="SelectorAddNewBook_Author" layoutX="152.0" layoutY="125.0" prefHeight="25.0" prefWidth="235.0" />
+            <ComboBox fx:id="SelectorAddNewBook_Category" layoutX="152.0" layoutY="171.0" prefHeight="25.0" prefWidth="235.0" />
+            <Button fx:id="btnAddNewAuthor" layoutX="409.0" layoutY="123.0" mnemonicParsing="false" onAction="#btnAddNewAuthorOnAction" prefHeight="30.0" prefWidth="118.0" text="+ Add Author" />
+            <Button fx:id="btnAddNewCategory" layoutX="409.0" layoutY="168.0" mnemonicParsing="false" onAction="#btnAddNewCategoryOnAction" text="+ Add Category" />
          </children>
       </Pane>
    </children>

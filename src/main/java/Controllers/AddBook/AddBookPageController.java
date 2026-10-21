@@ -25,7 +25,11 @@ public class AddBookPageController implements Initializable {
     @FXML
     private ComboBox<String> SelectorAddNewBook_Category;
 
+    @FXML
+    private Button btnAddNewAuthor;
 
+    @FXML
+    private Button btnAddNewCategory;
 
     @FXML
     private Button btnAddNewBook;
@@ -71,6 +75,22 @@ public class AddBookPageController implements Initializable {
     @FXML
     private TextField txtAddNewBook_Quantity;
 
+    @FXML
+    void btnAddNewAuthorOnAction(ActionEvent event) {
+        Stage stage = new Stage();
+        try {
+            stage.setScene(new Scene(FXMLLoader.load(getClass().getResource("/view/AddAuthor_page.fxml"))));
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        stage.show();
+
+    }
+
+    @FXML
+    void btnAddNewCategoryOnAction(ActionEvent event) {
+
+    }
 
     @FXML
     void btnAddNewBookClearOnAction(ActionEvent event) {
@@ -92,6 +112,9 @@ public class AddBookPageController implements Initializable {
                 SelectorAddNewBook_Category.getValue()
         );
     }
+
+
+
 
     @FXML
     void btnLogOutOnAction(ActionEvent event) {
