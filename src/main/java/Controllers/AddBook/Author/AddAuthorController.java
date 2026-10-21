@@ -1,4 +1,4 @@
-package Controllers.AddBook;
+package Controllers.AddBook.Author;
 
 import db.DBConnection;
 

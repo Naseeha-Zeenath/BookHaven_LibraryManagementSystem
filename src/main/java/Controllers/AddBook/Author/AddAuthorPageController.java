@@ -1,4 +1,4 @@
-package Controllers.AddBook;
+package Controllers.AddBook.Author;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;

@@ -1,4 +1,4 @@
-package Controllers.AddBook;
+package Controllers.AddBook.Category;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -30,7 +30,7 @@ public class AddCategoryPageController {
 
     @FXML
     void btnAddCategoryOnAction(ActionEvent event) {
-        addCategoryController.addCategory(txtCategoryName.getText(), txtInvalidCategory.getText());
+        txtInvalidCategory.setText(addCategoryController.addCategory(txtCategoryName.getText()));
     }
 
 }

@@ -1,4 +1,4 @@
-package Controllers.AddBook;
+package Controllers.AddBook.Category;
 
 import db.DBConnection;
 import javafx.collections.FXCollections;

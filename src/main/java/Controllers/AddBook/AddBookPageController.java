@@ -1,5 +1,7 @@
 package Controllers.AddBook;
 
+import Controllers.AddBook.Author.LoadAuthorController;
+import Controllers.AddBook.Category.LoadCategoryController;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;

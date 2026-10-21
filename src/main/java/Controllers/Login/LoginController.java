@@ -20,6 +20,7 @@ public class LoginController {
             ResultSet resultSet = preparedStatement.executeQuery();
 
             while (resultSet.next()){
+
                 return true;
             }
         } catch (SQLException e) {
