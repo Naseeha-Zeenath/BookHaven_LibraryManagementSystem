@@ -75,21 +75,28 @@ public class AddBookPageController implements Initializable {
     @FXML
     private TextField txtAddNewBook_Quantity;
 
+    Stage stage2 = new Stage();
     @FXML
     void btnAddNewAuthorOnAction(ActionEvent event) {
-        Stage stage = new Stage();
+
         try {
-            stage.setScene(new Scene(FXMLLoader.load(getClass().getResource("/view/AddAuthor_page.fxml"))));
+            stage2.setScene(new Scene(FXMLLoader.load(getClass().getResource("/view/AddAuthor_page.fxml"))));
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-        stage.show();
+        stage2.show();
 
     }
 
     @FXML
     void btnAddNewCategoryOnAction(ActionEvent event) {
 
+        try {
+            stage2.setScene(new Scene(FXMLLoader.load(getClass().getResource("/view/AddCategory_page.fxml"))));
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        stage2.show();
     }
 
     @FXML

@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="305.0" prefWidth="371.0" style="-fx-background-color: #ffffff;" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.AddBook.AddCategoryPageController">
+   <children>
+      <Label layoutX="25.0" layoutY="102.0" text="Category Name">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <TextField fx:id="txtCategoryName" layoutX="24.0" layoutY="139.0" prefHeight="27.0" prefWidth="321.0" />
+      <Button fx:id="btnAddCategory" layoutX="199.0" layoutY="216.0" mnemonicParsing="false" onAction="#btnAddCategoryOnAction" prefHeight="46.0" prefWidth="146.0" styleClass="save-button" stylesheets="@../css/style.css" text="Add Category" textFill="#067206">
+         <font>
+            <Font name="Georgia" size="18.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Button>
+      <Label fx:id="txtInvalidCategory" alignment="CENTER" contentDisplay="CENTER" layoutX="23.0" layoutY="178.0" prefHeight="27.0" prefWidth="322.0" textAlignment="CENTER" textFill="#c82909">
+         <font>
+            <Font name="Georgia Bold" size="14.0" />
+         </font>
+      </Label>
+      <Button fx:id="btnAddCategoryClear" layoutX="25.0" layoutY="216.0" mnemonicParsing="false" onAction="#btnAddCategoryClearOnAction" prefHeight="46.0" prefWidth="146.0" styleClass="clear-button" text="Clear" />
+      <Pane layoutX="79.0" layoutY="22.0" prefHeight="61.0" prefWidth="213.0" style="-fx-background-color: #ffffff;">
+         <children>
+            <ImageView fitHeight="83.0" fitWidth="82.0" layoutX="7.0" layoutY="5.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../img/book.jpg" />
+               </image>
+            </ImageView>
+            <Label layoutX="89.0" layoutY="21.0" text="BookHaven">
+               <font>
+                  <Font name="Georgia Italic" size="18.0" />
+               </font>
+            </Label>
+         </children>
+      </Pane>
+   </children>
+</AnchorPane>
