@@ -3,6 +3,7 @@ package Controllers.AddBook;
 import Controllers.AddBook.Author.LoadAuthorController;
 import Controllers.AddBook.Category.LoadCategoryController;
 import javafx.event.ActionEvent;
+import javafx.scene.control.Label;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -77,6 +78,11 @@ public class AddBookPageController implements Initializable {
     @FXML
     private TextField txtAddNewBook_Quantity;
 
+    @FXML
+    private Label txtInvalidAddBook;
+
+
+
     Stage stage2 = new Stage();
     @FXML
     void btnAddNewAuthorOnAction(ActionEvent event) {
@@ -107,18 +113,20 @@ public class AddBookPageController implements Initializable {
         txtAddNewBook_BookTitle.clear();
         txtAddNewBook_PublishedYear.clear();
         txtAddNewBook_Quantity.clear();
+        txtInvalidAddBook.setText("");
     }
 
 
     @FXML
     void btnAddNewBookOnAction(ActionEvent event) {
-        addBookController.InsertBookOnDB(
+        txtInvalidAddBook.setText(addBookController.InsertBookOnDB(
                 txtAddNewBook_ISBN.getText(),
                 txtAddNewBook_BookTitle.getText(),
                 txtAddNewBook_PublishedYear.getText(),
                 txtAddNewBook_Quantity.getText(),
                 SelectorAddNewBook_Author.getValue(),
                 SelectorAddNewBook_Category.getValue()
+                )
         );
     }
 

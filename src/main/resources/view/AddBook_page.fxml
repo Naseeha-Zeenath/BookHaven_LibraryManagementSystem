@@ -102,12 +102,12 @@
                   <Font name="Georgia Italic" size="14.0" />
                </font>
             </Label>
-            <Label layoutX="323.0" layoutY="249.0" text="Quantity">
+            <Label layoutX="324.0" layoutY="239.0" text="Quantity">
                <font>
                   <Font name="Georgia Italic" size="14.0" />
                </font>
             </Label>
-            <TextField fx:id="txtAddNewBook_Quantity" layoutX="409.0" layoutY="239.0" prefHeight="35.0" prefWidth="101.0">
+            <TextField fx:id="txtAddNewBook_Quantity" layoutX="410.0" layoutY="229.0" prefHeight="35.0" prefWidth="101.0">
                <font>
                   <Font size="10.0" />
                </font>
@@ -122,12 +122,12 @@
                   <Font size="10.0" />
                </font>
             </TextField>
-            <Label layoutX="28.0" layoutY="249.0" text="Published Year">
+            <Label layoutX="29.0" layoutY="239.0" text="Published Year">
                <font>
                   <Font name="Georgia Italic" size="14.0" />
                </font>
             </Label>
-            <TextField fx:id="txtAddNewBook_PublishedYear" layoutX="153.0" layoutY="239.0" prefHeight="35.0" prefWidth="101.0">
+            <TextField fx:id="txtAddNewBook_PublishedYear" layoutX="154.0" layoutY="229.0" prefHeight="35.0" prefWidth="101.0">
                <font>
                   <Font size="10.0" />
                </font>
@@ -138,6 +138,11 @@
             <ComboBox fx:id="SelectorAddNewBook_Category" layoutX="152.0" layoutY="171.0" prefHeight="25.0" prefWidth="235.0" />
             <Button fx:id="btnAddNewAuthor" layoutX="409.0" layoutY="123.0" mnemonicParsing="false" onAction="#btnAddNewAuthorOnAction" prefHeight="30.0" prefWidth="118.0" text="+ Add Author" />
             <Button fx:id="btnAddNewCategory" layoutX="409.0" layoutY="168.0" mnemonicParsing="false" onAction="#btnAddNewCategoryOnAction" text="+ Add Category" />
+            <Label fx:id="txtInvalidAddBook" alignment="CENTER" contentDisplay="CENTER" layoutX="24.0" layoutY="282.0" prefHeight="27.0" prefWidth="503.0" textAlignment="CENTER" textFill="#c82909">
+               <font>
+                  <Font name="Georgia Bold" size="14.0" />
+               </font>
+            </Label>
          </children>
       </Pane>
    </children>

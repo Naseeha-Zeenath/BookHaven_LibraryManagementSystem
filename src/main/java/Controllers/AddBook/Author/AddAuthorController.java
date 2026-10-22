@@ -18,7 +18,7 @@ public class AddAuthorController {
             return "Please enter an Author name...";
         } else {
 
-            String searchSQL = "SELECT * FROM authors WHERE  author_name =  '" +txtAuthorName+ "';";
+            String searchSQL = "SELECT * FROM authors WHERE  author_name =  '" + txtAuthorName + "';";
             String insertSQL = "INSERT INTO authors (author_name) VALUES ('"+txtAuthorName+"');";
 
             try {
