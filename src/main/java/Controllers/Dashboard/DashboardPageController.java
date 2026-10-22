@@ -1,4 +1,4 @@
-package Dashboard;
+package Controllers.Dashboard;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;

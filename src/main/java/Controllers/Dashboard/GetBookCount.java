@@ -1,4 +1,4 @@
-package Dashboard;
+package Controllers.Dashboard;
 
 import db.DBConnection;
 
@@ -8,7 +8,7 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
 public class GetBookCount {
-    Connection connection = DBConnection.getConnection();
+    Connection connection = DBConnection.getInstance().getConnection();
 
     public String bookCount() {
         String sql = "SELECT COUNT(*) FROM books;";
@@ -17,6 +17,7 @@ public class GetBookCount {
         try {
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
             maxRows = preparedStatement.getMaxRows();
+//            System.out.println(connection);
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }

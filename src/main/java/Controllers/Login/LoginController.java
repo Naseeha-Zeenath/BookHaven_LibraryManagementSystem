@@ -9,7 +9,7 @@ import java.sql.SQLException;
 
 public class LoginController {
 
-    Connection connection = DBConnection.getConnection();
+    Connection connection = DBConnection.getInstance().getConnection();
 
     public boolean checkUserNameAndPassword(String userName, String password) {
 
@@ -19,9 +19,8 @@ public class LoginController {
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
             ResultSet resultSet = preparedStatement.executeQuery();
 
-            System.out.println(resultSet);
-
             while (resultSet.next()){
+
                 return true;
             }
         } catch (SQLException e) {
