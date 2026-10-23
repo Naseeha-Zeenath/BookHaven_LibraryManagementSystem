@@ -1,4 +1,4 @@
-package Controllers;
+package Controllers.AddMember;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -13,6 +13,8 @@ import javafx.stage.Stage;
 import java.io.IOException;
 
 public class AddMemberPageController {
+
+    AddMemberController addMemberController = new AddMemberController();
 
     @FXML
     private Button btnLogOut;
@@ -150,6 +152,11 @@ public class AddMemberPageController {
 
     @FXML
     void btnRegisterMemberOnAction(ActionEvent event) {
+        addMemberController.registerMember(txtAddNewMembers_MemberId.getText(),
+                txtAddNewMembers_FullName.getText(),
+                txtAddNewMembers_ContactNumber.getText(),
+                txtAddNewMembers_Email.getText(),
+                txtAddNewMembers_Address.getText());
 
     }
 
