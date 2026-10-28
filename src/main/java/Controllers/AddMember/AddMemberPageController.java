@@ -9,6 +9,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import javafx.scene.control.Label;
 
 import java.io.IOException;
 
@@ -60,6 +61,18 @@ public class AddMemberPageController {
 
     @FXML
     private TextField txtAddNewMembers_MemberId;
+
+    @FXML
+    private Button btnGenarateMemberId;
+
+
+    @FXML
+    private Label txtInvalidAddMember;
+
+    @FXML
+    void btnGenarateMemberIdOnAction(ActionEvent event) {
+
+    }
 
 
     @FXML
@@ -152,12 +165,15 @@ public class AddMemberPageController {
 
     @FXML
     void btnRegisterMemberOnAction(ActionEvent event) {
-        addMemberController.registerMember(txtAddNewMembers_MemberId.getText(),
-                txtAddNewMembers_FullName.getText(),
-                txtAddNewMembers_ContactNumber.getText(),
-                txtAddNewMembers_Email.getText(),
-                txtAddNewMembers_Address.getText());
+        txtInvalidAddMember.setText(
+                addMemberController.registerMember(txtAddNewMembers_MemberId.getText(),
+                        txtAddNewMembers_FullName.getText(),
+                        txtAddNewMembers_ContactNumber.getText(),
+                        txtAddNewMembers_Email.getText(),
+                        txtAddNewMembers_Address.getText()
+                )
 
+        );
     }
 
 }
