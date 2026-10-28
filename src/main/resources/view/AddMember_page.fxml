@@ -12,7 +12,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="500.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.AddMemberPageController">
+<AnchorPane prefHeight="500.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.AddMember.AddMemberPageController">
    <children>
       <VBox prefHeight="497.0" prefWidth="202.0" styleClass="sidebar" stylesheets="@../css/style.css">
          <children>
@@ -80,14 +80,14 @@
             <Font name="Georgia Bold" size="24.0" />
          </font>
       </Label>
-      <Pane layoutX="262.0" layoutY="88.0" prefHeight="378.0" prefWidth="479.0" styleClass="stat-card" stylesheets="@../css/style.css">
+      <Pane layoutX="245.0" layoutY="75.0" prefHeight="411.0" prefWidth="528.0" styleClass="stat-card" stylesheets="@../css/style.css">
          <children>
             <Label layoutX="33.0" layoutY="24.0" text="Member Id">
                <font>
                   <Font name="Georgia Italic" size="14.0" />
                </font>
             </Label>
-            <TextField fx:id="txtAddNewMembers_MemberId" layoutX="156.0" layoutY="15.0" prefHeight="10.0" prefWidth="287.0">
+            <TextField fx:id="txtAddNewMembers_MemberId" editable="false" layoutX="156.0" layoutY="15.0" prefHeight="33.0" prefWidth="198.0">
                <font>
                   <Font size="10.0" />
                </font>
@@ -102,7 +102,7 @@
                   <Font name="Georgia Italic" size="14.0" />
                </font>
             </Label>
-            <TextField fx:id="txtAddNewMembers_ContactNumber" layoutX="154.0" layoutY="101.0" prefHeight="10.0" prefWidth="287.0">
+            <TextField fx:id="txtAddNewMembers_ContactNumber" layoutX="154.0" layoutY="101.0" prefHeight="33.0" prefWidth="198.0">
                <font>
                   <Font size="10.0" />
                </font>
@@ -117,19 +117,29 @@
                   <Font name="Georgia Italic" size="14.0" />
                </font>
             </Label>
-            <TextField fx:id="txtAddNewMembers_FullName" layoutX="154.0" layoutY="58.0" prefHeight="10.0" prefWidth="287.0">
+            <TextField fx:id="txtAddNewMembers_FullName" layoutX="154.0" layoutY="58.0" prefHeight="33.0" prefWidth="348.0">
                <font>
                   <Font size="10.0" />
                </font>
             </TextField>
-            <TextField fx:id="txtAddNewMembers_Email" layoutX="156.0" layoutY="153.0" prefHeight="10.0" prefWidth="287.0">
+            <TextField fx:id="txtAddNewMembers_Email" layoutX="156.0" layoutY="153.0" prefHeight="33.0" prefWidth="348.0">
                <font>
                   <Font size="10.0" />
                </font>
             </TextField>
-            <TextArea fx:id="txtAddNewMembers_Address" layoutX="156.0" layoutY="208.0" prefHeight="84.0" prefWidth="287.0" />
-            <Button fx:id="btnRegisterMember" layoutX="245.0" layoutY="317.0" mnemonicParsing="false" onAction="#btnRegisterMemberOnAction" prefHeight="47.0" prefWidth="198.0" styleClass="save-button" stylesheets="@../css/style.css" text="Register Member" />
-            <Button fx:id="btnRegisterMemberClear" layoutX="26.0" layoutY="317.0" mnemonicParsing="false" onAction="#btnRegisterMemberClearOnAction" prefHeight="47.0" prefWidth="201.0" styleClass="clear-button" text="Clear">
+            <TextArea fx:id="txtAddNewMembers_Address" layoutX="156.0" layoutY="208.0" prefHeight="71.0" prefWidth="348.0" />
+            <Button fx:id="btnRegisterMember" layoutX="275.0" layoutY="329.0" mnemonicParsing="false" onAction="#btnRegisterMemberOnAction" prefHeight="47.0" prefWidth="198.0" styleClass="save-button" stylesheets="@../css/style.css" text="Register Member" />
+            <Button fx:id="btnRegisterMemberClear" layoutX="56.0" layoutY="329.0" mnemonicParsing="false" onAction="#btnRegisterMemberClearOnAction" prefHeight="47.0" prefWidth="201.0" styleClass="clear-button" text="Clear">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Button>
+            <Label fx:id="txtInvalidAddMember" alignment="CENTER" contentDisplay="CENTER" layoutX="27.0" layoutY="295.0" prefHeight="27.0" prefWidth="475.0" textAlignment="CENTER" textFill="#c82909">
+               <font>
+                  <Font name="Georgia Bold" size="14.0" />
+               </font>
+            </Label>
+            <Button fx:id="btnGenarateMemberId" layoutX="361.0" layoutY="15.0" mnemonicParsing="false" onAction="#btnGenarateMemberIdOnAction" prefHeight="33.0" prefWidth="143.0" styleClass="clear-button" text="Genarate Id">
                <font>
                   <Font name="System Bold" size="12.0" />
                </font>

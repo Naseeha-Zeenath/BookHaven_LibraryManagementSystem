@@ -83,6 +83,8 @@ public class AddBookPageController implements Initializable {
 
 
 
+
+
     Stage stage2 = new Stage();
     @FXML
     void btnAddNewAuthorOnAction(ActionEvent event) {
