@@ -71,7 +71,7 @@ public class AddMemberPageController {
 
     @FXML
     void btnGenarateMemberIdOnAction(ActionEvent event) {
-
+        txtAddNewMembers_MemberId.setText(addMemberController.generateStudentId());
     }
 
 
