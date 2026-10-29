@@ -1,5 +1,6 @@
 package Controllers.Dashboard;
 
+import Controllers.Login.LoginController;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -73,6 +74,7 @@ public class DashboardPageController {
     private Label txtWelcomeUsername;
 
     DashboardController dashboardController = new DashboardController();
+    LoginController loginController = new LoginController();
 
     @FXML
     public void initialize() {
@@ -83,6 +85,8 @@ public class DashboardPageController {
         txtCurrentlyBorrowedBooksCount.setText(dashboardController.borrowingBookCount());
         txtOverdueBooksCount.setText(dashboardController.overdueDateCount());
     }
+
+
 
     @FXML
     void btnLogOutOnAction(ActionEvent event) {
@@ -205,5 +209,7 @@ public class DashboardPageController {
     }
 
 
-
+    public void setUserName (String userName) {
+        txtWelcomeUsername.setText(txtWelcomeUsername.getText() + userName);
+    }
 }

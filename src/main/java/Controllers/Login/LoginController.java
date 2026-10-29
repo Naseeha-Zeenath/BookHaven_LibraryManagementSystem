@@ -11,22 +11,24 @@ public class LoginController {
 
     Connection connection = DBConnection.getInstance().getConnection();
 
-    public boolean checkUserNameAndPassword(String userName, String password) {
+    public String checkUserNameAndPassword(String userName, String password) {
+        String sql = "SELECT user_name FROM users WHERE user_name = ? AND password = ?";
 
-        String sql = "SELECT * FROM users WHERE user_name = '"+userName+"' AND password = '"+password+"';";
 
         try {
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setString(1, userName);
+            preparedStatement.setString(2, password);
+
             ResultSet resultSet = preparedStatement.executeQuery();
 
-            while (resultSet.next()){
-
-                return true;
+            if (resultSet.next()) {
+                return resultSet.getString("user_name");
             }
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
 
-        return false;
+        return null;
     }
 }
