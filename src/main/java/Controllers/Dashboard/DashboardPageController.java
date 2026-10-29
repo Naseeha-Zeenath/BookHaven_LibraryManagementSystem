@@ -59,8 +59,6 @@ public class DashboardPageController {
     @FXML
     private Label txtCurrentlyBorrowedBooksCount;
 
-    @FXML
-    private Label txtIssuedCount;
 
     @FXML
     private Label txtOverdueBooksCount;
@@ -74,12 +72,16 @@ public class DashboardPageController {
     @FXML
     private Label txtWelcomeUsername;
 
-    GetMemberCount getMemberCount = new GetMemberCount();
-    GetBookCount getBookCount = new GetBookCount();
+    DashboardController dashboardController = new DashboardController();
+
     @FXML
     public void initialize() {
-        txtTotalMembersCount.setText(getMemberCount.memberCount());
-        txtTotalBooksCount.setText(getBookCount.bookCount());
+        txtTotalMembersCount.setText(dashboardController.memberCount());
+        txtTotalBooksCount.setText(dashboardController.bookCount());
+        txtActiveMembersCount.setText(dashboardController.activeMemberCount());
+        txtAvailableBookCount.setText(dashboardController.availableBookCount());
+        txtCurrentlyBorrowedBooksCount.setText(dashboardController.borrowingBookCount());
+        txtOverdueBooksCount.setText(dashboardController.overdueDateCount());
     }
 
     @FXML
@@ -201,5 +203,7 @@ public class DashboardPageController {
         }
         stage.show();
     }
+
+
 
 }

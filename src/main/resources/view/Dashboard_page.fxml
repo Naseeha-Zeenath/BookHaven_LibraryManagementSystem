@@ -17,9 +17,9 @@
             <Font name="Georgia Bold" size="24.0" />
          </font>
       </Label>
-      <Pane accessibleRole="BUTTON" layoutX="237.0" layoutY="117.0" prefHeight="136.0" prefWidth="241.0">
+      <Pane accessibleRole="BUTTON" layoutX="237.0" layoutY="121.0" prefHeight="136.0" prefWidth="241.0">
          <children>
-            <Button fx:id="totalBooksViewPanel" layoutY="3.0" mnemonicParsing="false" onAction="#btnTotalBooksOnAction" prefHeight="130.0" prefWidth="241.0" styleClass="stat-card">
+            <Button fx:id="totalBooksViewPanel" layoutX="1.0" layoutY="1.0" mnemonicParsing="false" onAction="#btnTotalBooksOnAction" prefHeight="130.0" prefWidth="241.0" styleClass="stat-card">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>
@@ -34,17 +34,7 @@
                   <Font name="Georgia Italic" size="14.0" />
                </font>
             </Label>
-            <Label layoutX="138.0" layoutY="95.0" stylesheets="@../css/style.css" text="Issued:">
-               <font>
-                  <Font name="Georgia Italic" size="14.0" />
-               </font>
-            </Label>
             <Label fx:id="txtAvailableBookCount" layoutX="87.0" layoutY="95.0" stylesheets="@../css/style.css" text="___">
-               <font>
-                  <Font name="Georgia Italic" size="14.0" />
-               </font>
-            </Label>
-            <Label fx:id="txtIssuedCount" layoutX="187.0" layoutY="95.0" stylesheets="@../css/style.css" text="___">
                <font>
                   <Font name="Georgia Italic" size="14.0" />
                </font>
