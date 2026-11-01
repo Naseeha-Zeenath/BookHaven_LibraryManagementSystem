@@ -1,5 +1,6 @@
 package Controllers.Login;
 
+import Controllers.Dashboard.DashboardPageController;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -36,11 +37,21 @@ public class LoginPageController {
     @FXML
     void btnLoginOnAction(ActionEvent event) {
 
-        if (loginController.checkUserNameAndPassword(txtUserName.getText(),txtPassword.getText())){
+        String userName = loginController.checkUserNameAndPassword(txtUserName.getText(),txtPassword.getText());
+
+        if (userName != null ){
 
             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
             try {
-                stage.setScene(new Scene(FXMLLoader.load(getClass().getResource("/view/Dashboard_page.fxml"))));
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/Dashboard_page.fxml"));
+
+                stage.setScene(new Scene(loader.load()));
+
+                DashboardPageController dashboardPageController = loader.getController();
+
+                dashboardPageController.setUserName(userName);
+
+
 
             } catch (IOException e) {
                 throw new RuntimeException(e);

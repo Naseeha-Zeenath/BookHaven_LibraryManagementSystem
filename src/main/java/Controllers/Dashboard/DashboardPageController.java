@@ -1,5 +1,6 @@
 package Controllers.Dashboard;
 
+import Controllers.Login.LoginController;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -59,8 +60,6 @@ public class DashboardPageController {
     @FXML
     private Label txtCurrentlyBorrowedBooksCount;
 
-    @FXML
-    private Label txtIssuedCount;
 
     @FXML
     private Label txtOverdueBooksCount;
@@ -74,13 +73,20 @@ public class DashboardPageController {
     @FXML
     private Label txtWelcomeUsername;
 
-    GetMemberCount getMemberCount = new GetMemberCount();
-    GetBookCount getBookCount = new GetBookCount();
+    DashboardController dashboardController = new DashboardController();
+    LoginController loginController = new LoginController();
+
     @FXML
     public void initialize() {
-        txtTotalMembersCount.setText(getMemberCount.memberCount());
-        txtTotalBooksCount.setText(getBookCount.bookCount());
+        txtTotalMembersCount.setText(dashboardController.memberCount());
+        txtTotalBooksCount.setText(dashboardController.bookCount());
+        txtActiveMembersCount.setText(dashboardController.activeMemberCount());
+        txtAvailableBookCount.setText(dashboardController.availableBookCount());
+        txtCurrentlyBorrowedBooksCount.setText(dashboardController.borrowingBookCount());
+        txtOverdueBooksCount.setText(dashboardController.overdueDateCount());
     }
+
+
 
     @FXML
     void btnLogOutOnAction(ActionEvent event) {
@@ -202,4 +208,8 @@ public class DashboardPageController {
         stage.show();
     }
 
+
+    public void setUserName (String userName) {
+        txtWelcomeUsername.setText(txtWelcomeUsername.getText() + userName);
+    }
 }
