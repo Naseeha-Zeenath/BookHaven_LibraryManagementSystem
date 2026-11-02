@@ -32,16 +32,13 @@ public class IssueBookController {
             throw new RuntimeException(e);
         }
 
-
         return list;
     }
-
 
 
     public ObservableList<String> BookList() {
         String booksLoadSQL = "SELECT * FROM books ORDER BY book_id ASC;";
         return getDbList(booksLoadSQL,"book_id","title");
     }
-
 }
 
