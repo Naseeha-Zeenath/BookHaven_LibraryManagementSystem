@@ -13,32 +13,33 @@ public class IssueBookController {
 
     Connection connection = DBConnection.getInstance().getConnection();
 
-    private ObservableList<String> getDbList(String sql, String idColomn, String nameColumn) {
-        ObservableList<String> list = FXCollections.observableArrayList();
+    String booksLoadSQL = "SELECT * FROM books ORDER BY book_id ASC;";
+
+    private ObservableList<String> getDbBook(){
+        ObservableList<String> bookList = FXCollections.observableArrayList();
         try {
-            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+            PreparedStatement preparedStatement = connection.prepareStatement(booksLoadSQL);
             ResultSet resultSet = preparedStatement.executeQuery();
             System.out.println(connection);
 
-            while (resultSet.next()) {
-                String id = resultSet.getString(idColomn);
-                String name = resultSet.getString(nameColumn);
+            while (resultSet.next()){
+                String dbBookId = resultSet.getString("book_id");
+                String dbBookTitle = resultSet.getString("title");
 
-                list.add(id + " -" + name);
-
+                bookList.add(dbBookId+" -"+dbBookTitle);
             }
 
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
 
-        return list;
+
+        return  bookList;
     }
 
-
     public ObservableList<String> BookList() {
-        String booksLoadSQL = "SELECT * FROM books ORDER BY book_id ASC;";
-        return getDbList(booksLoadSQL,"book_id","title");
+
+        return getDbBook();
     }
 }
 
