@@ -41,5 +41,10 @@ public class IssueBookController {
 
         return getDbBook();
     }
+
+    public ObservableList<String> MemberList() {
+        String booksLoadSQL = "SELECT * FROM members ORDER BY member_id ASC;";
+        return getDbList(booksLoadSQL,"member_id","name");
+    }
 }
 
