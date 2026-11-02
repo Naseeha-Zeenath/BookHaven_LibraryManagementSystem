@@ -145,8 +145,10 @@ public class IssueBookPageController implements Initializable {
 
     }
 
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+
         SelecterIssueBook_SelectBook.setItems(issueBookController.BookList());
     }
 }
