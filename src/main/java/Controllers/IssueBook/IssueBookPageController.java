@@ -1,8 +1,9 @@
-package Controllers;
+package Controllers.IssueBook;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -11,11 +12,16 @@ import javafx.scene.control.DatePicker;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.net.URL;
+import java.util.ResourceBundle;
 
-public class IssueBookPageController {
+
+public class IssueBookPageController implements Initializable {
+
+    IssueBookController issueBookController = new IssueBookController();
 
     @FXML
-    private ComboBox<?> SelecterIssueBook_SelectBook;
+    private ComboBox<String> SelecterIssueBook_SelectBook;
 
     @FXML
     private DatePicker SelecterIssueBook_SelectDueDate;
@@ -24,7 +30,7 @@ public class IssueBookPageController {
     private DatePicker SelecterIssueBook_SelectIssueDate;
 
     @FXML
-    private ComboBox<?> SelecterIssueBook_SelectMemeber;
+    private ComboBox<String> SelecterIssueBook_SelectMemeber;
 
     @FXML
     private Button btnIssueBook;
@@ -62,6 +68,7 @@ public class IssueBookPageController {
     void btnLogOutOnAction(ActionEvent event) {
 
     }
+
 
     @FXML
     void btnNavAddBookOnAction(ActionEvent event) {
@@ -138,4 +145,8 @@ public class IssueBookPageController {
 
     }
 
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        SelecterIssueBook_SelectBook.setItems(issueBookController.BookList());
+    }
 }
