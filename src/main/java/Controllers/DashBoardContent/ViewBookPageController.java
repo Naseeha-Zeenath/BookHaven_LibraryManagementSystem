@@ -1,5 +1,6 @@
 package Controllers.DashBoardContent;
 
+import Controllers.Dashboard.DashboardController;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -20,6 +21,8 @@ import java.util.ResourceBundle;
 
 public class ViewBookPageController implements Initializable {
     ViewBookController viewBookController = new ViewBookController();
+    DashboardController dashboardController = new DashboardController();
+
 
     @FXML
     private Button btnLogOut;
@@ -76,7 +79,7 @@ public class ViewBookPageController implements Initializable {
     private TableView<Map<String, String>> tblBooks;
 
     @FXML
-    private TextField txtTotalBooksCount;
+    private Label txtTotalBookCount;
 
     @FXML
     private Label txtTotalBooks_AvailableBookCount;
@@ -201,5 +204,9 @@ public class ViewBookPageController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         masterBookList = viewBookController.loadBookData();
         setMemberTable();
+
+        txtTotalBookCount.setText(dashboardController.bookCount());
+        txtTotalBooks_AvailableBookCount.setText(dashboardController.availableBookCount());
+
     }
 }
