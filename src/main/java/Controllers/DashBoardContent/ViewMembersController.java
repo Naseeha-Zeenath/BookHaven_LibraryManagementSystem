@@ -36,7 +36,7 @@ public class ViewMembersController {
                 member.put("satus", resultSet.getString("satus"));
 
                 masterMemberList.add(member);
-                System.out.println(masterMemberList);
+
             }
 
         } catch (SQLException e) {

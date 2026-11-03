@@ -95,7 +95,7 @@ public class ViewMembersPageController implements Initializable {
     private FilteredList<Map<String, String>> filteredStudentList;
 
     private void setMemberTable(){
-        colMemberId.setCellValueFactory(cell-> new SimpleStringProperty(cell.getValue().get("member_id")));
+        colMemberId.setCellValueFactory(cell-> new SimpleStringProperty(cell.getValue().getOrDefault("member_id","")));
         colName.setCellValueFactory(cell->new SimpleStringProperty(cell.getValue().getOrDefault("name","")));
         colEmail.setCellValueFactory(cell->new SimpleStringProperty(cell.getValue().getOrDefault("email","")));
         colPhone.setCellValueFactory(cell->new SimpleStringProperty(cell.getValue().getOrDefault("phone","")));
