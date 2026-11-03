@@ -1,5 +1,7 @@
 package Controllers.DashBoardContent;
 
+import Controllers.Dashboard.DashboardController;
+import Controllers.Dashboard.DashboardPageController;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -21,6 +23,7 @@ import java.util.ResourceBundle;
 public class ViewMembersPageController implements Initializable {
 
     ViewMembersController viewMembersController = new ViewMembersController();
+    DashboardController dashboardController = new DashboardController();
 
     @FXML
     private Button btnLogOut;
@@ -56,7 +59,7 @@ public class ViewMembersPageController implements Initializable {
     private Button btnTotalMembers_Search;
 
     @FXML
-    private TextField txtTotalMembersCount;
+    private Label txtTotalMembers_TotalMemberCount;
 
     @FXML
     private Label txtTotalMembers_ActiveCount;
@@ -208,5 +211,8 @@ public class ViewMembersPageController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         masterMemberList = viewMembersController.loadMemberData();
         setMemberTable();
+        txtTotalMembers_TotalMemberCount.setText(dashboardController.memberCount());
+        txtTotalMembers_ActiveCount.setText(dashboardController.activeMemberCount());
+        txtTotalMembers_InactiveCount.setText(dashboardController.inactiveMemberCount());
     }
 }

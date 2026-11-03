@@ -38,6 +38,11 @@ public class DashboardController {
         return getCount(sql);
     }
 
+    public  String inactiveMemberCount() {
+        String sql = "SELECT COUNT(*) as count FROM members WHERE satus = 'Inactive';";
+        return getCount(sql);
+    }
+
     public  String availableBookCount() {
         String sql = "SELECT COUNT(*) as count FROM books WHERE available_quantity > 0;";
         return getCount(sql);
