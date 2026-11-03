@@ -13,7 +13,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="500.0" prefWidth="800.0" styleClass="dashboard-root" stylesheets="@../../css/style.css" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.DashBoardContent.ViewMembersPageController">
+<AnchorPane prefHeight="500.0" prefWidth="800.0" styleClass="dashboard-root"  xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.DashBoardContent.ViewMembersPageController">
     <children>
         <Label layoutX="226.0" layoutY="14.0" text="Dashboard. Total Members" textAlignment="CENTER">
             <font>
@@ -120,14 +120,14 @@
             <Font name="Georgia Italic" size="14.0" />
          </font>
       </Label>
-      <TableView fx:id="tblMembers" layoutX="208.0" layoutY="154.0" prefHeight="296.0" prefWidth="585.0" styleClass="student-table">
+      <TableView fx:id="tblMembers" layoutX="221.0" layoutY="157.0" prefHeight="296.0" prefWidth="564.0" styleClass="student-table" stylesheets="@../../css/table.css">
          <columns>
             <TableColumn fx:id="colMemberId" prefWidth="85.60003662109375" text="Member Id" />
-            <TableColumn fx:id="colName" prefWidth="68.0" text="Name" />
-            <TableColumn fx:id="colEmail" prefWidth="88.0" text="Email" />
-            <TableColumn fx:id="colPhone" prefWidth="85.0" text="Phone" />
-            <TableColumn fx:id="colAddress" prefWidth="166.0" text="Address" />
-            <TableColumn fx:id="colStatus" prefWidth="92.0" text="Status" />
+            <TableColumn fx:id="colName" prefWidth="71.20001220703125" text="Name" />
+            <TableColumn fx:id="colEmail" prefWidth="135.199951171875" text="Email" />
+            <TableColumn fx:id="colPhone" prefWidth="73.5999755859375" text="Phone" />
+            <TableColumn fx:id="colAddress" prefWidth="112.0" text="Address" />
+            <TableColumn fx:id="colStatus" prefWidth="111.199951171875" text="Status" />
          </columns>
       </TableView>
     </children>
