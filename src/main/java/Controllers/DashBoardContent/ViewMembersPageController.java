@@ -1,18 +1,26 @@
 package Controllers.DashBoardContent;
 
+import javafx.beans.property.SimpleStringProperty;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.net.URL;
+import java.util.Map;
+import java.util.ResourceBundle;
 
-public class TotalMembersPageController {
+public class ViewMembersPageController implements Initializable {
+
+    ViewMembersController viewMembersController = new ViewMembersController();
 
     @FXML
     private Button btnLogOut;
@@ -61,6 +69,42 @@ public class TotalMembersPageController {
 
     @FXML
     private TextField txtTotalMemebers_PageNumber;
+
+    @FXML
+    private TableColumn<Map<String,String>,String> colAddress;
+
+    @FXML
+    private TableColumn<Map<String,String>,String> colEmail;
+
+    @FXML
+    private TableColumn<Map<String,String>,String> colMemberId;
+
+    @FXML
+    private TableColumn<Map<String,String>,String> colName;
+
+    @FXML
+    private TableColumn<Map<String,String>,String> colPhone;
+
+    @FXML
+    private TableColumn<Map<String,String>,String> colStatus;
+
+    @FXML
+    private TableView<Map<String, String>> tblMembers;
+
+    private ObservableList<Map<String, String>> masterMemberList = FXCollections.observableArrayList();
+    private FilteredList<Map<String, String>> filteredStudentList;
+
+    private void setMemberTable(){
+        colMemberId.setCellValueFactory(cell-> new SimpleStringProperty(cell.getValue().get("member_id")));
+        colName.setCellValueFactory(cell->new SimpleStringProperty(cell.getValue().getOrDefault("name","")));
+        colEmail.setCellValueFactory(cell->new SimpleStringProperty(cell.getValue().getOrDefault("email","")));
+        colPhone.setCellValueFactory(cell->new SimpleStringProperty(cell.getValue().getOrDefault("phone","")));
+        colAddress.setCellValueFactory(cell->new SimpleStringProperty(cell.getValue().getOrDefault("address","")));
+        colStatus.setCellValueFactory(cell->new SimpleStringProperty(cell.getValue().getOrDefault("satus","")));
+
+        tblMembers.setItems(masterMemberList);
+
+    }
 
     @FXML
     void btnLogOutOnAction(ActionEvent event) {
@@ -160,4 +204,9 @@ public class TotalMembersPageController {
 
     }
 
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        masterMemberList = viewMembersController.loadMemberData();
+        setMemberTable();
+    }
 }
