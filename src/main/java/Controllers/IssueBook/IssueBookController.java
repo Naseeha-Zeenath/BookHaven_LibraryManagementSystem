@@ -46,5 +46,32 @@ public class IssueBookController {
         String booksLoadSQL = "SELECT * FROM members ORDER BY member_id ASC;";
         return getDbList(booksLoadSQL,"member_id","name");
     }
+
+
+    private ObservableList<String> getDbList(
+            String sql, String idColumn, String nameColumn) {
+
+        ObservableList<String> list = FXCollections.observableArrayList();
+
+        try {
+            PreparedStatement preparedStatement =
+                    connection.prepareStatement(sql);
+
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            while (resultSet.next()) {
+
+                String id = resultSet.getString(idColumn);
+                String name = resultSet.getString(nameColumn);
+
+                list.add(id + " -" + name);
+            }
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
+        return list;
+    }
 }
 
