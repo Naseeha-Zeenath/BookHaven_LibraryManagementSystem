@@ -46,12 +46,10 @@ public class IssueBookController {
 
     public String bookIssued(String Memeber, String Book, LocalDate IssueDate, LocalDate DueDate) {
 
-        Connection connection  = DBConnection.getInstance().getConnection();
 
+        String insertSQL = "INSERT INTO borrowings (member_id, book_id, issue_date, due_date) VALUES (?, ?, ?, ?);";
 
         String searchSQL = "SELECT available_quantity FROM books WHERE book_id = ?;";
-
-
 
         if(Memeber == null){
             return "Please select a member";
@@ -79,6 +77,16 @@ public class IssueBookController {
                 if( ! (resultSet.getInt("available_quantity") > 0)){
                         return "This book is not available";
                 }
+
+
+                preparedStatement = connection.prepareStatement(insertSQL);
+
+                preparedStatement.setString(1, Memeber);
+                preparedStatement.setString(2, Book);
+                preparedStatement.setDate(3, Date.valueOf(IssueDate));
+                preparedStatement.setDate(4, Date.valueOf(DueDate));
+
+                preparedStatement.executeUpdate();
 
 
             } catch (SQLException e) {
