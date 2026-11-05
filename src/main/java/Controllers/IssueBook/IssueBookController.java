@@ -4,67 +4,26 @@ import db.DBConnection;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
+import java.time.LocalDate;
 
 public class IssueBookController {
 
     Connection connection = DBConnection.getInstance().getConnection();
 
-    String booksLoadSQL = "SELECT * FROM books ORDER BY book_id ASC;";
-
-    private ObservableList<String> getDbBook(){
-        ObservableList<String> bookList = FXCollections.observableArrayList();
+    private ObservableList<String> getDbList(String sql, String idColomn, String nameColumn) {
+        ObservableList<String> list = FXCollections.observableArrayList();
         try {
-            PreparedStatement preparedStatement = connection.prepareStatement(booksLoadSQL);
+            PreparedStatement preparedStatement = connection.prepareStatement(sql);
             ResultSet resultSet = preparedStatement.executeQuery();
             System.out.println(connection);
 
-            while (resultSet.next()){
-                String dbBookId = resultSet.getString("book_id");
-                String dbBookTitle = resultSet.getString("title");
-
-                bookList.add(dbBookId+" -"+dbBookTitle);
-            }
-
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
-
-
-        return  bookList;
-    }
-
-    public ObservableList<String> BookList() {
-
-        return getDbBook();
-    }
-
-    public ObservableList<String> MemberList() {
-        String booksLoadSQL = "SELECT * FROM members ORDER BY member_id ASC;";
-        return getDbList(booksLoadSQL,"member_id","name");
-    }
-
-
-    private ObservableList<String> getDbList(
-            String sql, String idColumn, String nameColumn) {
-
-        ObservableList<String> list = FXCollections.observableArrayList();
-
-        try {
-            PreparedStatement preparedStatement =
-                    connection.prepareStatement(sql);
-
-            ResultSet resultSet = preparedStatement.executeQuery();
-
             while (resultSet.next()) {
-
-                String id = resultSet.getString(idColumn);
+                String id = resultSet.getString(idColomn);
                 String name = resultSet.getString(nameColumn);
 
                 list.add(id + " -" + name);
+
             }
 
         } catch (SQLException e) {
@@ -72,6 +31,61 @@ public class IssueBookController {
         }
 
         return list;
+    }
+
+
+    public ObservableList<String> BookList() {
+        String booksLoadSQL = "SELECT * FROM books ORDER BY book_id ASC;";
+        return getDbList(booksLoadSQL,"book_id","title");
+    }
+
+    public ObservableList<String> MemberList() {
+        String booksLoadSQL = "SELECT * FROM members ORDER BY member_id ASC;";
+        return getDbList(booksLoadSQL,"member_id","name");
+    }
+
+    public String bookIssued(String Memeber, String Book, LocalDate IssueDate, LocalDate DueDate) {
+
+        Connection connection  = DBConnection.getInstance().getConnection();
+
+
+        String searchSQL = "SELECT available_quantity FROM books WHERE book_id = ?;";
+
+
+
+        if(Memeber == null){
+            return "Please select a member";
+        } else if (Book == null) {
+            return  "Please select a book.";
+        } else if (IssueDate == null) {
+            return "Please select an issue date.";
+        }else if (IssueDate.isAfter(LocalDate.now())) {
+            return  "Issue date cannot be in the future.";
+        } else if (DueDate == null) {
+            return "Please select a due date.";
+        } else if (DueDate.isBefore(IssueDate)) {
+            return "Due date must be after the issue date.";
+        }else {
+
+
+            Memeber = Memeber.split(" ")[0];
+            Book = Book.split(" ")[0];
+
+            try {
+                PreparedStatement preparedStatement = connection.prepareStatement(searchSQL);
+                preparedStatement.setString(1, Book);
+                ResultSet resultSet = preparedStatement.executeQuery();
+
+                if( ! (resultSet.getInt("available_quantity") > 0)){
+                        return "This book is not available";
+                }
+
+
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            }
+            return "Success!";
+        }
     }
 }
 

@@ -82,38 +82,43 @@
             <Font name="Georgia Bold" size="24.0" />
          </font>
       </Label>
-      <Pane layoutX="211.0" layoutY="59.0" prefHeight="204.0" prefWidth="460.0" styleClass="stat-card" stylesheets="@../css/style.css">
+      <Pane layoutX="220.0" layoutY="66.0" prefHeight="230.0" prefWidth="564.0" styleClass="stat-card" stylesheets="@../css/style.css">
          <children>
             <Label layoutX="37.0" layoutY="27.0" text="Select Member">
                <font>
                   <Font name="Georgia Italic" size="14.0" />
                </font>
             </Label>
-            <Label layoutX="247.0" layoutY="29.0" text="Select Book">
+            <Label layoutX="303.0" layoutY="27.0" text="Select Book">
                <font>
                   <Font name="Georgia Italic" size="14.0" />
                </font>
             </Label>
-            <ComboBox fx:id="SelecterIssueBook_SelectMemeber" layoutX="35.0" layoutY="52.0" prefHeight="25.0" prefWidth="178.0" />
-            <ComboBox fx:id="SelecterIssueBook_SelectBook" layoutX="247.0" layoutY="54.0" prefHeight="25.0" prefWidth="178.0" />
-            <DatePicker fx:id="SelecterIssueBook_SelectIssueDate" layoutX="35.0" layoutY="105.0" prefHeight="35.0" prefWidth="178.0" />
+            <ComboBox fx:id="SelecterIssueBook_SelectMemeber" layoutX="35.0" layoutY="52.0" prefHeight="25.0" prefWidth="214.0" />
+            <ComboBox fx:id="SelecterIssueBook_SelectBook" layoutX="303.0" layoutY="52.0" prefHeight="25.0" prefWidth="214.0" />
+            <DatePicker fx:id="SelecterIssueBook_SelectIssueDate" layoutX="35.0" layoutY="105.0" prefHeight="35.0" prefWidth="214.0" />
             <Label layoutX="42.0" layoutY="87.0" text="Issue Date">
                <font>
                   <Font name="Georgia Italic" size="14.0" />
                </font>
             </Label>
-            <DatePicker fx:id="SelecterIssueBook_SelectDueDate" layoutX="247.0" layoutY="105.0" prefHeight="35.0" prefWidth="178.0" />
-            <Label layoutX="252.0" layoutY="87.0" text="Due Date">
+            <DatePicker fx:id="SelecterIssueBook_SelectDueDate" layoutX="303.0" layoutY="105.0" prefHeight="35.0" prefWidth="214.0" />
+            <Label layoutX="308.0" layoutY="87.0" text="Due Date">
                <font>
                   <Font name="Georgia Italic" size="14.0" />
                </font>
             </Label>
-            <Button fx:id="btnIssueBook" layoutX="33.0" layoutY="160.0" mnemonicParsing="false" onAction="#btnIssueBookOnAction" prefHeight="30.0" prefWidth="395.0" styleClass="save-button" text="Issue Book" />
+            <Button fx:id="btnIssueBook" layoutX="74.0" layoutY="180.0" mnemonicParsing="false" onAction="#btnIssueBookOnAction" prefHeight="30.0" prefWidth="395.0" styleClass="save-button" text="Issue Book" />
+            <Label fx:id="txtInvalidAddIssueBook" alignment="CENTER" contentDisplay="CENTER" layoutX="74.0" layoutY="146.0" prefHeight="27.0" prefWidth="395.0" textAlignment="CENTER" textFill="#c82909">
+               <font>
+                  <Font name="Georgia Bold" size="14.0" />
+               </font>
+            </Label>
          </children>
       </Pane>
-      <Pane layoutX="211.0" layoutY="274.0" prefHeight="217.0" prefWidth="583.0" styleClass="stat-card" stylesheets="@../css/style.css">
+      <Pane layoutX="211.0" layoutY="303.0" prefHeight="180.0" prefWidth="583.0" styleClass="stat-card" stylesheets="@../css/style.css">
          <children>
-            <TableView layoutX="10.0" layoutY="48.0" prefHeight="150.0" prefWidth="564.0">
+            <TableView layoutX="10.0" layoutY="47.0" prefHeight="116.0" prefWidth="564.0">
                <columns>
                   <TableColumn prefWidth="75.0" text="Issue ID" />
                   <TableColumn prefWidth="110.0" text="Member Name" />
@@ -123,7 +128,7 @@
                   <TableColumn prefWidth="85.0" text="Status" />
                </columns>
             </TableView>
-            <Label layoutX="13.0" layoutY="14.0" text="Recent Issues">
+            <Label layoutX="14.0" layoutY="16.0" text="Recent Issues">
                <font>
                   <Font name="Georgia Italic" size="18.0" />
                </font>
