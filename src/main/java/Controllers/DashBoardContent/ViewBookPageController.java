@@ -78,6 +78,7 @@ public class ViewBookPageController implements Initializable {
     @FXML
     private TableView<Map<String, String>> tblBooks;
 
+
     @FXML
     private Label txtTotalBookCount;
 

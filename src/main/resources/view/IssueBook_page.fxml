@@ -118,14 +118,14 @@
       </Pane>
       <Pane layoutX="211.0" layoutY="303.0" prefHeight="180.0" prefWidth="583.0" styleClass="stat-card" stylesheets="@../css/style.css">
          <children>
-            <TableView layoutX="10.0" layoutY="47.0" prefHeight="116.0" prefWidth="564.0">
+            <TableView fx:id="tblRecentIssues" layoutX="10.0" layoutY="47.0" prefHeight="116.0" prefWidth="564.0">
                <columns>
-                  <TableColumn prefWidth="75.0" text="Issue ID" />
-                  <TableColumn prefWidth="110.0" text="Member Name" />
-                  <TableColumn prefWidth="130.0" text="Book Title" />
-                  <TableColumn prefWidth="84.0" text="Issue Date" />
-                  <TableColumn text="Due Date" />
-                  <TableColumn prefWidth="85.0" text="Status" />
+                  <TableColumn fx:id="colIssueId" prefWidth="75.0" text="Issue ID" />
+                  <TableColumn fx:id="colMemberName" prefWidth="110.0" text="Member Name" />
+                  <TableColumn fx:id="colBookTitle" prefWidth="130.0" text="Book Title" />
+                  <TableColumn fx:id="colIssueDate" prefWidth="84.0" text="Issue Date" />
+                  <TableColumn fx:id="colDueDate" text="Due Date" />
+                  <TableColumn fx:id="colStatus" prefWidth="85.0" text="Status" />
                </columns>
             </TableView>
             <Label layoutX="14.0" layoutY="16.0" text="Recent Issues">

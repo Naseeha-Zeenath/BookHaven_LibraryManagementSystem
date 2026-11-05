@@ -6,6 +6,8 @@ import javafx.collections.ObservableList;
 
 import java.sql.*;
 import java.time.LocalDate;
+import java.util.HashMap;
+import java.util.Map;
 
 public class IssueBookController {
 
@@ -103,5 +105,39 @@ public class IssueBookController {
         }
     }
 
+    public ObservableList<Map<String, String>> loadRecentIssuesData() {
+
+        ObservableList<Map<String,String>> recentIssuesList = FXCollections.observableArrayList();
+        String sql = "SELECT b.borrowing_id,m.name AS member_name,bk.title,b.issue_date,b.due_date,b.status " +
+                "FROM borrowings b JOIN members m ON b.member_id = m.member_id JOIN books bk " +
+                "ON b.book_id = bk.book_id ORDER BY b.borrowing_id DESC LIMIT 5;";
+
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+
+            while (resultSet.next()) {
+
+                Map<String, String> recentIssues = new HashMap<>();
+
+                recentIssues.put("borrowing_id", resultSet.getString("borrowing_id"));
+                recentIssues.put("member_name", resultSet.getString("member_name"));
+                recentIssues.put("title", resultSet.getString("title"));
+                recentIssues.put("issue_date", resultSet.getString("issue_date"));
+                recentIssues.put("due_date", resultSet.getString("due_date"));
+                recentIssues.put("status", resultSet.getString("status"));
+
+                recentIssuesList.add(recentIssues);
+
+            }
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
+        return  recentIssuesList;
+
+    }
 }
 
