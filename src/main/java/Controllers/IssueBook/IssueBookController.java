@@ -44,12 +44,15 @@ public class IssueBookController {
         return getDbList(booksLoadSQL,"member_id","name");
     }
 
-    public String bookIssued(String Memeber, String Book, LocalDate IssueDate, LocalDate DueDate) {
 
+
+    public String bookIssued(String Memeber, String Book, LocalDate IssueDate, LocalDate DueDate) {
 
         String insertSQL = "INSERT INTO borrowings (member_id, book_id, issue_date, due_date) VALUES (?, ?, ?, ?);";
 
         String searchSQL = "SELECT available_quantity FROM books WHERE book_id = ?;";
+
+        String updateSQL = "UPDATE books SET available_quantity = available_quantity - 1 WHERE book_id = ?;";
 
         if(Memeber == null){
             return "Please select a member";
@@ -65,7 +68,6 @@ public class IssueBookController {
             return "Due date must be after the issue date.";
         }else {
 
-
             Memeber = Memeber.split(" ")[0];
             Book = Book.split(" ")[0];
 
@@ -74,8 +76,10 @@ public class IssueBookController {
                 preparedStatement.setString(1, Book);
                 ResultSet resultSet = preparedStatement.executeQuery();
 
-                if( ! (resultSet.getInt("available_quantity") > 0)){
+                while (resultSet.next()) {
+                    if (!(resultSet.getInt("available_quantity") > 0)) {
                         return "This book is not available";
+                    }
                 }
 
 
@@ -85,9 +89,12 @@ public class IssueBookController {
                 preparedStatement.setString(2, Book);
                 preparedStatement.setDate(3, Date.valueOf(IssueDate));
                 preparedStatement.setDate(4, Date.valueOf(DueDate));
-
                 preparedStatement.executeUpdate();
 
+
+                preparedStatement = connection.prepareStatement(updateSQL);
+                preparedStatement.setString(1, Book);
+                preparedStatement.executeUpdate();
 
             } catch (SQLException e) {
                 throw new RuntimeException(e);
@@ -95,5 +102,6 @@ public class IssueBookController {
             return "Success!";
         }
     }
+
 }
 
