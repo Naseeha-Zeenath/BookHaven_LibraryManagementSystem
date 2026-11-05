@@ -33,7 +33,7 @@ public class ViewMembersController {
                 member.put("email", resultSet.getString("email"));
                 member.put("phone", resultSet.getString("phone"));
                 member.put("address", resultSet.getString("address"));
-                member.put("satus", resultSet.getString("satus"));
+                member.put("status", resultSet.getString("status"));
 
                 masterMemberList.add(member);
 

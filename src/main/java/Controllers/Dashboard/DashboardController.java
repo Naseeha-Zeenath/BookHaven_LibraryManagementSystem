@@ -34,12 +34,12 @@ public class DashboardController {
     }
 
     public  String activeMemberCount() {
-        String sql = "SELECT COUNT(*) as count FROM members WHERE satus = 'Active';";
+        String sql = "SELECT COUNT(*) as count FROM members WHERE status = 'Active';";
         return getCount(sql);
     }
 
     public  String inactiveMemberCount() {
-        String sql = "SELECT COUNT(*) as count FROM members WHERE satus = 'Inactive';";
+        String sql = "SELECT COUNT(*) as count FROM members WHERE status = 'Inactive';";
         return getCount(sql);
     }
 

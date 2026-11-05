@@ -49,11 +49,6 @@ public class ViewMembersPageController implements Initializable {
     @FXML
     private Button btnNavReturnBook;
 
-    @FXML
-    private Button btnTotalMembers_PageNext;
-
-    @FXML
-    private Button btnTotalMembers_PagePrev;
 
     @FXML
     private Button btnTotalMembers_Search;
@@ -70,8 +65,6 @@ public class ViewMembersPageController implements Initializable {
     @FXML
     private TextField txtTotalMembers_SearchBar;
 
-    @FXML
-    private TextField txtTotalMemebers_PageNumber;
 
     @FXML
     private TableColumn<Map<String,String>,String> colAddress;
@@ -103,7 +96,7 @@ public class ViewMembersPageController implements Initializable {
         colEmail.setCellValueFactory(cell->new SimpleStringProperty(cell.getValue().getOrDefault("email","")));
         colPhone.setCellValueFactory(cell->new SimpleStringProperty(cell.getValue().getOrDefault("phone","")));
         colAddress.setCellValueFactory(cell->new SimpleStringProperty(cell.getValue().getOrDefault("address","")));
-        colStatus.setCellValueFactory(cell->new SimpleStringProperty(cell.getValue().getOrDefault("satus","")));
+        colStatus.setCellValueFactory(cell->new SimpleStringProperty(cell.getValue().getOrDefault("status","")));
 
         tblMembers.setItems(masterMemberList);
 
