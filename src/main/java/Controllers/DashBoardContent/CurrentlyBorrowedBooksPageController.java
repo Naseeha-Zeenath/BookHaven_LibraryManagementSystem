@@ -1,6 +1,7 @@
 package Controllers.DashBoardContent;
 
 
+import Controllers.Dashboard.DashboardController;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -13,6 +14,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -23,7 +25,7 @@ import java.util.ResourceBundle;
 public class CurrentlyBorrowedBooksPageController implements Initializable {
 
     CurentlyBorrowedBooksController curentlyBorrowedBooksController = new CurentlyBorrowedBooksController();
-
+    DashboardController dashboardController = new DashboardController();
 
     @FXML
     private Button btnCurrentlyBorrowedBooks_Search;
@@ -72,6 +74,12 @@ public class CurrentlyBorrowedBooksPageController implements Initializable {
 
     @FXML
     private TableView<Map<String, String>> tblCurrentlyBorrowedBook;
+
+    @FXML
+    private TextField txtCurrentlyBorrowedBooksCount;
+
+    @FXML
+    private TextField txtCurrentlyBorrowedBooks_SearchBar;
 
     private ObservableList<Map<String, String>> currentlyBorrowedBookList = FXCollections.observableArrayList();
 
@@ -165,6 +173,9 @@ public class CurrentlyBorrowedBooksPageController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+
+        txtCurrentlyBorrowedBooksCount.setText(dashboardController.borrowingBookCount());
+
         currentlyBorrowedBookList = curentlyBorrowedBooksController.CurrentlyBorrowedtableData();
         currentlyBorrowedBookTable();
 
