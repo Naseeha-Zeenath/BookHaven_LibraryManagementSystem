@@ -24,7 +24,7 @@ import java.util.ResourceBundle;
 public class OverdueBooksPageController implements Initializable {
 
     OverdueBooksController overdueBooksController = new OverdueBooksController();
-
+    DashboardController dashboardController = new DashboardController();
 
     @FXML
     private Button btnLogOut;
@@ -182,8 +182,7 @@ public class OverdueBooksPageController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-
-
+        txtOverdueBooksCount.setText(dashboardController.overdueBookCount());
 
         OverdueBookList = overdueBooksController.loadOverdueBookData();
         currentlyBorrowedBookTable();

@@ -83,7 +83,7 @@ public class DashboardPageController {
         txtActiveMembersCount.setText(dashboardController.activeMemberCount());
         txtAvailableBookCount.setText(dashboardController.availableBookCount());
         txtCurrentlyBorrowedBooksCount.setText(dashboardController.borrowingBookCount());
-        txtOverdueBooksCount.setText(dashboardController.overdueDateCount());
+        txtOverdueBooksCount.setText(dashboardController.overdueBookCount());
     }
 
 

@@ -52,7 +52,7 @@ public class DashboardController {
         String sql = "SELECT COUNT(*) AS count FROM borrowings WHERE status ='Borrowed';";
         return getCount(sql);
     }
-    public String overdueDateCount(){
+    public String overdueBookCount(){
         String sql = "SELECT COUNT(*) AS count FROM borrowings WHERE status ='Overdue';";
         return  getCount(sql);
     }
