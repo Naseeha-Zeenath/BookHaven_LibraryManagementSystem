@@ -53,7 +53,7 @@ public class DashboardController {
         return getCount(sql);
     }
     public String overdueDateCount(){
-        String sql = "SELECT COUNT(*) AS count FROM borrowings WHERE return_date IS NULL AND due_date < CURRENT_DATE();";
+        String sql = "SELECT COUNT(*) AS count FROM borrowings WHERE status ='Overdue';";
         return  getCount(sql);
     }
 
