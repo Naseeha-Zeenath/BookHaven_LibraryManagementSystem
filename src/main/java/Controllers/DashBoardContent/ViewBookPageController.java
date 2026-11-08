@@ -198,12 +198,13 @@ public class ViewBookPageController implements Initializable {
 
         @FXML
         void btnTotalBooks_SearchOnAction(ActionEvent event) {
-
+           masterBookList = viewBookController.searchBookdata(txtTotalBooks_SearchBar.getText());
+           setMemberTable();
         }
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        masterBookList = viewBookController.loadBookData();
+        masterBookList = viewBookController.allBookData();
         setMemberTable();
 
         txtTotalBookCount.setText(dashboardController.bookCount());

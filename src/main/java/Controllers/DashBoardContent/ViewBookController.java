@@ -14,18 +14,28 @@ import java.util.Map;
 public class ViewBookController {
     Connection connection = DBConnection.getInstance().getConnection();
 
-    public ObservableList<Map<String,String>> loadBookData(){
+    public ObservableList<Map<String,String>> loadBookData(String sql, String searchMember){
 
         ObservableList<Map<String,String>> masterBookList = FXCollections.observableArrayList();
-        String sql = "select b.book_id,b.isbn,title,a.author_name,bc.category_name,\n" +
-                " b.published_year,b.quantity,b.available_quantity \n" +
-                " FROM books b INNER JOIN authors a ON b.author_id = a.author_id\n" +
-                " INNER JOIN book_categories bc ON b.category_id = bc.category_id;\n";
+
 
         try {
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
-            ResultSet resultSet = preparedStatement.executeQuery();
 
+
+            if (searchMember != null) {
+
+                String searchValue = "%" + searchMember.trim() + "%";
+
+                preparedStatement.setString(1, searchValue);
+                preparedStatement.setString(2, searchValue);
+                preparedStatement.setString(3, searchValue);
+                preparedStatement.setString(4, searchValue);
+                preparedStatement.setString(5, searchValue);
+                preparedStatement.setString(6, searchValue);
+
+            }
+            ResultSet resultSet = preparedStatement.executeQuery();
 
             while (resultSet.next()) {
 
@@ -51,4 +61,37 @@ public class ViewBookController {
         return  masterBookList;
 
     }
+
+    public ObservableList<Map<String, String>> allBookData() {
+        return loadBookData(all(), null);
+    }
+
+    private  String all() {
+        return  "select b.book_id,b.isbn,title,a.author_name,bc.category_name,\n" +
+                " b.published_year,b.quantity,b.available_quantity \n" +
+                " FROM books b INNER JOIN authors a ON b.author_id = a.author_id\n" +
+                " INNER JOIN book_categories bc ON b.category_id = bc.category_id;\n";
+    }
+
+    public ObservableList<Map<String,String>> searchBookdata(String searchMember) {
+        return loadBookData(search(), searchMember);
+    }
+
+
+
+    private  String search() {
+        return "SELECT b.book_id, b.isbn, b.title, a.author_name, " +
+                "bc.category_name, b.published_year, b.quantity, " +
+                "b.available_quantity " +
+                "FROM books b " +
+                "INNER JOIN authors a ON b.author_id = a.author_id " +
+                "INNER JOIN book_categories bc ON b.category_id = bc.category_id " +
+                "WHERE b.book_id LIKE ? " +
+                "OR b.isbn LIKE ? " +
+                "OR b.title LIKE ? " +
+                "OR a.author_name LIKE ? " +
+                "OR bc.category_name LIKE ? " +
+                "OR b.published_year LIKE ?";
+    }
 }
+
