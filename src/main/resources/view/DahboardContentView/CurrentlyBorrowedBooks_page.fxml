@@ -100,17 +100,14 @@
         </VBox>
         <TextField fx:id="txtCurrentlyBorrowedBooks_SearchBar" layoutX="226.0" layoutY="118.0" prefHeight="35.0" prefWidth="339.0" promptText="Search member by Name , Book Title or Issue ID..." />
         <Button fx:id="btnCurrentlyBorrowedBooks_Search" alignment="CENTER" layoutX="579.0" layoutY="121.0" mnemonicParsing="false" onAction="#btnCurrentlyBorrowedBooks_SearchOnAction" prefHeight="30.0" prefWidth="69.0" text="Search" />
-        <Button fx:id="btnCurrentlyBorrowedBooks_PageNext" alignment="CENTER" layoutX="745.0" layoutY="456.0" mnemonicParsing="false" onAction="#btnCurrentlyBorrowedBooks_PageNextOnAction" text="&gt;" />
-        <Button fx:id="btnCurrentlyBorrowedBooks_PagePrev" alignment="CENTER" layoutX="674.0" layoutY="456.0" mnemonicParsing="false" onAction="#btnCurrentlyBorrowedBooks_PagePrevOnAction" text="&lt;" />
-        <TextField fx:id="txtCurrentlyBorrowedBooks_PageNumber" layoutX="710.0" layoutY="453.0" prefHeight="29.0" prefWidth="28.0" />
-      <TableView layoutX="222.0" layoutY="175.0" prefHeight="273.0" prefWidth="564.0">
+      <TableView fx:id="tblCurrentlyBorrowedBook" layoutX="222.0" layoutY="175.0" prefHeight="307.0" prefWidth="564.0">
          <columns>
-            <TableColumn prefWidth="69.0" text="Issue ID" />
-            <TableColumn prefWidth="127.0" text="Member Name" />
-            <TableColumn prefWidth="138.0" text="Book Title" />
-            <TableColumn prefWidth="72.0" text="Issue Date" />
-            <TableColumn prefWidth="76.0" text="Due Date" />
-            <TableColumn prefWidth="81.0" text="Status" />
+            <TableColumn fx:id="colIssueId" prefWidth="69.0" text="Issue ID" />
+            <TableColumn fx:id="colMemberName" prefWidth="127.0" text="Member Name" />
+            <TableColumn fx:id="colBookTitle" prefWidth="138.0" text="Book Title" />
+            <TableColumn fx:id="colIssueDate" prefWidth="72.0" text="Issue Date" />
+            <TableColumn fx:id="colDueDate" prefWidth="76.0" text="Due Date" />
+            <TableColumn fx:id="colStatus" prefWidth="81.0" text="Status" />
          </columns>
       </TableView>
     </children>

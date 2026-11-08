@@ -95,34 +95,14 @@
             </Button>
          </children>
       </VBox>
-      <Label layoutX="397.0" layoutY="75.0" stylesheets="@../../css/style.css" text="Available: ">
-         <font>
-            <Font name="Georgia Italic" size="14.0" />
-         </font>
-      </Label>
-      <Label layoutX="554.0" layoutY="75.0" stylesheets="@../../css/style.css" text="Issued:">
-         <font>
-            <Font name="Georgia Italic" size="14.0" />
-         </font>
-      </Label>
-      <Label layoutX="691.0" layoutY="75.0" stylesheets="@../../css/style.css" text="Overdue:">
+      <Label layoutX="507.0" layoutY="76.0" stylesheets="@../../css/style.css" text="Available: ">
          <font>
             <Font name="Georgia Italic" size="14.0" />
          </font>
       </Label>
       <TextField fx:id="txtTotalBooks_SearchBar" layoutX="395.0" layoutY="103.0" prefHeight="35.0" prefWidth="339.0" promptText="Search member by title , author or ISBN..." />
       <Button fx:id="btnTotalBooks_Search" alignment="CENTER" layoutX="739.0" layoutY="106.0" mnemonicParsing="false" onAction="#btnTotalBooks_SearchOnAction" prefHeight="30.0" prefWidth="69.0" text="Search" />
-      <Label fx:id="txtTotalBooks_AvailableBookCount" layoutX="466.0" layoutY="75.0" prefHeight="16.0" prefWidth="46.0" stylesheets="@../../css/style.css" text="___">
-         <font>
-            <Font name="Georgia Italic" size="14.0" />
-         </font>
-      </Label>
-      <Label fx:id="txtTotalBooks_IssuedBookCount" layoutX="607.0" layoutY="75.0" prefHeight="16.0" prefWidth="46.0" stylesheets="@../../css/style.css" text="___">
-         <font>
-            <Font name="Georgia Italic" size="14.0" />
-         </font>
-      </Label>
-      <Label fx:id="txtTotalBooks_OverdueBookCount" layoutX="755.0" layoutY="75.0" prefHeight="16.0" prefWidth="46.0" stylesheets="@../../css/style.css" text="___">
+      <Label fx:id="txtTotalBooks_AvailableBookCount" layoutX="576.0" layoutY="76.0" prefHeight="16.0" prefWidth="46.0" stylesheets="@../../css/style.css" text="___">
          <font>
             <Font name="Georgia Italic" size="14.0" />
          </font>
