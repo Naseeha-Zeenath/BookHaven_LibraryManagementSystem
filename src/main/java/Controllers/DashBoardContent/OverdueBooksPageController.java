@@ -80,6 +80,9 @@ public class OverdueBooksPageController implements Initializable {
     @FXML
     private TextField txtOverdueBooksCount;
 
+    @FXML
+    private TextField txtOverdueBooks_SearchBar;
+
 
     private ObservableList<Map<String, String>> OverdueBookList = FXCollections.observableArrayList();
 
@@ -165,26 +168,18 @@ public class OverdueBooksPageController implements Initializable {
         stage.show();
     }
 
-    @FXML
-    void btnOverdueBooks_PageNextOnAction(ActionEvent event) {
-
-    }
-
-    @FXML
-    void btnOverdueBooks_PagePrevOnAction(ActionEvent event) {
-
-    }
 
     @FXML
     void btnOverdueBooks_SearchOnAction(ActionEvent event) {
-
+        OverdueBookList = overdueBooksController.searchOverdueBookData(txtOverdueBooks_SearchBar.getText());
+        currentlyBorrowedBookTable();
     }
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         txtOverdueBooksCount.setText(dashboardController.overdueBookCount());
 
-        OverdueBookList = overdueBooksController.loadOverdueBookData();
+        OverdueBookList = overdueBooksController.allOverdueBookData();
         currentlyBorrowedBookTable();
 
     }

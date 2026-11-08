@@ -14,19 +14,27 @@ import java.util.Map;
 public class OverdueBooksController {
     Connection connection = DBConnection.getInstance().getConnection();
 
-    public ObservableList<Map<String,String>> loadOverdueBookData(){
+    private ObservableList<Map<String, String>> loadOverdueBookData(String sql, String searchOverdueBook) {
 
-        ObservableList<Map<String,String>> overDueBookList = FXCollections.observableArrayList();
-        String sql = " SELECT b.borrowing_id,m.name AS member_name,bk.title,b.issue_date,b.due_date,b.status," +
-                "DATEDIFF(CURDATE(), b.due_date) AS days_overdue\n" +
-                "FROM borrowings b JOIN members m ON b.member_id = m.member_id " +
-                "JOIN books bk ON b.book_id = bk.book_id\n" +
-                "WHERE b.due_date < CURDATE() AND b.return_date IS NULL ORDER BY b.due_date DESC;";
+        ObservableList<Map<String, String>> overDueBookList = FXCollections.observableArrayList();
 
         try {
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
-            ResultSet resultSet = preparedStatement.executeQuery();
 
+            if (searchOverdueBook != null) {
+
+                String searchValue = "%" + searchOverdueBook.trim() + "%";
+
+                preparedStatement.setString(1, searchValue);
+                preparedStatement.setString(2, searchValue);
+                preparedStatement.setString(3, searchValue);
+                preparedStatement.setString(4, searchValue);
+                preparedStatement.setString(5, searchValue);
+                preparedStatement.setString(6, searchValue);
+
+            }
+
+            ResultSet resultSet = preparedStatement.executeQuery();
 
             while (resultSet.next()) {
 
@@ -48,7 +56,41 @@ public class OverdueBooksController {
             throw new RuntimeException(e);
         }
 
-        return  overDueBookList;
+        return overDueBookList;
 
     }
+
+    public ObservableList<Map<String,String>> allOverdueBookData() {
+        return loadOverdueBookData(all(), null);
+    }
+
+    private String all() {
+        return " SELECT b.borrowing_id,m.name AS member_name,bk.title,b.issue_date,b.due_date,b.status," +
+                "DATEDIFF(CURDATE(), b.due_date) AS days_overdue\n" +
+                "FROM borrowings b JOIN members m ON b.member_id = m.member_id " +
+                "JOIN books bk ON b.book_id = bk.book_id\n" +
+                "WHERE b.due_date < CURDATE() AND b.return_date IS NULL ORDER BY b.due_date DESC;";
+    }
+
+    public ObservableList<Map<String,String>> searchOverdueBookData(String searchOverdueBook) {
+        return loadOverdueBookData(search(), searchOverdueBook);
+    }
+
+    private String search() {
+        return "SELECT b.borrowing_id, m.name AS member_name, bk.title, " +
+                "b.issue_date, b.due_date, b.status, " +
+                "DATEDIFF(CURDATE(), b.due_date) AS days_overdue " +
+                "FROM borrowings b " +
+                "JOIN members m ON b.member_id = m.member_id " +
+                "JOIN books bk ON b.book_id = bk.book_id " +
+                "WHERE b.due_date < CURDATE() AND b.return_date IS NULL " +
+                "AND (b.borrowing_id LIKE ? " +
+                "OR m.name LIKE ? " +
+                "OR bk.title LIKE ? " +
+                "OR b.issue_date LIKE ? " +
+                "OR b.due_date LIKE ? " +
+                "OR b.status LIKE ?) " +
+                "ORDER BY b.due_date DESC;";
+    }
+
 }

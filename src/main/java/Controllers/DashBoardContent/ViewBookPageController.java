@@ -85,11 +85,6 @@ public class ViewBookPageController implements Initializable {
     @FXML
     private Label txtTotalBooks_AvailableBookCount;
 
-    @FXML
-    private Label txtTotalBooks_IssuedBookCount;
-
-    @FXML
-    private Label txtTotalBooks_OverdueBookCount;
 
     @FXML
     private TextField txtTotalBooks_SearchBar;
