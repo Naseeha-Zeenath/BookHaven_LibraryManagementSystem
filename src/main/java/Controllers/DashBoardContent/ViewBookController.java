@@ -14,7 +14,7 @@ import java.util.Map;
 public class ViewBookController {
     Connection connection = DBConnection.getInstance().getConnection();
 
-    public ObservableList<Map<String,String>> loadBookData(String sql, String searchMember){
+    private ObservableList<Map<String,String>> loadBookData(String sql, String searchMember){
 
         ObservableList<Map<String,String>> masterBookList = FXCollections.observableArrayList();
 

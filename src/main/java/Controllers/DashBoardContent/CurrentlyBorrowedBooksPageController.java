@@ -86,6 +86,9 @@ public class CurrentlyBorrowedBooksPageController implements Initializable {
 
     @FXML
     void btnCurrentlyBorrowedBooks_SearchOnAction(ActionEvent event) {
+        currentlyBorrowedBookList=
+                curentlyBorrowedBooksController.searchBookData(txtCurrentlyBorrowedBooks_SearchBar.getText());
+        setCurrentlyBorrowedBookTable();
 
     }
 
@@ -176,12 +179,12 @@ public class CurrentlyBorrowedBooksPageController implements Initializable {
 
         txtCurrentlyBorrowedBooksCount.setText(dashboardController.borrowingBookCount());
 
-        currentlyBorrowedBookList = curentlyBorrowedBooksController.CurrentlyBorrowedtableData();
-        currentlyBorrowedBookTable();
+        currentlyBorrowedBookList = curentlyBorrowedBooksController.allCurrentlyBorrowedBookData();
+        setCurrentlyBorrowedBookTable();
 
     }
 
-    private void currentlyBorrowedBookTable() {
+    private void setCurrentlyBorrowedBookTable() {
         colIssueId.setCellValueFactory(cell-> new SimpleStringProperty(cell.getValue().getOrDefault("borrowing_id","")));
         colMemberName.setCellValueFactory(cell->new SimpleStringProperty(cell.getValue().getOrDefault("member_name","")));
         colBookTitle.setCellValueFactory(cell->new SimpleStringProperty(cell.getValue().getOrDefault("title","")));

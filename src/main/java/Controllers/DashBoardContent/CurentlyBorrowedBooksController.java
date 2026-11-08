@@ -15,17 +15,28 @@ public class CurentlyBorrowedBooksController {
 
     Connection connection = DBConnection.getInstance().getConnection();
 
-    public ObservableList<Map<String, String>> CurrentlyBorrowedtableData() {
+    private ObservableList<Map<String, String>> loadCurrentlyBorrowedData(String sql, String searchBorrowedBook) {
 
         ObservableList<Map<String,String>> recentIssuesList = FXCollections.observableArrayList();
-        String sql = "SELECT b.borrowing_id,m.name AS member_name,bk.title,b.issue_date,b.due_date,b.status " +
-                "FROM borrowings b JOIN members m ON b.member_id = m.member_id JOIN books bk " +
-                "ON b.book_id = bk.book_id WHERE b.status ='Borrowed' ORDER BY b.borrowing_id DESC;";
+
 
         try {
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
-            ResultSet resultSet = preparedStatement.executeQuery();
 
+            if (searchBorrowedBook != null) {
+
+                String searchValue = "%" + searchBorrowedBook.trim() + "%";
+
+                preparedStatement.setString(1, searchValue);
+                preparedStatement.setString(2, searchValue);
+                preparedStatement.setString(3, searchValue);
+                preparedStatement.setString(4, searchValue);
+                preparedStatement.setString(5, searchValue);
+                preparedStatement.setString(6, searchValue);
+
+            }
+
+            ResultSet resultSet = preparedStatement.executeQuery();
 
             while (resultSet.next()) {
 
@@ -49,4 +60,35 @@ public class CurentlyBorrowedBooksController {
         return  recentIssuesList;
 
     }
+
+    public ObservableList<Map<String, String>> allCurrentlyBorrowedBookData() {
+        return loadCurrentlyBorrowedData(all(), null);
+    }
+
+    private String all() {
+        return "SELECT b.borrowing_id,m.name AS member_name,bk.title,b.issue_date,b.due_date,b.status " +
+                "FROM borrowings b JOIN members m ON b.member_id = m.member_id JOIN books bk " +
+                "ON b.book_id = bk.book_id WHERE b.status ='Borrowed' ORDER BY b.borrowing_id DESC;";
+    }
+
+    public ObservableList<Map<String, String>> searchBookData(String searchBorrowedBook) {
+        return loadCurrentlyBorrowedData(search(), searchBorrowedBook);
+    }
+
+    private String search() {
+        return "SELECT b.borrowing_id, m.name AS member_name, bk.title, " +
+                "b.issue_date, b.due_date, b.status " +
+                "FROM borrowings b " +
+                "JOIN members m ON b.member_id = m.member_id " +
+                "JOIN books bk ON b.book_id = bk.book_id " +
+                "WHERE b.status = 'Borrowed' " +
+                "AND (b.borrowing_id LIKE ? " +
+                "OR m.name LIKE ? " +
+                "OR bk.title LIKE ? " +
+                "OR b.issue_date LIKE ? " +
+                "OR b.due_date LIKE ? " +
+                "OR b.status LIKE ?) " +
+                "ORDER BY b.borrowing_id DESC;";
+    }
+
 }

@@ -172,7 +172,7 @@ public class OverdueBooksPageController implements Initializable {
     @FXML
     void btnOverdueBooks_SearchOnAction(ActionEvent event) {
         OverdueBookList = overdueBooksController.searchOverdueBookData(txtOverdueBooks_SearchBar.getText());
-        currentlyBorrowedBookTable();
+        setCurrentlyBorrowedBookTable();
     }
 
     @Override
@@ -180,11 +180,11 @@ public class OverdueBooksPageController implements Initializable {
         txtOverdueBooksCount.setText(dashboardController.overdueBookCount());
 
         OverdueBookList = overdueBooksController.allOverdueBookData();
-        currentlyBorrowedBookTable();
+        setCurrentlyBorrowedBookTable();
 
     }
 
-    private void currentlyBorrowedBookTable() {
+    private void setCurrentlyBorrowedBookTable() {
         colIssueID.setCellValueFactory(cell-> new SimpleStringProperty(cell.getValue().getOrDefault("borrowing_id","")));
         colMemberName.setCellValueFactory(cell->new SimpleStringProperty(cell.getValue().getOrDefault("member_name","")));
         colBookTitle.setCellValueFactory(cell->new SimpleStringProperty(cell.getValue().getOrDefault("title","")));
