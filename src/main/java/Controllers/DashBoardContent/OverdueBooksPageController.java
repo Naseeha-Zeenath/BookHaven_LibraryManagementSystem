@@ -1,17 +1,30 @@
 package Controllers.DashBoardContent;
 
+import Controllers.Dashboard.DashboardController;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.net.URL;
+import java.util.Map;
+import java.util.ResourceBundle;
 
-public class OverdueBooksPageController {
+public class OverdueBooksPageController implements Initializable {
+
+    OverdueBooksController overdueBooksController = new OverdueBooksController();
+    DashboardController dashboardController = new DashboardController();
 
     @FXML
     private Button btnLogOut;
@@ -38,22 +51,40 @@ public class OverdueBooksPageController {
     private Button btnNavReturnBook;
 
     @FXML
-    private Button btnOverdueBooks_PageNext;
-
-    @FXML
-    private Button btnOverdueBooks_PagePrev;
-
-    @FXML
     private Button btnOverdueBooks_Search;
+
+    @FXML
+    private TableColumn<Map<String,String>,String> colBookTitle;
+
+    @FXML
+    private TableColumn<Map<String,String>,String> colDaysOverdue;
+
+    @FXML
+    private TableColumn<Map<String,String>,String> colDueDate;
+
+    @FXML
+    private TableColumn<Map<String,String>,String> colIssueDate;
+
+    @FXML
+    private TableColumn<Map<String,String>,String> colIssueID;
+
+    @FXML
+    private TableColumn<Map<String,String>,String> colMemberName;
+
+    @FXML
+    private TableColumn<Map<String,String>,String> colStatus;
+
+    @FXML
+    private TableView<Map<String,String>> tblOverdueBooks;
 
     @FXML
     private TextField txtOverdueBooksCount;
 
     @FXML
-    private TextField txtOverdueBooks_PageNumber;
-
-    @FXML
     private TextField txtOverdueBooks_SearchBar;
+
+
+    private ObservableList<Map<String, String>> OverdueBookList = FXCollections.observableArrayList();
 
     @FXML
     void btnLogOutOnAction(ActionEvent event) {
@@ -137,19 +168,31 @@ public class OverdueBooksPageController {
         stage.show();
     }
 
-    @FXML
-    void btnOverdueBooks_PageNextOnAction(ActionEvent event) {
-
-    }
-
-    @FXML
-    void btnOverdueBooks_PagePrevOnAction(ActionEvent event) {
-
-    }
 
     @FXML
     void btnOverdueBooks_SearchOnAction(ActionEvent event) {
+        OverdueBookList = overdueBooksController.searchOverdueBookData(txtOverdueBooks_SearchBar.getText());
+        setCurrentlyBorrowedBookTable();
+    }
+
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        txtOverdueBooksCount.setText(dashboardController.overdueBookCount());
+
+        OverdueBookList = overdueBooksController.allOverdueBookData();
+        setCurrentlyBorrowedBookTable();
 
     }
 
+    private void setCurrentlyBorrowedBookTable() {
+        colIssueID.setCellValueFactory(cell-> new SimpleStringProperty(cell.getValue().getOrDefault("borrowing_id","")));
+        colMemberName.setCellValueFactory(cell->new SimpleStringProperty(cell.getValue().getOrDefault("member_name","")));
+        colBookTitle.setCellValueFactory(cell->new SimpleStringProperty(cell.getValue().getOrDefault("title","")));
+        colIssueDate.setCellValueFactory(cell->new SimpleStringProperty(cell.getValue().getOrDefault("issue_date","")));
+        colDueDate.setCellValueFactory(cell->new SimpleStringProperty(cell.getValue().getOrDefault("due_date","")));
+        colDaysOverdue.setCellValueFactory(cell->new SimpleStringProperty(cell.getValue().getOrDefault("days_overdue","")));
+        colStatus.setCellValueFactory(cell->new SimpleStringProperty(cell.getValue().getOrDefault("status","")));
+
+        tblOverdueBooks.setItems(OverdueBookList);
+    }
 }

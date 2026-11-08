@@ -34,7 +34,12 @@ public class DashboardController {
     }
 
     public  String activeMemberCount() {
-        String sql = "SELECT COUNT(*) as count FROM members WHERE satus = 'Active';";
+        String sql = "SELECT COUNT(*) as count FROM members WHERE status = 'Active';";
+        return getCount(sql);
+    }
+
+    public  String inactiveMemberCount() {
+        String sql = "SELECT COUNT(*) as count FROM members WHERE status = 'Inactive';";
         return getCount(sql);
     }
 
@@ -44,11 +49,11 @@ public class DashboardController {
     }
 
     public  String borrowingBookCount(){
-        String sql = "SELECT COUNT(*) AS count FROM borrowings WHERE return_date IS NULL;";
+        String sql = "SELECT COUNT(*) AS count FROM borrowings WHERE status ='Borrowed';";
         return getCount(sql);
     }
-    public String overdueDateCount(){
-        String sql = "SELECT COUNT(*) AS count FROM borrowings WHERE return_date IS NULL AND due_date < CURRENT_DATE();";
+    public String overdueBookCount(){
+        String sql = "SELECT COUNT(*) AS count FROM borrowings WHERE status ='Overdue';";
         return  getCount(sql);
     }
 

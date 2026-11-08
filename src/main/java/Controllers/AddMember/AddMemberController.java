@@ -72,7 +72,7 @@ public class AddMemberController {
 
 
 
-    public String generateStudentId() {
+    public String generateMemberId() {
         String year = String.valueOf(LocalDate.now().getYear())+"-";
         String sql = "SELECT member_id FROM members WHERE member_id LIKE ? ORDER BY member_id DESC LIMIT 1";
 

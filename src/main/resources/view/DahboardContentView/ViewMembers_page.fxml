@@ -13,28 +13,25 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="500.0" prefWidth="800.0" styleClass="dashboard-root" stylesheets="@../../css/style.css" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.DashBoardContent.TotalMembersPageController">
+<AnchorPane prefHeight="500.0" prefWidth="800.0" styleClass="dashboard-root" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.DashBoardContent.ViewMembersPageController">
     <children>
         <Label layoutX="226.0" layoutY="14.0" text="Dashboard. Total Members" textAlignment="CENTER">
             <font>
                 <Font name="Georgia Bold" size="24.0" />
             </font>
         </Label>
-        <Pane accessibleRole="BUTTON" layoutX="219.0" layoutY="56.0" prefHeight="83.0" prefWidth="142.0" styleClass="stat-card">
+        <Pane accessibleRole="BUTTON" layoutX="226.0" layoutY="63.0" prefHeight="76.0" prefWidth="130.0" styleClass="stat-card">
             <children>
-                <Label layoutX="13.0" layoutY="14.0" text="Total Members">
+                <Label layoutX="25.0" layoutY="14.0" text="Total Members">
                     <font>
-                        <Font name="Georgia Italic" size="18.0" />
+                        <Font name="Georgia Italic" size="14.0" />
                     </font>
                 </Label>
-                <TextField fx:id="txtTotalMembersCount" alignment="CENTER" depthTest="DISABLE" editable="false" layoutX="30.0" layoutY="35.0" prefHeight="21.0" prefWidth="69.0" style="-fx-background-color: #FFFFFF; -fx-border-width: 0;" text="-----">
-                    <font>
-                        <Font name="System Bold Italic" size="18.0" />
-                    </font>
-                    <cursor>
-                        <Cursor fx:constant="DEFAULT" />
-                    </cursor>
-                </TextField>
+            <Label fx:id="txtTotalMembers_TotalMemberCount" alignment="CENTER" contentDisplay="CENTER" layoutX="43.0" layoutY="38.0" text="------">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
             </children>
         </Pane>
         <VBox prefHeight="500.0" prefWidth="199.0" styleClass="sidebar" stylesheets="@../../css/style.css">
@@ -105,19 +102,6 @@
         </Label>
         <TextField fx:id="txtTotalMembers_SearchBar" layoutX="364.0" layoutY="98.0" prefHeight="35.0" prefWidth="339.0" promptText="Search member by Name , Email or ID..." />
         <Button fx:id="btnTotalMembers_Search" alignment="CENTER" layoutX="708.0" layoutY="101.0" mnemonicParsing="false" onAction="#btnTotalMembers_SearchOnAction" prefHeight="30.0" prefWidth="69.0" text="Search" />
-        <TableView layoutX="213.0" layoutY="145.0" prefHeight="306.0" prefWidth="564.0">
-            <columns>
-                <TableColumn prefWidth="69.0" text="Member Id" />
-                <TableColumn text="Name" />
-                <TableColumn prefWidth="133.0" text="Email" />
-                <TableColumn prefWidth="97.0" text="Phone" />
-                <TableColumn prefWidth="113.0" text="Address" />
-                <TableColumn prefWidth="71.0" text="Status" />
-            </columns>
-        </TableView>
-        <Button fx:id="btnTotalMembers_PageNext" alignment="CENTER" layoutX="745.0" layoutY="456.0" mnemonicParsing="false" onAction="#btnTotalMembers_PageNextOnAction" text="&gt;" />
-        <Button fx:id="btnTotalMembers_PagePrev" alignment="CENTER" layoutX="674.0" layoutY="456.0" mnemonicParsing="false" onAction="#btnTotalMembers_PagePrevOnAction" text="&lt;" />
-        <TextField fx:id="txtTotalMemebers_PageNumber" layoutX="710.0" layoutY="453.0" prefHeight="29.0" prefWidth="28.0" />
         <Label fx:id="txtTotalMembers_ActiveCount" layoutX="511.0" layoutY="70.0" prefHeight="16.0" prefWidth="46.0" stylesheets="@../../css/style.css" text="___">
             <font>
                 <Font name="Georgia Italic" size="14.0" />
@@ -133,5 +117,15 @@
             <Font name="Georgia Italic" size="14.0" />
          </font>
       </Label>
+      <TableView fx:id="tblMembers" layoutX="221.0" layoutY="157.0" prefHeight="313.0" prefWidth="564.0" styleClass="student-table" stylesheets="@../../css/table.css">
+         <columns>
+            <TableColumn fx:id="colMemberId" prefWidth="85.60003662109375" text="Member Id" />
+            <TableColumn fx:id="colName" prefWidth="71.20001220703125" text="Name" />
+            <TableColumn fx:id="colEmail" prefWidth="135.199951171875" text="Email" />
+            <TableColumn fx:id="colPhone" prefWidth="73.5999755859375" text="Phone" />
+            <TableColumn fx:id="colAddress" prefWidth="112.0" text="Address" />
+            <TableColumn fx:id="colStatus" prefWidth="111.199951171875" text="Status" />
+         </columns>
+      </TableView>
     </children>
 </AnchorPane>

@@ -83,7 +83,7 @@ public class DashboardPageController {
         txtActiveMembersCount.setText(dashboardController.activeMemberCount());
         txtAvailableBookCount.setText(dashboardController.availableBookCount());
         txtCurrentlyBorrowedBooksCount.setText(dashboardController.borrowingBookCount());
-        txtOverdueBooksCount.setText(dashboardController.overdueDateCount());
+        txtOverdueBooksCount.setText(dashboardController.overdueBookCount());
     }
 
 
@@ -179,7 +179,7 @@ public class DashboardPageController {
     void btnTotalBooksOnAction(ActionEvent event) {
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         try {
-            stage.setScene(new Scene(FXMLLoader.load(getClass().getResource("/view/DahboardContentView/TotalBooks_page.fxml"))));
+            stage.setScene(new Scene(FXMLLoader.load(getClass().getResource("/view/DahboardContentView/ViewBooks_page.fxml"))));
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
@@ -190,7 +190,7 @@ public class DashboardPageController {
     void btnTotalMembersOnAction(ActionEvent event) {
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         try {
-            stage.setScene(new Scene(FXMLLoader.load(getClass().getResource("/view/DahboardContentView/TotalMembers_page.fxml"))));
+            stage.setScene(new Scene(FXMLLoader.load(getClass().getResource("/view/DahboardContentView/ViewMembers_page.fxml"))));
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
