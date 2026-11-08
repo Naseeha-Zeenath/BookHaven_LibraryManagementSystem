@@ -15,14 +15,24 @@ import java.util.Map;
 public class ViewMembersController {
     Connection connection = DBConnection.getInstance().getConnection();
 
-    public ObservableList<Map<String,String>> loadMemberData(){
+    private ObservableList<Map<String,String>> loadMemberData(String sql, String searchMember){
         ObservableList<Map<String,String>> masterMemberList = FXCollections.observableArrayList();
-        String sql = "SELECT * FROM members;";
 
         try {
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
-            ResultSet resultSet = preparedStatement.executeQuery();
 
+            if (searchMember != null) {
+
+                String searchValue = "%" + searchMember.trim() + "%";
+
+                preparedStatement.setString(1, searchValue);
+                preparedStatement.setString(2, searchValue);
+                preparedStatement.setString(3, searchValue);
+                preparedStatement.setString(4, searchValue);
+                preparedStatement.setString(5, searchValue);
+
+            }
+            ResultSet resultSet = preparedStatement.executeQuery();
 
             while (resultSet.next()) {
 
@@ -47,5 +57,21 @@ public class ViewMembersController {
 
     }
 
+    public ObservableList<Map<String,String>> searchMemberdata(String searchMember) {
+        return loadMemberData(search(), searchMember);
+    }
 
+    public ObservableList<Map<String,String>> allloadMemberData(){
+        return loadMemberData(all(), null);
+    }
+    private  String all() {
+        return "SELECT * FROM members;";
+    }
+    private  String search() {
+        return "SELECT * FROM members WHERE member_id LIKE ? " +
+                "OR name LIKE ? " +
+                "OR email LIKE ? " +
+                "OR phone LIKE ? " +
+                "OR address LIKE ?;";
+    }
 }

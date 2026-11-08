@@ -187,22 +187,16 @@ public class ViewMembersPageController implements Initializable {
 
     @FXML
     void btnTotalMembers_SearchOnAction(ActionEvent event) {
-
+        masterMemberList = viewMembersController.searchMemberdata(txtTotalMembers_SearchBar.getText());
+        setMemberTable();
     }
 
-    @FXML
-    void btnTotalMembers_PageNextOnAction(ActionEvent event) {
 
-    }
 
-    @FXML
-    void btnTotalMembers_PagePrevOnAction(ActionEvent event) {
-
-    }
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        masterMemberList = viewMembersController.loadMemberData();
+        masterMemberList = viewMembersController.allloadMemberData();
         setMemberTable();
         txtTotalMembers_TotalMemberCount.setText(dashboardController.memberCount());
         txtTotalMembers_ActiveCount.setText(dashboardController.activeMemberCount());
