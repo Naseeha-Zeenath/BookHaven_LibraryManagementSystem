@@ -17,7 +17,7 @@ public class CurentlyBorrowedBooksController {
 
     private ObservableList<Map<String, String>> loadCurrentlyBorrowedData(String sql, String searchBorrowedBook) {
 
-        ObservableList<Map<String,String>> recentIssuesList = FXCollections.observableArrayList();
+        ObservableList<Map<String,String>> currentlyBorrowedBookList = FXCollections.observableArrayList();
 
 
         try {
@@ -40,16 +40,16 @@ public class CurentlyBorrowedBooksController {
 
             while (resultSet.next()) {
 
-                Map<String, String> recentIssues = new HashMap<>();
+                Map<String, String> currentlyBorrowedBook = new HashMap<>();
 
-                recentIssues.put("borrowing_id", resultSet.getString("borrowing_id"));
-                recentIssues.put("member_name", resultSet.getString("member_name"));
-                recentIssues.put("title", resultSet.getString("title"));
-                recentIssues.put("issue_date", resultSet.getString("issue_date"));
-                recentIssues.put("due_date", resultSet.getString("due_date"));
-                recentIssues.put("status", resultSet.getString("status"));
+                currentlyBorrowedBook.put("borrowing_id", resultSet.getString("borrowing_id"));
+                currentlyBorrowedBook.put("member_name", resultSet.getString("member_name"));
+                currentlyBorrowedBook.put("title", resultSet.getString("title"));
+                currentlyBorrowedBook.put("issue_date", resultSet.getString("issue_date"));
+                currentlyBorrowedBook.put("due_date", resultSet.getString("due_date"));
+                currentlyBorrowedBook.put("status", resultSet.getString("status"));
 
-                recentIssuesList.add(recentIssues);
+                currentlyBorrowedBookList.add(currentlyBorrowedBook);
 
             }
 
@@ -57,7 +57,7 @@ public class CurentlyBorrowedBooksController {
             throw new RuntimeException(e);
         }
 
-        return  recentIssuesList;
+        return  currentlyBorrowedBookList;
 
     }
 
