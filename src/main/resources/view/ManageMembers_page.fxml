@@ -118,7 +118,7 @@
             </Label>
             <TextField fx:id="txtMemberId" editable="false" layoutX="27.0" layoutY="65.0" prefHeight="33.0" prefWidth="246.0">
                <font>
-                  <Font size="10.0" />
+                  <Font size="14.0" />
                </font>
             </TextField>
             <Label layoutX="318.0" layoutY="41.0" text="Full  Name">
@@ -138,15 +138,18 @@
             </Label>
             <TextField fx:id="txtUpdateFullName" layoutX="317.0" layoutY="65.0" prefHeight="33.0" prefWidth="246.0">
                <font>
-                  <Font size="10.0" />
+                  <Font size="14.0" />
                </font>
             </TextField>
             <TextField fx:id="txtUpdateEmail" layoutX="317.0" layoutY="139.0" prefHeight="33.0" prefWidth="246.0">
                <font>
-                  <Font size="10.0" />
+                  <Font size="14.0" />
                </font>
             </TextField>
-            <TextArea fx:id="txtUpdateAddress" layoutX="27.0" layoutY="207.0" prefHeight="99.0" prefWidth="246.0" />
+            <TextArea fx:id="txtUpdateAddress" layoutX="27.0" layoutY="207.0" prefHeight="99.0" prefWidth="246.0">
+               <font>
+                  <Font size="14.0" />
+               </font></TextArea>
             <Label fx:id="txtInvalidUpdateMember" alignment="CENTER" contentDisplay="CENTER" layoutX="27.0" layoutY="7.0" prefHeight="27.0" prefWidth="524.0" textAlignment="CENTER" textFill="#c82909">
                <font>
                   <Font name="Georgia Bold" size="14.0" />
@@ -159,7 +162,7 @@
             </Label>
             <TextField fx:id="txtUpdateContactNumber" layoutX="27.0" layoutY="139.0" prefHeight="33.0" prefWidth="246.0">
                <font>
-                  <Font size="10.0" />
+                  <Font size="14.0" />
                </font>
             </TextField>
             <Button fx:id="btnUpdateMember" layoutX="317.0" layoutY="262.0" mnemonicParsing="false" onAction="#btnUpdateMemberOnAction" prefHeight="47.0" prefWidth="246.0" styleClass="save-button" stylesheets="@../css/style.css" text="Update" />

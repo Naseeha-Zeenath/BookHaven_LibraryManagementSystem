@@ -124,6 +124,23 @@ public class ManageMembersPageController implements Initializable {
     void btnMemebersSearchOnAction(ActionEvent event) {
         masterMemberList =manageMemberController.loadSearchMemberData(txtManageMember_MembersSearchBar.getText());
         setMemberData();
+
+        tblManageMember.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, Value) -> {
+            if (Value != null) {
+                txtMemberId.setText(Value.get("member_id"));
+                txtUpdateFullName.setText(Value.get("name"));
+                txtUpdateContactNumber.setText(Value.get("phone"));
+                txtUpdateEmail.setText(Value.get("email"));
+                txtUpdateAddress.setText(Value.get("address"));
+
+                if (Value.get("status").equals("Active")) {
+                    btnMemberStatus.setText("Inactive");
+                } else {
+                    btnMemberStatus.setText("Active");
+                }
+            }
+        });
+
     }
 
     private void setMemberData() {
