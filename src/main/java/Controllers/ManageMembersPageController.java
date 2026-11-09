@@ -1,22 +1,27 @@
 package Controllers;
 
+import Controllers.Dashboard.DashboardController;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.net.URL;
 import java.util.Map;
+import java.util.ResourceBundle;
 
-public class ManageMembersPageController {
+public class ManageMembersPageController implements Initializable {
 
     ManageMemberController manageMemberController = new ManageMemberController();
+    DashboardController dashboardController = new DashboardController();
 
     @FXML
     private Button btnLogOut;
@@ -204,5 +209,8 @@ public class ManageMembersPageController {
     }
 
 
-
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        txtManageMember_TotalMemberCount.setText(dashboardController.memberCount());
+    }
 }

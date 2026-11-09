@@ -104,9 +104,9 @@
             <Font name="Georgia" size="13.0" />
          </font>
       </Label>
-      <Label fx:id="txtManageMember_TotalMemberCount" layoutX="763.0" layoutY="29.0" prefHeight="15.0" prefWidth="48.0" text="__">
+      <Label fx:id="txtManageMember_TotalMemberCount" layoutX="769.0" layoutY="25.0" prefHeight="15.0" prefWidth="48.0" text="_">
          <font>
-            <Font name="Georgia" size="13.0" />
+            <Font name="Calibri" size="18.0" />
          </font>
       </Label>
       <Pane layoutX="227.0" layoutY="269.0" prefHeight="329.0" prefWidth="594.0" styleClass="stat-card" stylesheets="@../css/style.css">
