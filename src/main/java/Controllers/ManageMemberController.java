@@ -65,5 +65,36 @@ public class ManageMemberController {
     }
 
 
+    public void updateMemberStatus(String memberId) {
+        System.out.println(memberId);
+        if(memberId != null){
+              String SearchSql = "SELECT status FROM members WHERE member_id = '"+memberId+"';";
+              String UpdateSql = "UPDATE members SET status = ? WHERE member_id = '"+memberId+"';";
 
+            try {
+                PreparedStatement preparedStatement = connection.prepareStatement(SearchSql);
+                ResultSet resultSet = preparedStatement.executeQuery();
+
+                if (resultSet.next()) {
+
+                    String status = resultSet.getString("status");
+
+                    if (status.equals("Active")) {
+                        status = "Inactive";
+                    } else {
+                        status = "Active";
+                    }
+
+                    preparedStatement = connection.prepareStatement(UpdateSql);
+                    preparedStatement.setString(1, status);
+                    preparedStatement.executeUpdate();
+                }
+
+
+
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            }
+        }
+    }
 }

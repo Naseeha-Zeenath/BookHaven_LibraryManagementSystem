@@ -113,6 +113,8 @@ public class ManageMembersPageController implements Initializable {
     @FXML
     void btnMemberStatusOnAction(ActionEvent event) {
 
+        manageMemberController.updateMemberStatus(txtMemberId.getText());
+
     }
 
     @FXML
