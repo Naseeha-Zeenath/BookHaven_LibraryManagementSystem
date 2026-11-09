@@ -120,6 +120,14 @@ public class ManageMembersPageController implements Initializable {
     @FXML
     void btnUpdateMemberOnAction(ActionEvent event) {
 
+        manageMemberController.updateMemberDetails(
+                txtMemberId.getText(),
+                txtUpdateFullName.getText(),
+                txtUpdateContactNumber.getText(),
+                txtUpdateEmail.getText(),
+                txtUpdateAddress.getText()
+        );
+
     }
 
     @FXML

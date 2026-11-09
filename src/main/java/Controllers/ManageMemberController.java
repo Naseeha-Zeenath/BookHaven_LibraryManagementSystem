@@ -66,7 +66,6 @@ public class ManageMemberController {
 
 
     public void updateMemberStatus(String memberId) {
-        System.out.println(memberId);
         if(memberId != null){
               String SearchSql = "SELECT status FROM members WHERE member_id = '"+memberId+"';";
               String UpdateSql = "UPDATE members SET status = ? WHERE member_id = '"+memberId+"';";
@@ -91,6 +90,28 @@ public class ManageMemberController {
                 }
 
 
+
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            }
+        }
+    }
+
+
+    public void updateMemberDetails(String memberId, String name, String phone, String email, String address) {
+        if(memberId != null){
+            String sql = "UPDATE members SET name = ?,phone = ?,email = ?,address = ? WHERE member_id = ?";
+
+            try {
+                PreparedStatement preparedStatement = connection.prepareStatement(sql);
+
+                preparedStatement.setString(1, name);
+                preparedStatement.setString(2, phone);
+                preparedStatement.setString(3, email);
+                preparedStatement.setString(4, address);
+                preparedStatement.setString(5, memberId);
+
+                preparedStatement.executeUpdate();
 
             } catch (SQLException e) {
                 throw new RuntimeException(e);
