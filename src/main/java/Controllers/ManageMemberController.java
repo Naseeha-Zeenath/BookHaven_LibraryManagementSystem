@@ -98,8 +98,19 @@ public class ManageMemberController {
     }
 
 
-    public void updateMemberDetails(String memberId, String name, String phone, String email, String address) {
-        if(memberId != null){
+    public String updateMemberDetails(String memberId, String name, String phone, String email, String address) {
+
+        if (memberId == null || memberId.isBlank()) {
+            return "Member not selected...";
+        }else if(name.isEmpty() || phone.isEmpty() || email.isEmpty() || address.isEmpty()){
+            return "Please fill in all required fields...";
+        } else if (name.length() >100) {
+            return "Member Name cannot exceed 100 characters...";
+        } else if (!phone.matches("^07[0-9]{8}$")) {
+            return "Please enter a valid 10-digit mobile number.";
+        } else if (!email.matches(".+@.+\\..+")) {
+            return "Please enter a valid email address.";
+        }else {
             String sql = "UPDATE members SET name = ?,phone = ?,email = ?,address = ? WHERE member_id = ?";
 
             try {
@@ -113,9 +124,13 @@ public class ManageMemberController {
 
                 preparedStatement.executeUpdate();
 
+
+
             } catch (SQLException e) {
                 throw new RuntimeException(e);
             }
         }
+
+        return "Successfully Updated!";
     }
 }

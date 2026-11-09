@@ -114,18 +114,19 @@ public class ManageMembersPageController implements Initializable {
     void btnMemberStatusOnAction(ActionEvent event) {
 
         manageMemberController.updateMemberStatus(txtMemberId.getText());
-
+        txtInvalidUpdateMember.setText(btnMemberStatus.getText()+" Sucessfully");
     }
 
     @FXML
     void btnUpdateMemberOnAction(ActionEvent event) {
-
-        manageMemberController.updateMemberDetails(
-                txtMemberId.getText(),
-                txtUpdateFullName.getText(),
-                txtUpdateContactNumber.getText(),
-                txtUpdateEmail.getText(),
-                txtUpdateAddress.getText()
+        txtInvalidUpdateMember.setText(
+                manageMemberController.updateMemberDetails(
+                        txtMemberId.getText(),
+                        txtUpdateFullName.getText(),
+                        txtUpdateContactNumber.getText(),
+                        txtUpdateEmail.getText(),
+                        txtUpdateAddress.getText()
+                )
         );
 
     }
@@ -136,6 +137,7 @@ public class ManageMembersPageController implements Initializable {
         setMemberData();
 
         tblManageMember.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, Value) -> {
+            txtInvalidUpdateMember.setText(null);
             if (Value != null) {
                 txtMemberId.setText(Value.get("member_id"));
                 txtUpdateFullName.setText(Value.get("name"));
