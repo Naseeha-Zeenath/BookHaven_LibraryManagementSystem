@@ -21,7 +21,7 @@ public class BorrowingHistoryPageController implements Initializable {
     private DatePicker SelecterBorrowingHistory_FromDate;
 
     @FXML
-    private ComboBox<?> SelecterBorrowingHistory_MemeberID;
+    private ComboBox<String> SelecterBorrowingHistory_MemeberID;
 
     @FXML
     private DatePicker SelecterBorrowingHistory_ToDate;
@@ -164,5 +164,9 @@ public class BorrowingHistoryPageController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         TxtTotalRecordsCount.setText(borrowingHistoryController.getBorrowingHistoryRecordCount());
+        setMember();
+    }
+    public void setMember(){
+        SelecterBorrowingHistory_MemeberID.setItems(borrowingHistoryController.memberList());
     }
 }

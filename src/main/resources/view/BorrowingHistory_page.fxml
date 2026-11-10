@@ -96,7 +96,7 @@
                </columns>
             </TableView>
             <Button fx:id="btnBorrowingHistorySearch" alignment="CENTER" layoutX="501.0" layoutY="31.0" mnemonicParsing="false" onAction="#btnBorrowingHistorySearchOnAction" prefHeight="30.0" prefWidth="69.0" text="Search" />
-            <Label layoutX="26.0" layoutY="11.0" text="Member ID">
+            <Label layoutX="26.0" layoutY="11.0" text="Member ">
                <font>
                   <Font name="Georgia Italic" size="14.0" />
                </font>
