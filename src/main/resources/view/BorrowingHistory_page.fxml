@@ -7,7 +7,6 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
-<?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -15,7 +14,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="500.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.BorrowingHistoryPageController">
+<AnchorPane prefHeight="500.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.BorrowingHistory.BorrowingHistoryPageController">
    <children>
       <VBox prefHeight="497.0" prefWidth="202.0" styleClass="sidebar" stylesheets="@../css/style.css">
          <children>
@@ -85,21 +84,18 @@
       </Label>
       <Pane layoutX="211.0" layoutY="60.0" prefHeight="429.0" prefWidth="583.0" styleClass="stat-card" stylesheets="@../css/style.css">
          <children>
-            <TableView layoutX="10.0" layoutY="75.0" prefHeight="306.0" prefWidth="564.0">
+            <TableView fx:id="tblBorrowingHistory" layoutX="10.0" layoutY="75.0" prefHeight="338.0" prefWidth="564.0">
                <columns>
-                  <TableColumn prefWidth="75.0" text="MemberID" />
-                  <TableColumn prefWidth="99.0" text="Member Name" />
-                  <TableColumn prefWidth="82.0" text="Book Title" />
-                  <TableColumn prefWidth="77.0" text="Issue Date" />
-                  <TableColumn prefWidth="72.0" text="Due Date" />
-                  <TableColumn prefWidth="75.0" text="Return Date" />
-                  <TableColumn prefWidth="104.0" text="Status" />
+                  <TableColumn fx:id="colMemberId" prefWidth="75.0" text="MemberID" />
+                  <TableColumn fx:id="colMemberName" prefWidth="99.0" text="Member Name" />
+                  <TableColumn fx:id="colBookTitle" prefWidth="82.0" text="Book Title" />
+                  <TableColumn fx:id="colIssueDate" prefWidth="77.0" text="Issue Date" />
+                  <TableColumn fx:id="colDueDate" prefWidth="72.0" text="Due Date" />
+                  <TableColumn fx:id="colReturnDate" prefWidth="75.0" text="Return Date" />
+                  <TableColumn fx:id="colStatus" prefWidth="104.0" text="Status" />
                </columns>
             </TableView>
-            <Button fx:id="btnBorrowingHistory_PageNext" alignment="CENTER" layoutX="542.0" layoutY="386.0" mnemonicParsing="false" onAction="#btnBorrowingHistory_PageNextOnAction" text="&gt;" />
-            <Button fx:id="btnBorrowingHistory_PagePrev" alignment="CENTER" layoutX="471.0" layoutY="386.0" mnemonicParsing="false" onAction="#btnBorrowingHistory_PagePrevOnAction" text="&lt;" />
             <Button fx:id="btnBorrowingHistorySearch" alignment="CENTER" layoutX="501.0" layoutY="31.0" mnemonicParsing="false" onAction="#btnBorrowingHistorySearchOnAction" prefHeight="30.0" prefWidth="69.0" text="Search" />
-            <TextField fx:id="txtBorrowingHistory_PageNumber" layoutX="507.0" layoutY="383.0" prefHeight="29.0" prefWidth="28.0" />
             <Label layoutX="26.0" layoutY="11.0" text="Member ID">
                <font>
                   <Font name="Georgia Italic" size="14.0" />
@@ -120,5 +116,15 @@
             </Label>
          </children>
       </Pane>
+      <Label layoutX="611.0" layoutY="29.0" text="Total Records :">
+         <font>
+            <Font name="Georgia Italic" size="14.0" />
+         </font>
+      </Label>
+      <Label fx:id="TxtTotalRecordsCount" layoutX="714.0" layoutY="25.0" prefHeight="16.0" prefWidth="50.0" text="_">
+         <font>
+            <Font name="Georgia Italic" size="18.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>

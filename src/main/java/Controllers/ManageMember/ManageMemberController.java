@@ -1,4 +1,4 @@
-package Controllers;
+package Controllers.ManageMember;
 
 import db.DBConnection;
 import javafx.collections.FXCollections;

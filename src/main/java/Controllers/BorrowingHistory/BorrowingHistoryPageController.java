@@ -1,19 +1,21 @@
-package Controllers;
+package Controllers.BorrowingHistory;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.DatePicker;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.net.URL;
+import java.util.ResourceBundle;
 
-public class BorrowingHistoryPageController {
+public class BorrowingHistoryPageController implements Initializable {
+
+    BorrowingHistoryController borrowingHistoryController = new BorrowingHistoryController();
 
     @FXML
     private DatePicker SelecterBorrowingHistory_FromDate;
@@ -25,13 +27,10 @@ public class BorrowingHistoryPageController {
     private DatePicker SelecterBorrowingHistory_ToDate;
 
     @FXML
+    private Label TxtTotalRecordsCount;
+
+    @FXML
     private Button btnBorrowingHistorySearch;
-
-    @FXML
-    private Button btnBorrowingHistory_PageNext;
-
-    @FXML
-    private Button btnBorrowingHistory_PagePrev;
 
     @FXML
     private Button btnLogOut;
@@ -58,20 +57,31 @@ public class BorrowingHistoryPageController {
     private Button btnNavReturnBook;
 
     @FXML
-    private TextField txtBorrowingHistory_PageNumber;
+    private TableColumn<?, ?> colBookTitle;
+
+    @FXML
+    private TableColumn<?, ?> colDueDate;
+
+    @FXML
+    private TableColumn<?, ?> colIssueDate;
+
+    @FXML
+    private TableColumn<?, ?> colMemberId;
+
+    @FXML
+    private TableColumn<?, ?> colMemberName;
+
+    @FXML
+    private TableColumn<?, ?> colReturnDate;
+
+    @FXML
+    private TableColumn<?, ?> colStatus;
+
+    @FXML
+    private TableView<?> tblBorrowingHistory;
 
     @FXML
     void btnBorrowingHistorySearchOnAction(ActionEvent event) {
-
-    }
-
-    @FXML
-    void btnBorrowingHistory_PageNextOnAction(ActionEvent event) {
-
-    }
-
-    @FXML
-    void btnBorrowingHistory_PagePrevOnAction(ActionEvent event) {
 
     }
 
@@ -151,4 +161,8 @@ public class BorrowingHistoryPageController {
         stage.show();
     }
 
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        TxtTotalRecordsCount.setText(borrowingHistoryController.getBorrowingHistoryRecordCount());
+    }
 }

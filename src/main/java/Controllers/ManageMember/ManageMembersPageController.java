@@ -1,4 +1,4 @@
-package Controllers;
+package Controllers.ManageMember;
 
 import Controllers.Dashboard.DashboardController;
 import javafx.beans.property.SimpleStringProperty;
