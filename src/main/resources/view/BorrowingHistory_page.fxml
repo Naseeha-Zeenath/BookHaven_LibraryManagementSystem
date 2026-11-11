@@ -86,8 +86,8 @@
          <children>
             <TableView fx:id="tblBorrowingHistory" layoutX="10.0" layoutY="75.0" prefHeight="338.0" prefWidth="564.0">
                <columns>
-                  <TableColumn fx:id="colMemberId" prefWidth="75.0" text="MemberID" />
-                  <TableColumn fx:id="colMemberName" prefWidth="99.0" text="Member Name" />
+                  <TableColumn fx:id="colBorrowingID" prefWidth="94.39996337890625" text="BorrowingID" />
+                  <TableColumn fx:id="colMemberName" text="Member Name" />
                   <TableColumn fx:id="colBookTitle" prefWidth="82.0" text="Book Title" />
                   <TableColumn fx:id="colIssueDate" prefWidth="77.0" text="Issue Date" />
                   <TableColumn fx:id="colDueDate" prefWidth="72.0" text="Due Date" />
