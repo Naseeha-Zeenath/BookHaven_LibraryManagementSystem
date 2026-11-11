@@ -90,7 +90,8 @@ public class BorrowingHistoryPageController implements Initializable {
 
     @FXML
     void btnBorrowingHistorySearchOnAction(ActionEvent event) {
-
+        borrowedBookList = borrowingHistoryController.searchByMember(SelecterBorrowingHistory_MemeberID.getValue());
+        setCurrentlyBorrowedBookTable();
     }
 
     @FXML

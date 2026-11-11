@@ -63,42 +63,33 @@ public class BorrowingHistoryController {
     }
 
 
-    private ObservableList<Map<String, String>> loadBorrowedData(String sql, String searchBorrowedBook) {
+    private ObservableList<Map<String, String>> loadBorrowedData(String sql, String searchCondition) {
 
-        ObservableList<Map<String,String>> borrowedBookList = FXCollections.observableArrayList();
+        ObservableList<Map<String,String>> borrowedHistoryList = FXCollections.observableArrayList();
 
 
         try {
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
 
-            if (searchBorrowedBook != null) {
-
-                String searchValue = "%" + searchBorrowedBook.trim() + "%";
-
-                preparedStatement.setString(1, searchValue);
-                preparedStatement.setString(2, searchValue);
-                preparedStatement.setString(3, searchValue);
-                preparedStatement.setString(4, searchValue);
-                preparedStatement.setString(5, searchValue);
-                preparedStatement.setString(6, searchValue);
-
+            if (searchCondition != null) {
+                preparedStatement.setString(1, searchCondition);
             }
 
             ResultSet resultSet = preparedStatement.executeQuery();
 
             while (resultSet.next()) {
 
-                Map<String, String> brrowedBook = new HashMap<>();
+                Map<String, String> brrowedData = new HashMap<>();
 
-                brrowedBook.put("borrowing_id", resultSet.getString("borrowing_id"));
-                brrowedBook.put("member_name", resultSet.getString("member_name"));
-                brrowedBook.put("title", resultSet.getString("title"));
-                brrowedBook.put("issue_date", resultSet.getString("issue_date"));
-                brrowedBook.put("due_date", resultSet.getString("due_date"));
-                brrowedBook.put("return_date", resultSet.getString("return_date"));
-                brrowedBook.put("status", resultSet.getString("status"));
+                brrowedData.put("borrowing_id", resultSet.getString("borrowing_id"));
+                brrowedData.put("member_name", resultSet.getString("member_name"));
+                brrowedData.put("title", resultSet.getString("title"));
+                brrowedData.put("issue_date", resultSet.getString("issue_date"));
+                brrowedData.put("due_date", resultSet.getString("due_date"));
+                brrowedData.put("return_date", resultSet.getString("return_date"));
+                brrowedData.put("status", resultSet.getString("status"));
 
-                borrowedBookList.add(brrowedBook);
+                borrowedHistoryList.add(brrowedData);
 
             }
 
@@ -106,7 +97,7 @@ public class BorrowingHistoryController {
             throw new RuntimeException(e);
         }
 
-        return  borrowedBookList;
+        return  borrowedHistoryList;
 
     }
 
@@ -118,5 +109,16 @@ public class BorrowingHistoryController {
     }
     public ObservableList<Map<String, String>> allCurrentlyBorrowedBookData() {
         return loadBorrowedData(all(), null);
+    }
+
+    private String search() {
+        return "SELECT b.borrowing_id,m.name AS member_name,bk.title,b.issue_date,b.due_date,b.return_date,b.status " +
+                "FROM borrowings b JOIN members m ON b.member_id = m.member_id JOIN books bk " +
+                "ON b.book_id = bk.book_id WHERE m.member_id = ? ORDER BY b.borrowing_id DESC;";
+    }
+
+    public ObservableList<Map<String, String>> searchByMember(String searchMemberId) {
+        searchMemberId = searchMemberId.split(" ")[0];
+        return loadBorrowedData(search(), searchMemberId);
     }
 }
