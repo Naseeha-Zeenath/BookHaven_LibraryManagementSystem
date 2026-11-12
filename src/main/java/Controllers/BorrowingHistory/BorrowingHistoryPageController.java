@@ -92,6 +92,12 @@ public class BorrowingHistoryPageController implements Initializable {
 
     @FXML
     void btnBorrowingHistoryResetOnAction(ActionEvent event) {
+        SelecterBorrowingHistory_MemeberID.setItems(null);
+        setMember();
+        SelecterBorrowingHistory_Date.setValue(null);
+
+        borrowedBookList= borrowingHistoryController.allCurrentlyBorrowedBookData();
+        setCurrentlyBorrowedBookTable();
 
     }
 
