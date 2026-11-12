@@ -1,18 +1,29 @@
-package Controllers;
+package Controllers.ReturnBook;
 
+import Controllers.DashBoardContent.CurentlyBorrowedBooksController;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.net.URL;
+import java.util.Map;
+import java.util.ResourceBundle;
 
-public class ReturnBookPageController {
+public class ReturnBookPageController implements Initializable {
+
+    CurentlyBorrowedBooksController curentlyBorrowedBooksController = new CurentlyBorrowedBooksController();
+
+    @FXML
+    private DatePicker SelectReturnBookDate;
 
     @FXML
     private Button btnLogOut;
@@ -48,6 +59,27 @@ public class ReturnBookPageController {
     private Button btnReturnBookSearch;
 
     @FXML
+    private TableColumn<Map<String,String>,String > colBookTitle;
+
+    @FXML
+    private TableColumn<Map<String,String>,String> colDueDate;
+
+    @FXML
+    private TableColumn<Map<String,String>,String> colIssueDate;
+
+    @FXML
+    private TableColumn<Map<String,String>,String> colIssueId;
+
+    @FXML
+    private TableColumn<Map<String,String>,String > colMemberName;
+
+    @FXML
+    private TableColumn<Map<String ,String>,String> colStatus;
+
+    @FXML
+    private TableView<Map<String,String>> tblCurrentlyBorrowedBook;
+
+    @FXML
     private Label txtBookTitle;
 
     @FXML
@@ -62,10 +94,6 @@ public class ReturnBookPageController {
     @FXML
     private Label txtISBN;
 
-
-    @FXML
-    private TextField txtReturnBook_SearchBar;
-
     @FXML
     private Label txtMemberId;
 
@@ -76,10 +104,12 @@ public class ReturnBookPageController {
     private Label txtPhoneNo;
 
     @FXML
-    private Label txtReturnDate;
+    private Label txtReturnBook_OverdueDaysCount;
 
     @FXML
-    private Label txtReturnBook_OverdueDaysCount;
+    private TextField txtReturnBook_SearchBar;
+
+    private ObservableList<Map<String, String>> currentlyBorrowedBookList = FXCollections.observableArrayList();
 
     @FXML
     void btnLogOutOnAction(ActionEvent event) {
@@ -172,4 +202,20 @@ public class ReturnBookPageController {
 
     }
 
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+
+        currentlyBorrowedBookList = curentlyBorrowedBooksController.allCurrentlyBorrowedBookData();
+        setCurrentlyBorrowedBookTable();
+    }
+    private void setCurrentlyBorrowedBookTable() {
+        colIssueId.setCellValueFactory(cell-> new SimpleStringProperty(cell.getValue().getOrDefault("borrowing_id","")));
+        colMemberName.setCellValueFactory(cell->new SimpleStringProperty(cell.getValue().getOrDefault("member_name","")));
+        colBookTitle.setCellValueFactory(cell->new SimpleStringProperty(cell.getValue().getOrDefault("title","")));
+        colIssueDate.setCellValueFactory(cell->new SimpleStringProperty(cell.getValue().getOrDefault("issue_date","")));
+        colDueDate.setCellValueFactory(cell->new SimpleStringProperty(cell.getValue().getOrDefault("due_date","")));
+        colStatus.setCellValueFactory(cell->new SimpleStringProperty(cell.getValue().getOrDefault("status","")));
+
+        tblCurrentlyBorrowedBook.setItems(currentlyBorrowedBookList);
+    }
 }

@@ -18,7 +18,6 @@ public class IssueBookController {
         try {
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
             ResultSet resultSet = preparedStatement.executeQuery();
-            System.out.println(connection);
 
             while (resultSet.next()) {
                 String id = resultSet.getString(idColomn);
