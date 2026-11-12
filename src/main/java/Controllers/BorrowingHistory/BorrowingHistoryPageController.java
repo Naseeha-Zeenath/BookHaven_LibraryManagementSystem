@@ -15,6 +15,7 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import java.net.MulticastSocket;
 import java.net.URL;
+import java.time.LocalDate;
 import java.util.Map;
 import java.util.ResourceBundle;
 
@@ -34,6 +35,9 @@ public class BorrowingHistoryPageController implements Initializable {
 
     @FXML
     private Button btnBorrowingHistorySearch;
+
+    @FXML
+    private Button btnBorrowingHistoryReset;
 
     @FXML
     private Button btnLogOut;
@@ -87,18 +91,38 @@ public class BorrowingHistoryPageController implements Initializable {
     private ObservableList<Map<String, String>> borrowedBookList = FXCollections.observableArrayList();
 
     @FXML
+    void btnBorrowingHistoryResetOnAction(ActionEvent event) {
+
+    }
+
+    @FXML
     void btnBorrowingHistorySearchOnAction(ActionEvent event) {
 
-        if(SelecterBorrowingHistory_MemeberID.getValue() != null){
-            borrowedBookList = borrowingHistoryController.searchByMember(SelecterBorrowingHistory_MemeberID.getValue());
+        String selectMember = SelecterBorrowingHistory_MemeberID.getValue();
 
-        }else if(SelecterBorrowingHistory_Date.getValue() != null){
-            borrowedBookList = borrowingHistoryController.searchByDate(String.valueOf(SelecterBorrowingHistory_Date.getValue()));
-        }else {
+        LocalDate selectedDate = SelecterBorrowingHistory_Date.getValue();
+
+
+        if ( selectMember!=null && selectedDate != null) {
+
+            borrowedBookList = borrowingHistoryController.searchByMemberAndDate(selectMember, String.valueOf(selectedDate));
+
+        } else if (selectMember !=null && !selectMember.isEmpty()) {
+
+            borrowedBookList = borrowingHistoryController.searchByMember(selectMember);
+
+        } else if (selectedDate != null) {
+
+            borrowedBookList = borrowingHistoryController.searchByDate(String.valueOf(selectedDate));
+
+        } else {
+
             borrowedBookList = borrowingHistoryController.allCurrentlyBorrowedBookData();
         }
+
         setCurrentlyBorrowedBookTable();
 
+        setCurrentlyBorrowedBookTable();
 
     }
 
