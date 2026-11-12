@@ -15,10 +15,12 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
+import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
 import java.util.Map;
 import java.util.ResourceBundle;
 
-public class ReturnBookPageController{
+public class ReturnBookPageController implements Initializable{
 
     CurentlyBorrowedBooksController curentlyBorrowedBooksController = new CurentlyBorrowedBooksController();
     ReturnBookController returnBookController = new ReturnBookController();
@@ -106,6 +108,12 @@ public class ReturnBookPageController{
 
     @FXML
     private Label txtReturnBook_OverdueDaysCount;
+
+    @FXML
+    private Label txtInvalidReturnBook;
+
+    @FXML
+    private TextField txtBorrowingId;
 
     @FXML
     private TextField txtReturnBook_SearchBar;
@@ -197,6 +205,15 @@ public class ReturnBookPageController{
     @FXML
     void btnReturnBookOnAction(ActionEvent event) {
 
+        if (txtBorrowingId.getText().trim().isEmpty()) {
+            txtInvalidReturnBook.setText("Please select the borrowing details.");
+
+        } else if (SelectReturnBookDate.getValue() == null) {
+            txtInvalidReturnBook.setText("Please select the return date.");
+
+        }else {
+            txtInvalidReturnBook.setText(returnBookController.bookReturn(txtBorrowingId.getText(), SelectReturnBookDate));
+        }
     }
 
     @FXML
@@ -207,6 +224,7 @@ public class ReturnBookPageController{
         tblCurrentlyBorrowedBook.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, Value) -> {
             if (Value != null) {
                 txtMemberName.setText(Value.get("member_name"));
+                txtBorrowingId.setText(Value.get("borrowing_id"));
 
                 String title = Value.get("title");
                 if (title != null && title.length() > 30) {
@@ -244,5 +262,29 @@ public class ReturnBookPageController{
         colStatus.setCellValueFactory(cell->new SimpleStringProperty(cell.getValue().getOrDefault("status","")));
 
         tblCurrentlyBorrowedBook.setItems(currentlyBorrowedBookList);
+    }
+
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        SelectReturnBookDate.valueProperty().addListener((observable, oldValue, newValue) -> {
+            calculateOverdueDays();
+        });
+    }
+
+    private void calculateOverdueDays() {
+
+        if (SelectReturnBookDate.getValue() != null && !txtDueDate.getText().isEmpty()) {
+
+            LocalDate dueDate = LocalDate.parse(txtDueDate.getText());
+            LocalDate returnDate = SelectReturnBookDate.getValue();
+
+            long overdueDays = 0;
+
+            if (returnDate.isAfter(dueDate)) {
+                overdueDays = ChronoUnit.DAYS.between(dueDate, returnDate);
+            }
+
+            txtReturnBook_OverdueDaysCount.setText(String.valueOf(overdueDays));
+        }
     }
 }

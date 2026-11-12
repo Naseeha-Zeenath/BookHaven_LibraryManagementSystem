@@ -3,11 +3,10 @@ package Controllers.ReturnBook;
 import db.DBConnection;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.scene.control.DatePicker;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
+import java.time.LocalDate;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -27,7 +26,6 @@ public class ReturnBookController {
             ResultSet resultSet = preparedStatement.executeQuery();
 
             while (resultSet.next()) {
-
                 Map<String, String> returnBookDetails = new HashMap<>();
 
                 returnBookDetails.put("member_id", resultSet.getString("member_id"));
@@ -43,5 +41,38 @@ public class ReturnBookController {
             throw new RuntimeException(e);
         }
         return returnBookList;
+    }
+
+    public String bookReturn(String borrowingId, DatePicker returnBookDate){
+        String searchSQL = "SELECT issue_date FROM borrowings WHERE borrowing_id = ?";
+        String updateSQL = "UPDATE borrowings SET return_date = ? ,status = 'Returned' WHERE borrowing_id =? ";
+
+        try {
+
+            PreparedStatement selectStatement = connection.prepareStatement(searchSQL);
+            selectStatement.setString(1, borrowingId);
+
+            ResultSet resultSet = selectStatement.executeQuery();
+
+            if (resultSet.next()) {
+                LocalDate issueDate = resultSet.getDate("issue_date").toLocalDate();
+                LocalDate returnDate = returnBookDate.getValue();
+
+                if (returnDate.isBefore(issueDate)) {
+                    return "Return date cannot be before the Borrowed date.";
+                }
+            }
+
+            PreparedStatement preparedStatement = connection.prepareStatement(updateSQL);
+            preparedStatement.setDate(1, Date.valueOf(returnBookDate.getValue()));
+            preparedStatement.setString(2,borrowingId);
+
+            preparedStatement.executeUpdate();
+
+            return "Book returned successfully!";
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
     }
 }
