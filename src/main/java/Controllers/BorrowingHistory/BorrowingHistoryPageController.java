@@ -22,14 +22,12 @@ public class BorrowingHistoryPageController implements Initializable {
 
     BorrowingHistoryController borrowingHistoryController = new BorrowingHistoryController();
 
+
     @FXML
-    private DatePicker SelecterBorrowingHistory_FromDate;
+    private DatePicker SelecterBorrowingHistory_Date;
 
     @FXML
     private ComboBox<String> SelecterBorrowingHistory_MemeberID;
-
-    @FXML
-    private DatePicker SelecterBorrowingHistory_ToDate;
 
     @FXML
     private Label TxtTotalRecordsCount;
@@ -90,8 +88,18 @@ public class BorrowingHistoryPageController implements Initializable {
 
     @FXML
     void btnBorrowingHistorySearchOnAction(ActionEvent event) {
-        borrowedBookList = borrowingHistoryController.searchByMember(SelecterBorrowingHistory_MemeberID.getValue());
+
+        if(SelecterBorrowingHistory_MemeberID.getValue() != null){
+            borrowedBookList = borrowingHistoryController.searchByMember(SelecterBorrowingHistory_MemeberID.getValue());
+
+        }else if(SelecterBorrowingHistory_Date.getValue() != null){
+            borrowedBookList = borrowingHistoryController.searchByDate(String.valueOf(SelecterBorrowingHistory_Date.getValue()));
+        }else {
+            borrowedBookList = borrowingHistoryController.allCurrentlyBorrowedBookData();
+        }
         setCurrentlyBorrowedBookTable();
+
+
     }
 
     @FXML
@@ -181,6 +189,7 @@ public class BorrowingHistoryPageController implements Initializable {
     public void setMember(){
         SelecterBorrowingHistory_MemeberID.setItems(borrowingHistoryController.memberList());
     }
+
     private void setCurrentlyBorrowedBookTable() {
         colBorrowingID.setCellValueFactory(cell-> new SimpleStringProperty(cell.getValue().getOrDefault("borrowing_id","")));
         colMemberName.setCellValueFactory(cell->new SimpleStringProperty(cell.getValue().getOrDefault("member_name","")));

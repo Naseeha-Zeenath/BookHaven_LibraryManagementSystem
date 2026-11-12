@@ -111,7 +111,9 @@ public class BorrowingHistoryController {
         return loadBorrowedData(all(), null);
     }
 
-    private String search() {
+
+
+    private String searchMember() {
         return "SELECT b.borrowing_id,m.name AS member_name,bk.title,b.issue_date,b.due_date,b.return_date,b.status " +
                 "FROM borrowings b JOIN members m ON b.member_id = m.member_id JOIN books bk " +
                 "ON b.book_id = bk.book_id WHERE m.member_id = ? ORDER BY b.borrowing_id DESC;";
@@ -119,6 +121,49 @@ public class BorrowingHistoryController {
 
     public ObservableList<Map<String, String>> searchByMember(String searchMemberId) {
         searchMemberId = searchMemberId.split(" ")[0];
-        return loadBorrowedData(search(), searchMemberId);
+        return loadBorrowedData(searchMember(), searchMemberId);
+    }
+
+    private String searchDate() {
+        return "SELECT b.borrowing_id,m.name AS member_name,bk.title,b.issue_date,b.due_date,b.return_date,b.status " +
+                "FROM borrowings b JOIN members m ON b.member_id = m.member_id JOIN books bk " +
+                "ON b.book_id = bk.book_id WHERE b.issue_date = ? OR b.due_date =? OR b.return_date =? " +
+                "ORDER BY b.borrowing_id DESC;";
+    }
+
+    public ObservableList<Map<String, String>> searchByDate(String searchDate) {
+
+        ObservableList<Map<String, String>> borrowedHistoryList = FXCollections.observableArrayList();
+
+        try {
+
+            PreparedStatement preparedStatement = connection.prepareStatement(searchDate());
+
+            preparedStatement.setString(1, searchDate);
+            preparedStatement.setString(2, searchDate);
+            preparedStatement.setString(3, searchDate);
+
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            while (resultSet.next()) {
+
+                Map<String, String> borrowedData = new HashMap<>();
+
+                borrowedData.put("borrowing_id", resultSet.getString("borrowing_id"));
+                borrowedData.put("member_name", resultSet.getString("member_name"));
+                borrowedData.put("title", resultSet.getString("title"));
+                borrowedData.put("issue_date", resultSet.getString("issue_date"));
+                borrowedData.put("due_date", resultSet.getString("due_date"));
+                borrowedData.put("return_date", resultSet.getString("return_date"));
+                borrowedData.put("status", resultSet.getString("status"));
+
+                borrowedHistoryList.add(borrowedData);
+            }
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
+        return borrowedHistoryList;
     }
 }

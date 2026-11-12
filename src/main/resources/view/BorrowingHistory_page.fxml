@@ -87,29 +87,23 @@
             <TableView fx:id="tblBorrowingHistory" layoutX="10.0" layoutY="75.0" prefHeight="338.0" prefWidth="564.0">
                <columns>
                   <TableColumn fx:id="colBorrowingID" prefWidth="94.39996337890625" text="BorrowingID" />
-                  <TableColumn fx:id="colMemberName" text="Member Name" />
-                  <TableColumn fx:id="colBookTitle" prefWidth="82.0" text="Book Title" />
+                  <TableColumn fx:id="colMemberName" prefWidth="93.5999755859375" text="Member Name" />
+                  <TableColumn fx:id="colBookTitle" prefWidth="68.800048828125" text="Book Title" />
                   <TableColumn fx:id="colIssueDate" prefWidth="77.0" text="Issue Date" />
                   <TableColumn fx:id="colDueDate" prefWidth="72.0" text="Due Date" />
                   <TableColumn fx:id="colReturnDate" prefWidth="75.0" text="Return Date" />
                   <TableColumn fx:id="colStatus" prefWidth="104.0" text="Status" />
                </columns>
             </TableView>
-            <Button fx:id="btnBorrowingHistorySearch" alignment="CENTER" layoutX="501.0" layoutY="31.0" mnemonicParsing="false" onAction="#btnBorrowingHistorySearchOnAction" prefHeight="30.0" prefWidth="69.0" text="Search" />
-            <Label layoutX="26.0" layoutY="11.0" text="Member ">
+            <Button fx:id="btnBorrowingHistorySearch" alignment="CENTER" layoutX="443.0" layoutY="21.0" mnemonicParsing="false" onAction="#btnBorrowingHistorySearchOnAction" prefHeight="41.0" prefWidth="104.0" text="Search" />
+            <Label layoutX="41.0" layoutY="7.0" text="Member ">
                <font>
                   <Font name="Georgia Italic" size="14.0" />
                </font>
             </Label>
-            <ComboBox fx:id="SelecterBorrowingHistory_MemeberID" layoutX="24.0" layoutY="36.0" prefHeight="25.0" prefWidth="133.0" />
-            <DatePicker fx:id="SelecterBorrowingHistory_FromDate" layoutX="181.0" layoutY="29.0" prefHeight="35.0" prefWidth="133.0" />
-            <Label layoutX="188.0" layoutY="11.0" text="From Date">
-               <font>
-                  <Font name="Georgia Italic" size="14.0" />
-               </font>
-            </Label>
-            <DatePicker fx:id="SelecterBorrowingHistory_ToDate" layoutX="338.0" layoutY="28.0" prefHeight="35.0" prefWidth="133.0" />
-            <Label layoutX="343.0" layoutY="10.0" text="To Date">
+            <ComboBox fx:id="SelecterBorrowingHistory_MemeberID" layoutX="37.0" layoutY="24.0" prefHeight="35.0" prefWidth="202.0" />
+            <DatePicker fx:id="SelecterBorrowingHistory_Date" layoutX="275.0" layoutY="25.0" prefHeight="35.0" prefWidth="133.0" />
+            <Label layoutX="282.0" layoutY="7.0" text="Date">
                <font>
                   <Font name="Georgia Italic" size="14.0" />
                </font>
