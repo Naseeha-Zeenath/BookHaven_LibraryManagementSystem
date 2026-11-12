@@ -38,6 +38,9 @@ public class IssueBookPageController implements Initializable {
     private Button btnIssueBook;
 
     @FXML
+    private Button btnIssueBookClear;
+
+    @FXML
     private Button btnLogOut;
 
     @FXML
@@ -86,6 +89,18 @@ public class IssueBookPageController implements Initializable {
     private TableView<Map<String, String>> tblRecentIssues;
 
     private ObservableList<Map<String, String>> recentIssuesList = FXCollections.observableArrayList();
+
+
+    @FXML
+    void btnIssueBookClearOnAction(ActionEvent event) {
+        SelecterIssueBook_SelectBook.setItems(null);
+        SelecterIssueBook_SelectMemeber.setItems(null);
+        SelecterIssueBook_SelectDueDate.setValue(null);
+        SelecterIssueBook_SelectIssueDate.setValue(null);
+
+        SelecterIssueBook_SelectBook.setItems(issueBookController.BookList());
+        SelecterIssueBook_SelectMemeber.setItems(issueBookController.MemberList());
+    }
 
     @FXML
     void btnIssueBookOnAction(ActionEvent event) {

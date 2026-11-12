@@ -116,6 +116,10 @@ public class AddBookPageController implements Initializable {
         txtAddNewBook_PublishedYear.clear();
         txtAddNewBook_Quantity.clear();
         txtInvalidAddBook.setText("");
+        SelectorAddNewBook_Author.setItems(null);
+        SelectorAddNewBook_Category.setItems(null);
+        setAuthor();
+        setCategory();
     }
 
 
@@ -137,12 +141,10 @@ public class AddBookPageController implements Initializable {
 
     @FXML
     void btnLogOutOnAction(ActionEvent event) {
-
     }
 
     @FXML
     void btnNavAddBookOnAction(ActionEvent event) {
-
     }
 
     @FXML

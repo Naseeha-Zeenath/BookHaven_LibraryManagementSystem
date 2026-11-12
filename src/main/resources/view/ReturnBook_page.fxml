@@ -2,7 +2,10 @@
 
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -11,9 +14,9 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="500.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.ReturnBookPageController">
+<AnchorPane prefHeight="609.0" prefWidth="843.0" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.ReturnBook.ReturnBookPageController">
    <children>
-      <VBox prefHeight="497.0" prefWidth="202.0" styleClass="sidebar" stylesheets="@../css/style.css">
+      <VBox prefHeight="609.0" prefWidth="202.0" styleClass="sidebar" stylesheets="@../css/style.css">
          <children>
             <Pane prefHeight="61.0" prefWidth="213.0" style="-fx-background-color: #ffffff;">
                <children>
@@ -79,11 +82,9 @@
             <Font name="Georgia Bold" size="24.0" />
          </font>
       </Label>
-      <Pane layoutX="211.0" layoutY="60.0" prefHeight="429.0" prefWidth="583.0" styleClass="stat-card" stylesheets="@../css/style.css">
+      <Pane layoutX="222.0" layoutY="255.0" prefHeight="343.0" prefWidth="594.0" styleClass="stat-card" stylesheets="@../css/style.css">
          <children>
-            <TextField fx:id="txtReturnBook_SearchBar" layoutX="15.0" layoutY="14.0" prefHeight="35.0" prefWidth="476.0" promptText="Search member by Member ID, Book Title or ISBN..." />
-            <Button fx:id="btnReturnBookSearch" alignment="CENTER" layoutX="499.0" layoutY="17.0" mnemonicParsing="false" onAction="#btnReturnBookSearchOnAction" prefHeight="30.0" prefWidth="69.0" text="Search" />
-            <Pane layoutX="19.0" layoutY="83.0" prefHeight="182.0" prefWidth="265.0" styleClass="stat-card" stylesheets="@../css/style.css">
+            <Pane layoutX="11.0" layoutY="14.0" prefHeight="182.0" prefWidth="265.0" styleClass="stat-card" stylesheets="@../css/style.css">
                <children>
                   <Label layoutX="14.0" layoutY="14.0" text="Member Information">
                      <font>
@@ -110,20 +111,20 @@
                         <Font name="Georgia Italic" size="14.0" />
                      </font>
                   </Label>
-                  <Label fx:id="txtMemberId" layoutX="119.0" layoutY="56.0" text="___" />
-                  <Label fx:id="txtMemberName" layoutX="119.0" layoutY="88.0" text="___" />
-                  <Label fx:id="txtEmail" layoutX="119.0" layoutY="118.0" text="___" />
-                  <Label fx:id="txtPhoneNo" layoutX="119.0" layoutY="146.0" text="___" />
+                  <Label fx:id="txtMemberId" layoutX="119.0" layoutY="56.0" text="null" />
+                  <Label fx:id="txtMemberName" layoutX="119.0" layoutY="88.0" text="null" />
+                  <Label fx:id="txtEmail" layoutX="119.0" layoutY="118.0" text="null" />
+                  <Label fx:id="txtPhoneNo" layoutX="119.0" layoutY="146.0" text="null" />
                </children>
             </Pane>
-            <Label layoutX="29.0" layoutY="284.0" text="Overdue Days : ">
+            <Label layoutX="305.0" layoutY="215.0" text="Overdue Days : ">
                <font>
                   <Font name="Georgia Italic" size="18.0" />
                </font>
             </Label>
-            <Button fx:id="btnReturnBookClear" alignment="CENTER" layoutX="29.0" layoutY="336.0" mnemonicParsing="false" onAction="#btnReturnBookClearOnAction" prefHeight="47.0" prefWidth="198.0" styleClass="clear-button" text="Clear" />
-            <Button fx:id="btnReturnBook" alignment="CENTER" layoutX="242.0" layoutY="336.0" mnemonicParsing="false" onAction="#btnReturnBookOnAction" prefHeight="47.0" prefWidth="327.0" styleClass="save-button" text="Return Book" />
-            <Pane layoutX="303.0" layoutY="83.0" prefHeight="230.0" prefWidth="265.0" styleClass="stat-card" stylesheets="@../css/style.css">
+            <Button fx:id="btnReturnBookClear" alignment="CENTER" layoutX="26.0" layoutY="281.0" mnemonicParsing="false" onAction="#btnReturnBookClearOnAction" prefHeight="47.0" prefWidth="198.0" styleClass="clear-button" text="Clear" />
+            <Button fx:id="btnReturnBook" alignment="CENTER" layoutX="253.0" layoutY="281.0" mnemonicParsing="false" onAction="#btnReturnBookOnAction" prefHeight="47.0" prefWidth="327.0" styleClass="save-button" text="Return Book" />
+            <Pane layoutX="293.0" layoutY="14.0" prefHeight="182.0" prefWidth="291.0" styleClass="stat-card" stylesheets="@../css/style.css">
                <children>
                   <Label layoutX="14.0" layoutY="14.0" text="Book Details">
                      <font>
@@ -135,7 +136,7 @@
                         <Font name="Georgia Italic" size="14.0" />
                      </font>
                   </Label>
-                  <Label layoutX="23.0" layoutY="88.0" text="ISBN            :">
+                  <Label layoutX="23.0" layoutY="93.0" text="ISBN            :">
                      <font>
                         <Font name="Georgia Italic" size="14.0" />
                      </font>
@@ -150,23 +151,49 @@
                         <Font name="Georgia Italic" size="14.0" />
                      </font>
                   </Label>
-                  <Label fx:id="txtBookTitle" layoutX="119.0" layoutY="56.0" text="___" />
-                  <Label fx:id="txtISBN" layoutX="119.0" layoutY="88.0" text="___" />
-                  <Label fx:id="txtBorrowedDate" layoutX="139.0" layoutY="127.0" text="___" />
-                  <Label fx:id="txtDueDate" layoutX="139.0" layoutY="155.0" text="___" />
-                  <Label layoutX="22.0" layoutY="185.0" text="Return Date        :">
-                     <font>
-                        <Font name="Georgia Italic" size="14.0" />
-                     </font>
-                  </Label>
-                  <Label fx:id="txtReturnDate" layoutX="140.0" layoutY="185.0" text="___" />
+                  <Label fx:id="txtBookTitle" layoutX="119.0" layoutY="56.0" text="null" />
+                  <Label fx:id="txtISBN" layoutX="119.0" layoutY="93.0" text="null" />
+                  <Label fx:id="txtBorrowedDate" layoutX="139.0" layoutY="127.0" text="null" />
+                  <Label fx:id="txtDueDate" layoutX="139.0" layoutY="155.0" text="null" />
+                  <TextField fx:id="txtBorrowingId" editable="false" layoutX="229.0" layoutY="7.0" prefHeight="27.0" prefWidth="48.0" />
                </children>
             </Pane>
-            <Label fx:id="txtReturnBook_OverdueDaysCount" layoutX="162.0" layoutY="284.0" prefHeight="21.0" prefWidth="69.0" text="___">
+            <Label fx:id="txtReturnBook_OverdueDaysCount" layoutX="438.0" layoutY="216.0" prefHeight="21.0" prefWidth="69.0" text="0">
                <font>
                   <Font name="Georgia Italic" size="18.0" />
                </font>
             </Label>
+            <DatePicker fx:id="SelectReturnBookDate" layoutX="113.0" layoutY="205.0" prefHeight="30.0" prefWidth="133.0">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </DatePicker>
+            <Label layoutX="26.0" layoutY="217.0" text="Return Date">
+               <font>
+                  <Font name="Georgia Italic" size="14.0" />
+               </font>
+            </Label>
+            <Label fx:id="txtInvalidReturnBook" alignment="CENTER" contentDisplay="CENTER" layoutX="63.0" layoutY="245.0" prefHeight="27.0" prefWidth="479.0" textAlignment="CENTER" textFill="#c82909">
+               <font>
+                  <Font name="Georgia Bold" size="14.0" />
+               </font>
+            </Label>
+         </children>
+      </Pane>
+      <Pane layoutX="222.0" layoutY="55.0" prefHeight="195.0" prefWidth="594.0" styleClass="stat-card" stylesheets="@../css/style.css">
+         <children>
+            <TextField fx:id="txtReturnBook_SearchBar" layoutX="23.0" layoutY="15.0" prefHeight="35.0" prefWidth="476.0" promptText="Search member by Issue Id, Member Name or Book Title ..." />
+            <Button fx:id="btnReturnBookSearch" alignment="CENTER" layoutX="504.0" layoutY="16.0" mnemonicParsing="false" onAction="#btnReturnBookSearchOnAction" prefHeight="30.0" prefWidth="69.0" text="Search" />
+            <TableView fx:id="tblCurrentlyBorrowedBook" layoutX="17.0" layoutY="60.0" prefHeight="125.0" prefWidth="564.0">
+               <columns>
+                  <TableColumn fx:id="colIssueId" prefWidth="59.199951171875" text="Issue ID" />
+                  <TableColumn fx:id="colMemberName" prefWidth="92.00006103515625" text="Member Name" />
+                  <TableColumn fx:id="colBookTitle" prefWidth="202.39993286132812" text="Book Title" />
+                  <TableColumn fx:id="colIssueDate" prefWidth="69.5999755859375" text="Issue Date" />
+                  <TableColumn fx:id="colDueDate" prefWidth="63.19989013671875" text="Due Date" />
+                  <TableColumn fx:id="colStatus" prefWidth="81.0" text="Status" />
+               </columns>
+            </TableView>
          </children>
       </Pane>
    </children>
