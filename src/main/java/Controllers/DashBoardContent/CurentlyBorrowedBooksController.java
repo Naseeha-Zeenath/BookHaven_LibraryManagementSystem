@@ -51,6 +51,8 @@ public class CurentlyBorrowedBooksController {
 
                 currentlyBorrowedBookList.add(currentlyBorrowedBook);
 
+
+
             }
 
         } catch (SQLException e) {

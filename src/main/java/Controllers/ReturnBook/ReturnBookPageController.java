@@ -18,9 +18,10 @@ import java.net.URL;
 import java.util.Map;
 import java.util.ResourceBundle;
 
-public class ReturnBookPageController implements Initializable {
+public class ReturnBookPageController{
 
     CurentlyBorrowedBooksController curentlyBorrowedBooksController = new CurentlyBorrowedBooksController();
+    ReturnBookController returnBookController = new ReturnBookController();
 
     @FXML
     private DatePicker SelectReturnBookDate;
@@ -111,6 +112,7 @@ public class ReturnBookPageController implements Initializable {
 
     private ObservableList<Map<String, String>> currentlyBorrowedBookList = FXCollections.observableArrayList();
 
+
     @FXML
     void btnLogOutOnAction(ActionEvent event) {
 
@@ -199,15 +201,40 @@ public class ReturnBookPageController implements Initializable {
 
     @FXML
     void btnReturnBookSearchOnAction(ActionEvent event) {
-
-    }
-
-    @Override
-    public void initialize(URL url, ResourceBundle resourceBundle) {
-
-        currentlyBorrowedBookList = curentlyBorrowedBooksController.allCurrentlyBorrowedBookData();
+        currentlyBorrowedBookList= curentlyBorrowedBooksController.searchBookData(txtReturnBook_SearchBar.getText());
         setCurrentlyBorrowedBookTable();
+
+        tblCurrentlyBorrowedBook.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, Value) -> {
+            if (Value != null) {
+                txtMemberName.setText(Value.get("member_name"));
+
+                String title = Value.get("title");
+                if (title != null && title.length() > 30) {
+                    title = title.substring(0, 30) + "\n" +
+                            title.substring(30);
+                }
+                txtBookTitle.setText(title);
+
+                txtBorrowedDate.setText(Value.get("issue_date"));
+                txtDueDate.setText(Value.get("due_date"));
+
+                ObservableList<Map<String, String>> returnBookBookList = FXCollections.observableArrayList();
+                returnBookBookList = returnBookController.selectDetails(Value.get("borrowing_id"));
+
+                if (returnBookBookList != null && !returnBookBookList.isEmpty()) {
+                    txtMemberId.setText(returnBookBookList.get(0).get("member_id"));
+                    txtEmail.setText(returnBookBookList.get(0).get("email"));
+                    txtPhoneNo.setText(returnBookBookList.get(0).get("phone"));
+                    txtISBN.setText(returnBookBookList.get(0).get("isbn"));
+                }
+
+            }
+        });
+
     }
+
+
+
     private void setCurrentlyBorrowedBookTable() {
         colIssueId.setCellValueFactory(cell-> new SimpleStringProperty(cell.getValue().getOrDefault("borrowing_id","")));
         colMemberName.setCellValueFactory(cell->new SimpleStringProperty(cell.getValue().getOrDefault("member_name","")));
