@@ -1,6 +1,6 @@
 package Controllers.AddBook;
 
-import Controllers.AddBook.Author.LoadAuthorController;
+import Controllers.AddBook.Author.AddAuthorController;
 import Controllers.AddBook.Category.LoadCategoryController;
 import javafx.event.ActionEvent;
 import javafx.scene.control.Label;
@@ -21,6 +21,7 @@ import java.util.ResourceBundle;
 public class AddBookPageController implements Initializable {
 
     AddBookController addBookController =  new AddBookController();
+    AddAuthorController addAuthorController = new AddAuthorController();
 
     @FXML
     private ComboBox<String> SelectorAddNewBook_Author;
@@ -221,10 +222,9 @@ public class AddBookPageController implements Initializable {
         setAuthor();
         setCategory();
     }
-    LoadAuthorController loadAuthorController = new LoadAuthorController();
 
     public void setAuthor(){
-        SelectorAddNewBook_Author.setItems(loadAuthorController.author());
+        SelectorAddNewBook_Author.setItems(addAuthorController.author());
     }
 
     LoadCategoryController loadCategoryController = new LoadCategoryController();

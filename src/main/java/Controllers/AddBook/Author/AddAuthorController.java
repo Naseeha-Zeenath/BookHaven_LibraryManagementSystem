@@ -1,6 +1,9 @@
 package Controllers.AddBook.Author;
 
 import db.DBConnection;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import model.AuthorDTO;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -11,15 +14,12 @@ public class AddAuthorController {
 
     Connection connection = DBConnection.getInstance().getConnection();
 
-    public String addAuther(String txtAuthorName) {
+
+    public String addAuther(AuthorDTO authorDTO) {
 
 
-        if (txtAuthorName.isEmpty()) {
-            return "Please enter an Author name...";
-        } else {
-
-            String searchSQL = "SELECT * FROM authors WHERE  author_name =  '" + txtAuthorName + "';";
-            String insertSQL = "INSERT INTO authors (author_name) VALUES ('"+txtAuthorName+"');";
+            String searchSQL = "SELECT * FROM authors WHERE  author_name =  '" + authorDTO.getName() + "';";
+            String insertSQL = "INSERT INTO authors (author_name) VALUES ('"+authorDTO.getName()+"');";
 
             try {
                 PreparedStatement preparedStatement = connection.prepareStatement(searchSQL);
@@ -33,8 +33,41 @@ public class AddAuthorController {
             } catch (SQLException e) {
                 throw new RuntimeException(e);
             }
-            return "Success!";
-        }
 
+            return "Success!";
+
+
+    }
+
+
+
+    private ObservableList<String> getDbAuthor(){
+        AuthorDTO author = new AuthorDTO();
+        String SQL = "SELECT * FROM authors  ORDER BY author_id ASC;";
+
+        ObservableList<String> authorList =
+                FXCollections.observableArrayList();
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement(SQL);
+            ResultSet resultSet = preparedStatement.executeQuery();
+//            System.out.println(connection);
+
+            while (resultSet.next()){
+                author.setId(Integer.valueOf(resultSet.getString("author_id")));
+                author.setName(resultSet.getString("author_name"));
+
+                authorList.add(author.getId()+" -"+author.getName());
+            }
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return  authorList;
+
+    }
+
+
+    public ObservableList<String> author() {
+        return getDbAuthor();
     }
 }
