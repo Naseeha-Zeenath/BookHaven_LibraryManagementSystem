@@ -1,6 +1,6 @@
 package model;
 
-public class AuthorDTO {
+public class Author {
 
     private Integer id;
     private String name;
@@ -21,11 +21,19 @@ public class AuthorDTO {
         this.name = name;
     }
 
-    public AuthorDTO(Integer id, String name) {
+    @Override
+    public String toString() {
+        return "Author{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                '}';
+    }
+
+    public Author(Integer id, String name) {
         this.id = id;
         this.name = name;
     }
 
-    public AuthorDTO() {
+    public Author() {
     }
 }

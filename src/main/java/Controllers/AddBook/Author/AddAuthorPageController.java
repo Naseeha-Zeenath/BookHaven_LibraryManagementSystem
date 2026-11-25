@@ -5,7 +5,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-import model.AuthorDTO;
+import model.Author;
 
 public class AddAuthorPageController {
 
@@ -32,7 +32,7 @@ public class AddAuthorPageController {
 
     @FXML
     void btnAddAuthorOnAction(ActionEvent event) {
-        AuthorDTO author = new AuthorDTO();
+        Author author = new Author();
         author.setName(txtAuthorName.getText());
 
         if (author.getName().isEmpty()) {
@@ -40,7 +40,7 @@ public class AddAuthorPageController {
         } else if (author.getName().length() > 100) {
             txtInvalidAuthor.setText("Maximum 100 characters allowed...");
         }else {
-            txtInvalidAuthor.setText(addAuthorController.addAuther(author));
+         txtInvalidAuthor.setText(addAuthorController.addAuther(author));
         }
     }
 

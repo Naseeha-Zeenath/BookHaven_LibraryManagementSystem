@@ -3,23 +3,25 @@ package Controllers.AddBook.Author;
 import db.DBConnection;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import model.AuthorDTO;
+import model.Author;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.HashMap;
+import java.util.Map;
 
 public class AddAuthorController {
 
     Connection connection = DBConnection.getInstance().getConnection();
 
 
-    public String addAuther(AuthorDTO authorDTO) {
+    public String addAuther(Author author) {
 
 
-            String searchSQL = "SELECT * FROM authors WHERE  author_name =  '" + authorDTO.getName() + "';";
-            String insertSQL = "INSERT INTO authors (author_name) VALUES ('"+authorDTO.getName()+"');";
+            String searchSQL = "SELECT * FROM authors WHERE  author_name =  '" + author.getName() + "';";
+            String insertSQL = "INSERT INTO authors (author_name) VALUES ('"+author.getName()+"');";
 
             try {
                 PreparedStatement preparedStatement = connection.prepareStatement(searchSQL);
@@ -42,7 +44,7 @@ public class AddAuthorController {
 
 
     private ObservableList<String> getDbAuthor(){
-        AuthorDTO author = new AuthorDTO();
+        Author author = new Author();
         String SQL = "SELECT * FROM authors  ORDER BY author_id ASC;";
 
         ObservableList<String> authorList =
@@ -50,7 +52,6 @@ public class AddAuthorController {
         try {
             PreparedStatement preparedStatement = connection.prepareStatement(SQL);
             ResultSet resultSet = preparedStatement.executeQuery();
-//            System.out.println(connection);
 
             while (resultSet.next()){
                 author.setId(Integer.valueOf(resultSet.getString("author_id")));
@@ -70,4 +71,5 @@ public class AddAuthorController {
     public ObservableList<String> author() {
         return getDbAuthor();
     }
+
 }
