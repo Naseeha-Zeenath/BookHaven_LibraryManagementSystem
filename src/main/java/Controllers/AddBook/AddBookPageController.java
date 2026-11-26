@@ -13,6 +13,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import model.Book;
 
 import java.io.IOException;
 import java.net.URL;
@@ -127,15 +128,52 @@ public class AddBookPageController implements Initializable {
 
     @FXML
     void btnAddNewBookOnAction(ActionEvent event) {
-        txtInvalidAddBook.setText(addBookController.InsertBookOnDB(
-                txtAddNewBookISBN.getText(),
-                txtAddNewBookBookTitle.getText(),
-                txtAddNewBookPublishedYear.getText(),
-                txtAddNewBookQuantity.getText(),
-                selectorAddNewBookAuthor.getValue(),
-                selectorAddNewBookCategory.getValue()
-                )
-        );
+        Book book = new Book();
+
+        if (txtAddNewBookISBN.getText().isBlank() ||
+                txtAddNewBookBookTitle.getText().isEmpty() ||
+                selectorAddNewBookAuthor.getValue() ==null ||
+                selectorAddNewBookCategory.getValue() == null ||
+                txtAddNewBookPublishedYear.getText().isEmpty() ||
+                txtAddNewBookQuantity.getText().isEmpty()) {
+            txtInvalidAddBook.setText("Please fill in all required fields...");
+        }else if (txtAddNewBookISBN.getLength() != 10 && txtAddNewBookISBN.getText().length() != 13)  {
+            txtInvalidAddBook.setText( "ISBN must contain 10 or 13 characters.");
+        } else if (txtAddNewBookBookTitle.getLength() > 100) {
+            txtInvalidAddBook.setText( "Book title cannot exceed 100 characters...");
+        }else {
+
+            int publishedYear = 0;
+            int quantity = 0;
+            try {
+                publishedYear = Integer.parseInt((txtAddNewBookPublishedYear.getText()));
+                quantity = Integer.parseInt(txtAddNewBookQuantity.getText());
+            } catch (NumberFormatException e) {
+                txtInvalidAddBook.setText("Published year and quantity must be valid integers...");
+            }
+
+
+        if (publishedYear < 0 || publishedYear > java.time.Year.now().getValue()) {
+            txtInvalidAddBook.setText( "Please enter a valid published year...");
+        } else if (txtAddNewBookPublishedYear.getLength() != 4) {
+            txtInvalidAddBook.setText( "Published year must contain exactly 4 digits...");
+        } else if (quantity < 0) {
+            txtInvalidAddBook.setText( "Quantity cannot be negative...");
+        } else if (txtAddNewBookQuantity.getLength() > 4) {
+            txtInvalidAddBook.setText( "Book quantity is too large...");
+        }else {
+
+            book.setIsbn(txtAddNewBookISBN.getText());
+            book.setTitle(txtAddNewBookBookTitle.getText());
+            book.setYear(publishedYear);
+            book.setQuantity(quantity);
+            book.setAvailableQty(quantity);
+            book.setAuthorId(Integer.valueOf(selectorAddNewBookAuthor.getValue().split(" ")[0]));
+            book.setCategoryId(Integer.valueOf(selectorAddNewBookCategory.getValue().split(" ")[0]));
+
+            txtInvalidAddBook.setText(addBookController.InsertBookOnDB(book));
+
+        }}
     }
 
 
