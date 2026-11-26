@@ -1,6 +1,7 @@
 package Controllers.AddMember;
 
 import db.DBConnection;
+import model.Member;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -9,30 +10,14 @@ import java.sql.SQLException;
 import java.time.LocalDate;
 
 public class AddMemberController {
-    Connection connection = DBConnection.getInstance().getConnection();
-    public String registerMember(String txtAddNewMembers_MemberId,
-                               String txtAddNewMembers_FullName,
-                               String txtAddNewMembers_ContactNumber,
-                               String txtAddNewMembers_Email,
-                               String txtAddNewMembers_Address) {
 
-        if (txtAddNewMembers_MemberId.isEmpty()) {
-            return "To generate a Member ID, click the Generate ID button first.";
-        }else if(txtAddNewMembers_MemberId.isEmpty() ||
-                txtAddNewMembers_FullName.isEmpty() ||
-                txtAddNewMembers_ContactNumber.isEmpty() ||
-                txtAddNewMembers_Email.isEmpty() ||
-                txtAddNewMembers_Address.isEmpty()){
-            return "Please fill in all required fields...";
-        } else if (txtAddNewMembers_FullName.length() >100) {
-            return "Member Name cannot exceed 100 characters...";
-        } else if (!txtAddNewMembers_ContactNumber.matches("^07[0-9]{8}$")) {
-            return "Please enter a valid 10-digit mobile number.";
-        } else if (!txtAddNewMembers_Email.matches(".+@.+\\..+")) {
-            return "Please enter a valid email address.";
-        }else {
-            String uniqueEmailSearchSQL = "SELECT email FROM members WHERE email = '"+txtAddNewMembers_Email+"';";
-            String uniqueIdSearchSQL = "SELECT member_id FROM members WHERE member_id = '"+txtAddNewMembers_MemberId+"';";
+    Connection connection = DBConnection.getInstance().getConnection();
+
+
+    public String registerMember(Member member) {
+
+            String uniqueEmailSearchSQL = "SELECT email FROM members WHERE email = '"+member.getEmail()+"';";
+            String uniqueIdSearchSQL = "SELECT member_id FROM members WHERE member_id = '"+member.getId()+"';";
             String insertSQL = "INSERT INTO members(member_id,name,phone,email,address) VALUES (?,?,?,?,?)";
 
             try {
@@ -53,11 +38,11 @@ public class AddMemberController {
 
                 preparedStatement = connection.prepareStatement(insertSQL);
 
-                preparedStatement.setString(1,txtAddNewMembers_MemberId);
-                preparedStatement.setString(2,txtAddNewMembers_FullName);
-                preparedStatement.setString(3,txtAddNewMembers_ContactNumber);
-                preparedStatement.setString(4,txtAddNewMembers_Email);
-                preparedStatement.setString(5,txtAddNewMembers_Address);
+                preparedStatement.setString(1,member.getId());
+                preparedStatement.setString(2,member.getName());
+                preparedStatement.setString(3,member.getContactNo());
+                preparedStatement.setString(4,member.getEmail());
+                preparedStatement.setString(5,member.getAddress());
 
                 preparedStatement.executeUpdate();
 
@@ -65,7 +50,6 @@ public class AddMemberController {
                 throw new RuntimeException(e);
             }
 
-        }
 
         return "Success!";
     }
