@@ -11,6 +11,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import model.User;
 
 import java.io.IOException;
 
@@ -37,30 +38,39 @@ public class LoginPageController {
     @FXML
     void btnLoginOnAction(ActionEvent event) {
 
-        String userName = loginController.checkUserNameAndPassword(txtUserName.getText(),txtPassword.getText());
 
-        if (userName != null ){
+        if (txtUserName.getText().isEmpty() ){
+            txtInvalidUser.setText("Please Enter userName");
+        }else if (txtPassword.getText().isEmpty()){
+            txtInvalidUser.setText("Please Enter Password");
+        }else {
+            User user = new User();
+            user.setName(txtUserName.getText());
+            user.setPassword(txtPassword.getText());
 
-            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            try {
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/Dashboard_page.fxml"));
+            if(loginController.checkUserNameAndPassword(user)) {
 
-                stage.setScene(new Scene(loader.load()));
+                Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                try {
+                    FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/Dashboard_page.fxml"));
 
-                DashboardPageController dashboardPageController = loader.getController();
+                    stage.setScene(new Scene(loader.load()));
 
-                dashboardPageController.setUserName(userName);
+                    DashboardPageController dashboardPageController = loader.getController();
+
+                    dashboardPageController.setUserName(user.getName());
 
 
-
-            } catch (IOException e) {
-                throw new RuntimeException(e);
-            }
-            stage.show();
-
-        } else {
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
+                stage.show();
+            }else {
             txtInvalidUser.setText("Invalid Username or Password");
         }
+
+        }
+//
 
 
 
