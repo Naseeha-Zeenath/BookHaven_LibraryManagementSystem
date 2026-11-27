@@ -16,6 +16,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import model.BorrowingHistory;
 
 import java.io.IOException;
 import java.net.URL;
@@ -28,7 +29,7 @@ public class CurrentlyBorrowedBooksPageController implements Initializable {
     DashboardController dashboardController = new DashboardController();
 
     @FXML
-    private Button btnCurrentlyBorrowedBooks_Search;
+    private Button btnCurrentlyBorrowedBooksSearch;
 
     @FXML
     private Button btnLogOut;
@@ -55,46 +56,46 @@ public class CurrentlyBorrowedBooksPageController implements Initializable {
     private Button btnNavReturnBook;
 
     @FXML
-    private TableColumn<Map<String,String>, String> colBookTitle;
+    private TableColumn<BorrowingHistory, String> colBookTitle;
 
     @FXML
-    private TableColumn<Map<String,String>, String> colDueDate;
+    private TableColumn<BorrowingHistory, String> colDueDate;
 
     @FXML
-    private TableColumn<Map<String,String>, String> colIssueDate;
+    private TableColumn<BorrowingHistory, String> colIssueDate;
 
     @FXML
-    private TableColumn<Map<String,String>,String> colIssueId;
+    private TableColumn<BorrowingHistory,String> colIssueId;
 
     @FXML
-    private TableColumn<Map<String,String>, String> colMemberName;
+    private TableColumn<BorrowingHistory, String> colMemberName;
 
     @FXML
-    private TableColumn<Map<String, String>,String> colStatus;
+    private TableColumn<BorrowingHistory,String> colStatus;
 
     @FXML
-    private TableView<Map<String, String>> tblCurrentlyBorrowedBook;
+    private TableView<BorrowingHistory> tblCurrentlyBorrowedBook;
 
     @FXML
     private TextField txtCurrentlyBorrowedBooksCount;
 
     @FXML
-    private TextField txtCurrentlyBorrowedBooks_SearchBar;
+    private TextField txtCurrentlyBorrowedBooksSearchBar;
 
-    private ObservableList<Map<String, String>> currentlyBorrowedBookList = FXCollections.observableArrayList();
+    private ObservableList<BorrowingHistory> currentlyBorrowedBookList = FXCollections.observableArrayList();
 
 
     @FXML
-    void btnCurrentlyBorrowedBooks_SearchOnAction(ActionEvent event) {
+    void btnCurrentlyBorrowedBooksSearchOnAction(ActionEvent event) {
         currentlyBorrowedBookList=
-                curentlyBorrowedBooksController.searchBookData(txtCurrentlyBorrowedBooks_SearchBar.getText());
+                curentlyBorrowedBooksController.searchBookData(txtCurrentlyBorrowedBooksSearchBar.getText());
         setCurrentlyBorrowedBookTable();
 
     }
 
     @FXML
     void btnLogOutOnAction(ActionEvent event) {
-
+//TODO
     }
 
     @FXML
@@ -185,12 +186,12 @@ public class CurrentlyBorrowedBooksPageController implements Initializable {
     }
 
     private void setCurrentlyBorrowedBookTable() {
-        colIssueId.setCellValueFactory(cell-> new SimpleStringProperty(cell.getValue().getOrDefault("borrowing_id","")));
-        colMemberName.setCellValueFactory(cell->new SimpleStringProperty(cell.getValue().getOrDefault("member_name","")));
-        colBookTitle.setCellValueFactory(cell->new SimpleStringProperty(cell.getValue().getOrDefault("title","")));
-        colIssueDate.setCellValueFactory(cell->new SimpleStringProperty(cell.getValue().getOrDefault("issue_date","")));
-        colDueDate.setCellValueFactory(cell->new SimpleStringProperty(cell.getValue().getOrDefault("due_date","")));
-        colStatus.setCellValueFactory(cell->new SimpleStringProperty(cell.getValue().getOrDefault("status","")));
+        colIssueId.setCellValueFactory(cell-> new SimpleStringProperty(cell.getValue().getBorrowingId()));
+        colMemberName.setCellValueFactory(cell->new SimpleStringProperty(cell.getValue().getMemberName()));
+        colBookTitle.setCellValueFactory(cell->new SimpleStringProperty(cell.getValue().getBookTitle()));
+        colIssueDate.setCellValueFactory(cell->new SimpleStringProperty(cell.getValue().getIssueDate()));
+        colDueDate.setCellValueFactory(cell->new SimpleStringProperty(cell.getValue().getDueDate()));
+        colStatus.setCellValueFactory(cell->new SimpleStringProperty(cell.getValue().getStatus()));
 
         tblCurrentlyBorrowedBook.setItems(currentlyBorrowedBookList);
     }

@@ -12,6 +12,7 @@ import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
+import model.BorrowingHistory;
 
 import java.io.IOException;
 import java.net.URL;
@@ -62,25 +63,25 @@ public class ReturnBookPageController implements Initializable{
     private Button btnReturnBookSearch;
 
     @FXML
-    private TableColumn<Map<String,String>,String > colBookTitle;
+    private TableColumn<BorrowingHistory,String > colBookTitle;
 
     @FXML
-    private TableColumn<Map<String,String>,String> colDueDate;
+    private TableColumn<BorrowingHistory,String> colDueDate;
 
     @FXML
-    private TableColumn<Map<String,String>,String> colIssueDate;
+    private TableColumn<BorrowingHistory,String> colIssueDate;
 
     @FXML
-    private TableColumn<Map<String,String>,String> colIssueId;
+    private TableColumn<BorrowingHistory,String> colIssueId;
 
     @FXML
-    private TableColumn<Map<String,String>,String > colMemberName;
+    private TableColumn<BorrowingHistory,String > colMemberName;
 
     @FXML
-    private TableColumn<Map<String ,String>,String> colStatus;
+    private TableColumn<BorrowingHistory,String> colStatus;
 
     @FXML
-    private TableView<Map<String,String>> tblCurrentlyBorrowedBook;
+    private TableView<BorrowingHistory> tblCurrentlyBorrowedBook;
 
     @FXML
     private Label txtBookTitle;
@@ -118,12 +119,12 @@ public class ReturnBookPageController implements Initializable{
     @FXML
     private TextField txtReturnBook_SearchBar;
 
-    private ObservableList<Map<String, String>> currentlyBorrowedBookList = FXCollections.observableArrayList();
+    private ObservableList<BorrowingHistory> currentlyBorrowedBookList = FXCollections.observableArrayList();
 
 
     @FXML
     void btnLogOutOnAction(ActionEvent event) {
-
+//TODO
     }
 
     @FXML
@@ -192,14 +193,10 @@ public class ReturnBookPageController implements Initializable{
         stage.show();
     }
 
-    @FXML
-    void btnNavReturnBookOnAction(ActionEvent event) {
-
-    }
 
     @FXML
     void btnReturnBookClearOnAction(ActionEvent event) {
-
+//TODO
     }
 
     @FXML
@@ -223,21 +220,21 @@ public class ReturnBookPageController implements Initializable{
 
         tblCurrentlyBorrowedBook.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, Value) -> {
             if (Value != null) {
-                txtMemberName.setText(Value.get("member_name"));
-                txtBorrowingId.setText(Value.get("borrowing_id"));
+                txtMemberName.setText(Value.getMemberName());
+                txtBorrowingId.setText(Value.getBorrowingId());
 
-                String title = Value.get("title");
+                String title = Value.getBookTitle();
                 if (title != null && title.length() > 30) {
                     title = title.substring(0, 30) + "\n" +
                             title.substring(30);
                 }
                 txtBookTitle.setText(title);
 
-                txtBorrowedDate.setText(Value.get("issue_date"));
-                txtDueDate.setText(Value.get("due_date"));
+                txtBorrowedDate.setText(Value.getIssueDate());
+                txtDueDate.setText(Value.getDueDate());
 
                 ObservableList<Map<String, String>> returnBookBookList = FXCollections.observableArrayList();
-                returnBookBookList = returnBookController.selectDetails(Value.get("borrowing_id"));
+                returnBookBookList = returnBookController.selectDetails(Value.getBorrowingId());
 
                 if (returnBookBookList != null && !returnBookBookList.isEmpty()) {
                     txtMemberId.setText(returnBookBookList.get(0).get("member_id"));
@@ -254,21 +251,20 @@ public class ReturnBookPageController implements Initializable{
 
 
     private void setCurrentlyBorrowedBookTable() {
-        colIssueId.setCellValueFactory(cell-> new SimpleStringProperty(cell.getValue().getOrDefault("borrowing_id","")));
-        colMemberName.setCellValueFactory(cell->new SimpleStringProperty(cell.getValue().getOrDefault("member_name","")));
-        colBookTitle.setCellValueFactory(cell->new SimpleStringProperty(cell.getValue().getOrDefault("title","")));
-        colIssueDate.setCellValueFactory(cell->new SimpleStringProperty(cell.getValue().getOrDefault("issue_date","")));
-        colDueDate.setCellValueFactory(cell->new SimpleStringProperty(cell.getValue().getOrDefault("due_date","")));
-        colStatus.setCellValueFactory(cell->new SimpleStringProperty(cell.getValue().getOrDefault("status","")));
+        colIssueId.setCellValueFactory(cell-> new SimpleStringProperty(cell.getValue().getBorrowingId()));
+        colMemberName.setCellValueFactory(cell->new SimpleStringProperty(cell.getValue().getMemberName()));
+        colBookTitle.setCellValueFactory(cell->new SimpleStringProperty(cell.getValue().getBookTitle()));
+        colIssueDate.setCellValueFactory(cell->new SimpleStringProperty(cell.getValue().getIssueDate()));
+        colDueDate.setCellValueFactory(cell->new SimpleStringProperty(cell.getValue().getDueDate()));
+        colStatus.setCellValueFactory(cell->new SimpleStringProperty(cell.getValue().getStatus()));
 
         tblCurrentlyBorrowedBook.setItems(currentlyBorrowedBookList);
     }
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        SelectReturnBookDate.valueProperty().addListener((observable, oldValue, newValue) -> {
-            calculateOverdueDays();
-        });
+        SelectReturnBookDate.valueProperty().addListener((observable, oldValue, newValue) ->
+            calculateOverdueDays());
     }
 
     private void calculateOverdueDays() {
