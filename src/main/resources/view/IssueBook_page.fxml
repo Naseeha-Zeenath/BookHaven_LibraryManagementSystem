@@ -52,7 +52,7 @@
                   <Font size="14.0" />
                </font>
             </Button>
-            <Button fx:id="btnNavIssueBook" disable="true" mnemonicParsing="false" onAction="#btnNavIssueBookOnAction" prefHeight="30.0" prefWidth="213.0" styleClass="nav-button" stylesheets="@../css/style.css" text="Issue Book ">
+            <Button fx:id="btnNavIssueBook" disable="true" mnemonicParsing="false" prefHeight="30.0" prefWidth="213.0" styleClass="nav-button" stylesheets="@../css/style.css" text="Issue Book ">
                <font>
                   <Font size="14.0" />
                </font>
@@ -94,15 +94,15 @@
                   <Font name="Georgia Italic" size="14.0" />
                </font>
             </Label>
-            <ComboBox fx:id="SelecterIssueBook_SelectMemeber" layoutX="35.0" layoutY="52.0" prefHeight="25.0" prefWidth="214.0" />
-            <ComboBox fx:id="SelecterIssueBook_SelectBook" layoutX="303.0" layoutY="52.0" prefHeight="25.0" prefWidth="214.0" />
-            <DatePicker fx:id="SelecterIssueBook_SelectIssueDate" layoutX="35.0" layoutY="105.0" prefHeight="35.0" prefWidth="214.0" />
+            <ComboBox fx:id="selectMemeber" layoutX="35.0" layoutY="52.0" prefHeight="25.0" prefWidth="214.0" />
+            <ComboBox fx:id="selectBook" layoutX="303.0" layoutY="52.0" prefHeight="25.0" prefWidth="214.0" />
+            <DatePicker fx:id="selectIssueDate" layoutX="35.0" layoutY="105.0" prefHeight="35.0" prefWidth="214.0" />
             <Label layoutX="42.0" layoutY="87.0" text="Issue Date">
                <font>
                   <Font name="Georgia Italic" size="14.0" />
                </font>
             </Label>
-            <DatePicker fx:id="SelecterIssueBook_SelectDueDate" layoutX="303.0" layoutY="105.0" prefHeight="35.0" prefWidth="214.0" />
+            <DatePicker fx:id="selectDueDate" layoutX="303.0" layoutY="105.0" prefHeight="35.0" prefWidth="214.0" />
             <Label layoutX="308.0" layoutY="87.0" text="Due Date">
                <font>
                   <Font name="Georgia Italic" size="14.0" />
