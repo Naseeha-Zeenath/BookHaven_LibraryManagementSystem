@@ -57,7 +57,7 @@
                   <Font size="14.0" />
                </font>
             </Button>
-            <Button fx:id="btnNavReturnBook" disable="true" mnemonicParsing="false" onAction="#btnNavReturnBookOnAction" prefHeight="30.0" prefWidth="207.0" styleClass="nav-button" stylesheets="@../css/style.css" text="Return Book">
+            <Button fx:id="btnNavReturnBook" disable="true" mnemonicParsing="false" prefHeight="30.0" prefWidth="207.0" styleClass="nav-button" stylesheets="@../css/style.css" text="Return Book">
                <font>
                   <Font size="14.0" />
                </font>
@@ -158,12 +158,12 @@
                   <TextField fx:id="txtBorrowingId" editable="false" layoutX="229.0" layoutY="7.0" prefHeight="27.0" prefWidth="48.0" />
                </children>
             </Pane>
-            <Label fx:id="txtReturnBook_OverdueDaysCount" layoutX="438.0" layoutY="216.0" prefHeight="21.0" prefWidth="69.0" text="0">
+            <Label fx:id="txtReturnBookOverdueDaysCount" layoutX="438.0" layoutY="216.0" prefHeight="21.0" prefWidth="69.0" text="0">
                <font>
                   <Font name="Georgia Italic" size="18.0" />
                </font>
             </Label>
-            <DatePicker fx:id="SelectReturnBookDate" layoutX="113.0" layoutY="205.0" prefHeight="30.0" prefWidth="133.0">
+            <DatePicker fx:id="selectReturnBookDate" layoutX="113.0" layoutY="205.0" prefHeight="30.0" prefWidth="133.0">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>
@@ -182,7 +182,7 @@
       </Pane>
       <Pane layoutX="222.0" layoutY="55.0" prefHeight="195.0" prefWidth="594.0" styleClass="stat-card" stylesheets="@../css/style.css">
          <children>
-            <TextField fx:id="txtReturnBook_SearchBar" layoutX="23.0" layoutY="15.0" prefHeight="35.0" prefWidth="476.0" promptText="Search member by Issue Id, Member Name or Book Title ..." />
+            <TextField fx:id="txtReturnBookSearchBar" layoutX="23.0" layoutY="15.0" prefHeight="35.0" prefWidth="476.0" promptText="Search member by Issue Id, Member Name or Book Title ..." />
             <Button fx:id="btnReturnBookSearch" alignment="CENTER" layoutX="504.0" layoutY="16.0" mnemonicParsing="false" onAction="#btnReturnBookSearchOnAction" prefHeight="30.0" prefWidth="69.0" text="Search" />
             <TableView fx:id="tblCurrentlyBorrowedBook" layoutX="17.0" layoutY="60.0" prefHeight="125.0" prefWidth="564.0">
                <columns>

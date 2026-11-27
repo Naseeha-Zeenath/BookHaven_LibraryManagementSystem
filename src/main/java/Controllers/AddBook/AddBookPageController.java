@@ -1,7 +1,7 @@
 package Controllers.AddBook;
 
-import Controllers.AddBook.Author.LoadAuthorController;
-import Controllers.AddBook.Category.LoadCategoryController;
+import Controllers.AddBook.Author.AddAuthorController;
+import Controllers.AddBook.Category.AddCategoryController;
 import javafx.event.ActionEvent;
 import javafx.scene.control.Label;
 import javafx.fxml.FXML;
@@ -13,6 +13,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import model.Book;
 
 import java.io.IOException;
 import java.net.URL;
@@ -21,12 +22,14 @@ import java.util.ResourceBundle;
 public class AddBookPageController implements Initializable {
 
     AddBookController addBookController =  new AddBookController();
+    AddAuthorController addAuthorController = new AddAuthorController();
+    AddCategoryController addCategoryController = new AddCategoryController();
 
     @FXML
-    private ComboBox<String> SelectorAddNewBook_Author;
+    private ComboBox<String> selectorAddNewBookAuthor;
 
     @FXML
-    private ComboBox<String> SelectorAddNewBook_Category;
+    private ComboBox<String> selectorAddNewBookCategory;
 
     @FXML
     private Button btnAddNewAuthor;
@@ -67,16 +70,16 @@ public class AddBookPageController implements Initializable {
 
 
     @FXML
-    private TextField txtAddNewBook_BookTitle;
+    private TextField txtAddNewBookBookTitle;
 
     @FXML
-    private TextField txtAddNewBook_ISBN;
+    private TextField txtAddNewBookISBN;
 
     @FXML
-    private TextField txtAddNewBook_PublishedYear;
+    private TextField txtAddNewBookPublishedYear;
 
     @FXML
-    private TextField txtAddNewBook_Quantity;
+    private TextField txtAddNewBookQuantity;
 
     @FXML
     private Label txtInvalidAddBook;
@@ -111,13 +114,13 @@ public class AddBookPageController implements Initializable {
 
     @FXML
     void btnAddNewBookClearOnAction(ActionEvent event) {
-        txtAddNewBook_ISBN.clear();
-        txtAddNewBook_BookTitle.clear();
-        txtAddNewBook_PublishedYear.clear();
-        txtAddNewBook_Quantity.clear();
+        txtAddNewBookISBN.clear();
+        txtAddNewBookBookTitle.clear();
+        txtAddNewBookPublishedYear.clear();
+        txtAddNewBookQuantity.clear();
         txtInvalidAddBook.setText("");
-        SelectorAddNewBook_Author.setItems(null);
-        SelectorAddNewBook_Category.setItems(null);
+        selectorAddNewBookAuthor.setItems(null);
+        selectorAddNewBookCategory.setItems(null);
         setAuthor();
         setCategory();
     }
@@ -125,15 +128,52 @@ public class AddBookPageController implements Initializable {
 
     @FXML
     void btnAddNewBookOnAction(ActionEvent event) {
-        txtInvalidAddBook.setText(addBookController.InsertBookOnDB(
-                txtAddNewBook_ISBN.getText(),
-                txtAddNewBook_BookTitle.getText(),
-                txtAddNewBook_PublishedYear.getText(),
-                txtAddNewBook_Quantity.getText(),
-                SelectorAddNewBook_Author.getValue(),
-                SelectorAddNewBook_Category.getValue()
-                )
-        );
+        Book book = new Book();
+
+        if (txtAddNewBookISBN.getText().isBlank() ||
+                txtAddNewBookBookTitle.getText().isEmpty() ||
+                selectorAddNewBookAuthor.getValue() ==null ||
+                selectorAddNewBookCategory.getValue() == null ||
+                txtAddNewBookPublishedYear.getText().isEmpty() ||
+                txtAddNewBookQuantity.getText().isEmpty()) {
+            txtInvalidAddBook.setText("Please fill in all required fields...");
+        }else if (txtAddNewBookISBN.getLength() != 10 && txtAddNewBookISBN.getText().length() != 13)  {
+            txtInvalidAddBook.setText( "ISBN must contain 10 or 13 characters.");
+        } else if (txtAddNewBookBookTitle.getLength() > 100) {
+            txtInvalidAddBook.setText( "Book title cannot exceed 100 characters...");
+        }else {
+
+            int publishedYear = 0;
+            int quantity = 0;
+            try {
+                publishedYear = Integer.parseInt((txtAddNewBookPublishedYear.getText()));
+                quantity = Integer.parseInt(txtAddNewBookQuantity.getText());
+            } catch (NumberFormatException e) {
+                txtInvalidAddBook.setText("Published year and quantity must be valid integers...");
+            }
+
+
+        if (publishedYear < 0 || publishedYear > java.time.Year.now().getValue()) {
+            txtInvalidAddBook.setText( "Please enter a valid published year...");
+        } else if (txtAddNewBookPublishedYear.getLength() != 4) {
+            txtInvalidAddBook.setText( "Published year must contain exactly 4 digits...");
+        } else if (quantity < 0) {
+            txtInvalidAddBook.setText( "Quantity cannot be negative...");
+        } else if (txtAddNewBookQuantity.getLength() > 4) {
+            txtInvalidAddBook.setText( "Book quantity is too large...");
+        }else {
+
+            book.setIsbn(txtAddNewBookISBN.getText());
+            book.setTitle(txtAddNewBookBookTitle.getText());
+            book.setYear(publishedYear);
+            book.setQuantity(quantity);
+            book.setAvailableQty(quantity);
+            book.setAuthorId(Integer.valueOf(selectorAddNewBookAuthor.getValue().split(" ")[0]));
+            book.setCategoryId(Integer.valueOf(selectorAddNewBookCategory.getValue().split(" ")[0]));
+
+            txtInvalidAddBook.setText(addBookController.InsertBookOnDB(book));
+
+        }}
     }
 
 
@@ -141,10 +181,7 @@ public class AddBookPageController implements Initializable {
 
     @FXML
     void btnLogOutOnAction(ActionEvent event) {
-    }
-
-    @FXML
-    void btnNavAddBookOnAction(ActionEvent event) {
+//        TODO
     }
 
     @FXML
@@ -221,18 +258,14 @@ public class AddBookPageController implements Initializable {
         setAuthor();
         setCategory();
     }
-    LoadAuthorController loadAuthorController = new LoadAuthorController();
 
     public void setAuthor(){
-        SelectorAddNewBook_Author.setItems(loadAuthorController.author());
+        selectorAddNewBookAuthor.setItems(addAuthorController.author());
     }
 
-    LoadCategoryController loadCategoryController = new LoadCategoryController();
     public void setCategory(){
-        SelectorAddNewBook_Category.setItems(loadCategoryController.category());
+        selectorAddNewBookCategory.setItems(addCategoryController.category());
     }
-
-
 
 
 }

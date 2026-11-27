@@ -4,6 +4,8 @@ import db.DBConnection;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.control.DatePicker;
+import model.Borrow;
+import model.ReturnBookDetails;
 
 import java.sql.*;
 import java.time.LocalDate;
@@ -14,58 +16,67 @@ public class ReturnBookController {
 
     Connection connection = DBConnection.getInstance().getConnection();
 
-    public  ObservableList<Map<String, String>> selectDetails(String borrowingId) {
+    public ReturnBookDetails selectDetails(String borrowingId) {
+
         String sql = "SELECT  m.member_id ,m.email ,m.phone ,bK.isbn " +
                 "FROM borrowings b JOIN members m ON b.member_id = m.member_id JOIN books bk ON b.book_id = bk.book_id " +
-                "WHERE b.borrowing_id = '"+borrowingId+"'";
-
-        ObservableList<Map<String,String>> returnBookList = FXCollections.observableArrayList();
+                "WHERE b.borrowing_id = ?";
 
         try {
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setString(1, borrowingId);
+
             ResultSet resultSet = preparedStatement.executeQuery();
 
-            while (resultSet.next()) {
-                Map<String, String> returnBookDetails = new HashMap<>();
+            if (resultSet.next()){
 
-                returnBookDetails.put("member_id", resultSet.getString("member_id"));
-                returnBookDetails.put("email", resultSet.getString("email"));
-                returnBookDetails.put("phone", resultSet.getString("phone"));
-                returnBookDetails.put("isbn", resultSet.getString("isbn"));
+                ReturnBookDetails details = new ReturnBookDetails();
 
-                returnBookList.add(returnBookDetails);
+                details.setMemberId(resultSet.getString("member_id"));
+                details.setEmail(resultSet.getString("email"));
+                details.setPhone(resultSet.getString("phone"));
+                details.setIsbn(resultSet.getString("isbn"));
 
-            }
+                return details;            }
 
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
-        return returnBookList;
+        return null;
     }
 
-    public String bookReturn(String borrowingId, DatePicker returnBookDate){
+    public String bookReturn(Borrow borrow){
         String searchSQL = "SELECT issue_date FROM borrowings WHERE borrowing_id = ?";
         String updateSQL = "UPDATE borrowings SET return_date = ? ,status = 'Returned' WHERE borrowing_id =? ";
+
+        if (borrow == null || borrow.getId() == null ||
+                borrow.getReturnDate() == null) {
+
+            return "Please complete all required details.";
+        }
+
 
         try {
 
             PreparedStatement selectStatement = connection.prepareStatement(searchSQL);
-            selectStatement.setString(1, borrowingId);
+            selectStatement.setInt(1, borrow.getId());
 
             ResultSet resultSet = selectStatement.executeQuery();
 
+            LocalDate returnDate = borrow.getReturnDate();
+
             if (resultSet.next()) {
                 LocalDate issueDate = resultSet.getDate("issue_date").toLocalDate();
-                LocalDate returnDate = returnBookDate.getValue();
 
                 if (returnDate.isBefore(issueDate)) {
                     return "Return date cannot be before the Borrowed date.";
                 }
+
             }
 
             PreparedStatement preparedStatement = connection.prepareStatement(updateSQL);
-            preparedStatement.setDate(1, Date.valueOf(returnBookDate.getValue()));
-            preparedStatement.setString(2,borrowingId);
+            preparedStatement.setDate(1, Date.valueOf(returnDate));
+            preparedStatement.setInt(2,borrow.getId());
 
             preparedStatement.executeUpdate();
 

@@ -35,7 +35,7 @@
                   <Font size="14.0" />
                </font>
             </Button>
-            <Button fx:id="btnNavAddBook" disable="true" mnemonicParsing="false" onAction="#btnNavAddBookOnAction" prefHeight="30.0" prefWidth="206.0" styleClass="nav-button" stylesheets="@../css/style.css" text="Add Book ">
+            <Button fx:id="btnNavAddBook" disable="true" mnemonicParsing="false" prefHeight="30.0" prefWidth="206.0" styleClass="nav-button" stylesheets="@../css/style.css" text="Add Book ">
                <font>
                   <Font size="14.0" />
                </font>
@@ -87,7 +87,7 @@
                   <Font name="Georgia Italic" size="14.0" />
                </font>
             </Label>
-            <TextField fx:id="txtAddNewBook_BookTitle" layoutX="152.0" layoutY="75.0" prefHeight="33.0" prefWidth="375.0">
+            <TextField fx:id="txtAddNewBookBookTitle" layoutX="152.0" layoutY="75.0" prefHeight="33.0" prefWidth="375.0">
                <font>
                   <Font size="10.0" />
                </font>
@@ -107,7 +107,7 @@
                   <Font name="Georgia Italic" size="14.0" />
                </font>
             </Label>
-            <TextField fx:id="txtAddNewBook_Quantity" layoutX="410.0" layoutY="229.0" prefHeight="35.0" prefWidth="101.0">
+            <TextField fx:id="txtAddNewBookQuantity" layoutX="410.0" layoutY="229.0" prefHeight="35.0" prefWidth="101.0">
                <font>
                   <Font size="10.0" />
                </font>
@@ -117,7 +117,7 @@
                   <Font name="Georgia Italic" size="14.0" />
                </font>
             </Label>
-            <TextField fx:id="txtAddNewBook_ISBN" layoutX="151.0" layoutY="30.0" prefHeight="33.0" prefWidth="375.0">
+            <TextField fx:id="txtAddNewBookISBN" layoutX="151.0" layoutY="30.0" prefHeight="33.0" prefWidth="375.0">
                <font>
                   <Font size="10.0" />
                </font>
@@ -127,15 +127,15 @@
                   <Font name="Georgia Italic" size="14.0" />
                </font>
             </Label>
-            <TextField fx:id="txtAddNewBook_PublishedYear" layoutX="154.0" layoutY="229.0" prefHeight="35.0" prefWidth="101.0">
+            <TextField fx:id="txtAddNewBookPublishedYear" layoutX="154.0" layoutY="229.0" prefHeight="35.0" prefWidth="101.0">
                <font>
                   <Font size="10.0" />
                </font>
             </TextField>
             <Button fx:id="btnAddNewBook" layoutX="297.0" layoutY="323.0" mnemonicParsing="false" onAction="#btnAddNewBookOnAction" prefHeight="47.0" prefWidth="235.0" styleClass="save-button" stylesheets="@../css/style.css" text="+   Add Book" />
             <Button fx:id="btnAddNewBookClear" layoutX="28.0" layoutY="323.0" mnemonicParsing="false" onAction="#btnAddNewBookClearOnAction" prefHeight="47.0" prefWidth="235.0" styleClass="clear-button" text="Clear" />
-            <ComboBox fx:id="SelectorAddNewBook_Author" layoutX="152.0" layoutY="125.0" prefHeight="25.0" prefWidth="235.0" />
-            <ComboBox fx:id="SelectorAddNewBook_Category" layoutX="152.0" layoutY="171.0" prefHeight="25.0" prefWidth="235.0" />
+            <ComboBox fx:id="selectorAddNewBookAuthor" layoutX="152.0" layoutY="125.0" prefHeight="25.0" prefWidth="235.0" />
+            <ComboBox fx:id="selectorAddNewBookCategory" layoutX="152.0" layoutY="171.0" prefHeight="25.0" prefWidth="235.0" />
             <Button fx:id="btnAddNewAuthor" layoutX="409.0" layoutY="123.0" mnemonicParsing="false" onAction="#btnAddNewAuthorOnAction" prefHeight="30.0" prefWidth="118.0" text="+ Add Author" />
             <Button fx:id="btnAddNewCategory" layoutX="409.0" layoutY="168.0" mnemonicParsing="false" onAction="#btnAddNewCategoryOnAction" text="+ Add Category" />
             <Label fx:id="txtInvalidAddBook" alignment="CENTER" contentDisplay="CENTER" layoutX="24.0" layoutY="282.0" prefHeight="27.0" prefWidth="503.0" textAlignment="CENTER" textFill="#c82909">

@@ -3,22 +3,23 @@ package Controllers.DashBoardContent;
 import db.DBConnection;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import model.BorrowingHistory;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.HashMap;
-import java.util.Map;
+
 
 public class CurentlyBorrowedBooksController {
 
     Connection connection = DBConnection.getInstance().getConnection();
 
-    private ObservableList<Map<String, String>> loadCurrentlyBorrowedData(String sql, String searchBorrowedBook) {
 
-        ObservableList<Map<String,String>> currentlyBorrowedBookList = FXCollections.observableArrayList();
 
+    private ObservableList<BorrowingHistory> loadCurrentlyBorrowedData(String sql, String searchBorrowedBook) {
+
+        ObservableList<BorrowingHistory> currentlyBorrowedBookList = FXCollections.observableArrayList();
 
         try {
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
@@ -27,31 +28,25 @@ public class CurentlyBorrowedBooksController {
 
                 String searchValue = "%" + searchBorrowedBook.trim() + "%";
 
-                preparedStatement.setString(1, searchValue);
-                preparedStatement.setString(2, searchValue);
-                preparedStatement.setString(3, searchValue);
-                preparedStatement.setString(4, searchValue);
-                preparedStatement.setString(5, searchValue);
-                preparedStatement.setString(6, searchValue);
+                for (int i = 1; i <= 6; i++) {
+                    preparedStatement.setString(i, searchValue);
+                }
 
             }
 
             ResultSet resultSet = preparedStatement.executeQuery();
 
             while (resultSet.next()) {
+                BorrowingHistory history = new BorrowingHistory();
 
-                Map<String, String> currentlyBorrowedBook = new HashMap<>();
+                history.setBorrowingId(resultSet.getString("borrowing_id"));
+                history.setMemberName(resultSet.getString("member_name"));
+                history.setBookTitle(resultSet.getString("title"));
+                history.setIssueDate(resultSet.getString("issue_date"));
+                history.setDueDate(resultSet.getString("due_date"));
+                history.setStatus(resultSet.getString("status"));
 
-                currentlyBorrowedBook.put("borrowing_id", resultSet.getString("borrowing_id"));
-                currentlyBorrowedBook.put("member_name", resultSet.getString("member_name"));
-                currentlyBorrowedBook.put("title", resultSet.getString("title"));
-                currentlyBorrowedBook.put("issue_date", resultSet.getString("issue_date"));
-                currentlyBorrowedBook.put("due_date", resultSet.getString("due_date"));
-                currentlyBorrowedBook.put("status", resultSet.getString("status"));
-
-                currentlyBorrowedBookList.add(currentlyBorrowedBook);
-
-
+                currentlyBorrowedBookList.add(history);
 
             }
 
@@ -60,10 +55,11 @@ public class CurentlyBorrowedBooksController {
         }
 
         return  currentlyBorrowedBookList;
-
     }
 
-    public ObservableList<Map<String, String>> allCurrentlyBorrowedBookData() {
+
+
+    public ObservableList<BorrowingHistory> allCurrentlyBorrowedBookData() {
         return loadCurrentlyBorrowedData(all(), null);
     }
 
@@ -73,7 +69,7 @@ public class CurentlyBorrowedBooksController {
                 "ON b.book_id = bk.book_id WHERE b.status ='Borrowed' ORDER BY b.borrowing_id DESC;";
     }
 
-    public ObservableList<Map<String, String>> searchBookData(String searchBorrowedBook) {
+    public ObservableList<BorrowingHistory> searchBookData(String searchBorrowedBook) {
         return loadCurrentlyBorrowedData(search(), searchBorrowedBook);
     }
 

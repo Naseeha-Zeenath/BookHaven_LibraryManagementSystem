@@ -98,8 +98,8 @@
                 </Button>
             </children>
         </VBox>
-        <TextField fx:id="txtCurrentlyBorrowedBooks_SearchBar" layoutX="226.0" layoutY="118.0" prefHeight="35.0" prefWidth="339.0" promptText="Search member by Name , Book Title or Issue ID..." />
-        <Button fx:id="btnCurrentlyBorrowedBooks_Search" alignment="CENTER" layoutX="579.0" layoutY="121.0" mnemonicParsing="false" onAction="#btnCurrentlyBorrowedBooks_SearchOnAction" prefHeight="30.0" prefWidth="69.0" text="Search" />
+        <TextField fx:id="txtCurrentlyBorrowedBooksSearchBar" layoutX="226.0" layoutY="118.0" prefHeight="35.0" prefWidth="339.0" promptText="Search member by Name , Book Title or Issue ID..." />
+        <Button fx:id="btnCurrentlyBorrowedBooksSearch" alignment="CENTER" layoutX="579.0" layoutY="121.0" mnemonicParsing="false" onAction="#btnCurrentlyBorrowedBooksSearchOnAction" prefHeight="30.0" prefWidth="69.0" text="Search" />
       <TableView fx:id="tblCurrentlyBorrowedBook" layoutX="222.0" layoutY="175.0" prefHeight="307.0" prefWidth="564.0">
          <columns>
             <TableColumn fx:id="colIssueId" prefWidth="63.0" text="Issue ID" />

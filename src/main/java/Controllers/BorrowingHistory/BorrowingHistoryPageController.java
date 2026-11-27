@@ -11,12 +11,11 @@ import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
+import model.BorrowingHistory;
 
 import java.io.IOException;
-import java.net.MulticastSocket;
 import java.net.URL;
 import java.time.LocalDate;
-import java.util.Map;
 import java.util.ResourceBundle;
 
 public class BorrowingHistoryPageController implements Initializable {
@@ -25,13 +24,13 @@ public class BorrowingHistoryPageController implements Initializable {
 
 
     @FXML
-    private DatePicker SelecterBorrowingHistory_Date;
+    private DatePicker selecterBorrowingHistoryDate;
 
     @FXML
-    private ComboBox<String> SelecterBorrowingHistory_MemeberID;
+    private ComboBox<String> selecterBorrowingHistoryMemeberID;
 
     @FXML
-    private Label TxtTotalRecordsCount;
+    private Label txtTotalRecordsCount;
 
     @FXML
     private Button btnBorrowingHistorySearch;
@@ -64,37 +63,37 @@ public class BorrowingHistoryPageController implements Initializable {
     private Button btnNavReturnBook;
 
     @FXML
-    private TableColumn<Map<String,String>,String> colBookTitle;
+    private TableColumn<BorrowingHistory, String> colBookTitle;
 
     @FXML
-    private TableColumn<Map<String,String>,String> colDueDate;
+    private TableColumn<BorrowingHistory,String> colDueDate;
 
     @FXML
-    private TableColumn<Map<String,String>,String> colIssueDate;
+    private TableColumn<BorrowingHistory,String> colIssueDate;
 
     @FXML
-    private TableColumn<Map<String,String>,String> colBorrowingID;
+    private TableColumn<BorrowingHistory,String> colBorrowingID;
 
     @FXML
-    private TableColumn<Map<String,String>,String> colMemberName;
+    private TableColumn<BorrowingHistory,String> colMemberName;
 
     @FXML
-    private TableColumn<Map<String,String>,String> colReturnDate;
+    private TableColumn<BorrowingHistory,String> colReturnDate;
 
     @FXML
-    private TableColumn<Map<String,String>,String> colStatus;
+    private TableColumn<BorrowingHistory,String> colStatus;
 
     @FXML
-    private TableView<Map<String,String>> tblBorrowingHistory;
+    private TableView<BorrowingHistory> tblBorrowingHistory;
 
 
-    private ObservableList<Map<String, String>> borrowedBookList = FXCollections.observableArrayList();
+    private ObservableList<BorrowingHistory> borrowedBookList = FXCollections.observableArrayList();
 
     @FXML
     void btnBorrowingHistoryResetOnAction(ActionEvent event) {
-        SelecterBorrowingHistory_MemeberID.setItems(null);
+        selecterBorrowingHistoryMemeberID.setItems(null);
         setMember();
-        SelecterBorrowingHistory_Date.setValue(null);
+        selecterBorrowingHistoryDate.setValue(null);
 
         borrowedBookList= borrowingHistoryController.allCurrentlyBorrowedBookData();
         setCurrentlyBorrowedBookTable();
@@ -104,9 +103,9 @@ public class BorrowingHistoryPageController implements Initializable {
     @FXML
     void btnBorrowingHistorySearchOnAction(ActionEvent event) {
 
-        String selectMember = SelecterBorrowingHistory_MemeberID.getValue();
+        String selectMember = selecterBorrowingHistoryMemeberID.getValue();
 
-        LocalDate selectedDate = SelecterBorrowingHistory_Date.getValue();
+        LocalDate selectedDate = selecterBorrowingHistoryDate.getValue();
 
 
         if ( selectMember!=null && selectedDate != null) {
@@ -128,13 +127,12 @@ public class BorrowingHistoryPageController implements Initializable {
 
         setCurrentlyBorrowedBookTable();
 
-        setCurrentlyBorrowedBookTable();
 
     }
 
     @FXML
     void btnLogOutOnAction(ActionEvent event) {
-
+//TODO
     }
 
     @FXML
@@ -159,10 +157,6 @@ public class BorrowingHistoryPageController implements Initializable {
         stage.show();
     }
 
-    @FXML
-    void btnNavBorrowingHistoryOnAction(ActionEvent event) {
-
-    }
 
     @FXML
     void btnNavDashboardOnAction(ActionEvent event) {
@@ -210,24 +204,24 @@ public class BorrowingHistoryPageController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        TxtTotalRecordsCount.setText(borrowingHistoryController.getBorrowingHistoryRecordCount());
+        txtTotalRecordsCount.setText(borrowingHistoryController.getBorrowingHistoryRecordCount());
         setMember();
 
         borrowedBookList = borrowingHistoryController.allCurrentlyBorrowedBookData();
         setCurrentlyBorrowedBookTable();
     }
     public void setMember(){
-        SelecterBorrowingHistory_MemeberID.setItems(borrowingHistoryController.memberList());
+        selecterBorrowingHistoryMemeberID.setItems(borrowingHistoryController.memberList());
     }
 
     private void setCurrentlyBorrowedBookTable() {
-        colBorrowingID.setCellValueFactory(cell-> new SimpleStringProperty(cell.getValue().getOrDefault("borrowing_id","")));
-        colMemberName.setCellValueFactory(cell->new SimpleStringProperty(cell.getValue().getOrDefault("member_name","")));
-        colBookTitle.setCellValueFactory(cell->new SimpleStringProperty(cell.getValue().getOrDefault("title","")));
-        colIssueDate.setCellValueFactory(cell->new SimpleStringProperty(cell.getValue().getOrDefault("issue_date","")));
-        colDueDate.setCellValueFactory(cell->new SimpleStringProperty(cell.getValue().getOrDefault("due_date","")));
-        colReturnDate.setCellValueFactory(cell->new SimpleStringProperty(cell.getValue().getOrDefault("return_date","")));
-        colStatus.setCellValueFactory(cell->new SimpleStringProperty(cell.getValue().getOrDefault("status","")));
+        colBorrowingID.setCellValueFactory(cell-> new SimpleStringProperty(cell.getValue().getBorrowingId()));
+        colMemberName.setCellValueFactory(cell->new SimpleStringProperty(cell.getValue().getMemberName()));
+        colBookTitle.setCellValueFactory(cell->new SimpleStringProperty(cell.getValue().getBookTitle()));
+        colIssueDate.setCellValueFactory(cell->new SimpleStringProperty(cell.getValue().getIssueDate()));
+        colDueDate.setCellValueFactory(cell->new SimpleStringProperty(cell.getValue().getDueDate()));
+        colReturnDate.setCellValueFactory(cell->new SimpleStringProperty(cell.getValue().getReturnDate()));
+        colStatus.setCellValueFactory(cell->new SimpleStringProperty(cell.getValue().getStatus()));
 
         tblBorrowingHistory.setItems(borrowedBookList);
     }

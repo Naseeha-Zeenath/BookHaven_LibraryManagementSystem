@@ -11,10 +11,12 @@ import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
+import model.Borrow;
+import model.BorrowingHistory;
 
 import java.io.IOException;
 import java.net.URL;
-import java.util.Map;
+import java.time.LocalDate;
 import java.util.ResourceBundle;
 
 
@@ -23,16 +25,16 @@ public class IssueBookPageController implements Initializable {
     IssueBookController issueBookController = new IssueBookController();
 
     @FXML
-    private ComboBox<String> SelecterIssueBook_SelectBook;
+    private ComboBox<String> selectBook;
 
     @FXML
-    private DatePicker SelecterIssueBook_SelectDueDate;
+    private DatePicker selectDueDate;
 
     @FXML
-    private DatePicker SelecterIssueBook_SelectIssueDate;
+    private DatePicker selectIssueDate;
 
     @FXML
-    private ComboBox<String> SelecterIssueBook_SelectMemeber;
+    private ComboBox<String> selectMemeber;
 
     @FXML
     private Button btnIssueBook;
@@ -66,59 +68,84 @@ public class IssueBookPageController implements Initializable {
 
     @FXML
     private Label txtInvalidAddIssueBook;
+    @FXML
+    private TableColumn<BorrowingHistory, String> colBookTitle;
 
     @FXML
-    private TableColumn<Map<String, String>,String>  colBookTitle;
+    private TableColumn<BorrowingHistory, String> colDueDate;
 
     @FXML
-    private TableColumn<Map<String, String>,String> colDueDate;
+    private TableColumn<BorrowingHistory, String> colIssueDate;
 
     @FXML
-    private TableColumn<Map<String, String>,String>  colIssueDate;
+    private TableColumn<BorrowingHistory, String> colIssueId;
 
     @FXML
-    private TableColumn<Map<String, String>,String>  colIssueId;
+    private TableColumn<BorrowingHistory, String> colMemberName;
 
     @FXML
-    private TableColumn<Map<String, String>,String>  colMemberName;
+    private TableColumn<BorrowingHistory, String> colStatus;
 
     @FXML
-    private TableColumn<Map<String, String>,String> colStatus;
+    private TableView<BorrowingHistory> tblRecentIssues;
 
-    @FXML
-    private TableView<Map<String, String>> tblRecentIssues;
-
-    private ObservableList<Map<String, String>> recentIssuesList = FXCollections.observableArrayList();
+    private ObservableList<BorrowingHistory> recentIssuesList = FXCollections.observableArrayList();
 
 
     @FXML
     void btnIssueBookClearOnAction(ActionEvent event) {
-        SelecterIssueBook_SelectBook.setItems(null);
-        SelecterIssueBook_SelectMemeber.setItems(null);
-        SelecterIssueBook_SelectDueDate.setValue(null);
-        SelecterIssueBook_SelectIssueDate.setValue(null);
+        selectBook.setItems(null);
+        selectMemeber.setItems(null);
+        selectDueDate.setValue(null);
+        selectIssueDate.setValue(null);
+        txtInvalidAddIssueBook.setText(null);
 
-        SelecterIssueBook_SelectBook.setItems(issueBookController.BookList());
-        SelecterIssueBook_SelectMemeber.setItems(issueBookController.MemberList());
+        selectBook.setItems(issueBookController.bookList());
+        selectMemeber.setItems(issueBookController.memberList());
     }
 
     @FXML
     void btnIssueBookOnAction(ActionEvent event) {
-        txtInvalidAddIssueBook.setText(
-                issueBookController.bookIssued(
-                        SelecterIssueBook_SelectMemeber.getValue(),
-                        SelecterIssueBook_SelectBook.getValue(),
-                        SelecterIssueBook_SelectIssueDate.getValue(),
-                        SelecterIssueBook_SelectDueDate.getValue()
-                )
-        );
 
+        Borrow borrow = new Borrow();
+
+        if(selectMemeber.getValue() == null){
+            txtInvalidAddIssueBook.setText( "Please select a member");
+        } else if (selectBook.getValue() == null) {
+            txtInvalidAddIssueBook.setText( "Please select a book.");
+        } else if (selectIssueDate.getValue() == null) {
+            txtInvalidAddIssueBook.setText( "Please select an issue date.");
+        }else if (selectIssueDate.getValue().isAfter(LocalDate.now())) {
+            txtInvalidAddIssueBook.setText(  "Issue date cannot be in the future.");
+        } else if (selectDueDate.getValue() == null) {
+            txtInvalidAddIssueBook.setText( "Please select a due date.");
+        } else if (selectDueDate.getValue().isBefore(selectIssueDate.getValue())) {
+            txtInvalidAddIssueBook.setText( "Due date must be after the issue date.");
+        }else {
+
+            borrow.setMemberId(selectMemeber.getValue().split(" ")[0]);
+
+            borrow.setBookId(Integer.parseInt(selectBook.getValue().split(" ")[0]));
+
+            borrow.setIssueDate(selectIssueDate.getValue());
+
+            borrow.setDueDate(selectDueDate.getValue());
+
+            String result = issueBookController.bookIssued(borrow);
+
+            txtInvalidAddIssueBook.setText(result);
+
+            if (result.equals("Success!")) {
+                recentIssuesList.setAll(
+                        issueBookController.loadRecentIssuesData());
+            }
+        }
 
     }
 
     @FXML
     void btnLogOutOnAction(ActionEvent event) {
-
+//TODO
     }
 
 
@@ -168,10 +195,6 @@ public class IssueBookPageController implements Initializable {
 
     }
 
-    @FXML
-    void btnNavIssueBookOnAction(ActionEvent event) {
-
-    }
 
     @FXML
     void btnNavManageMembersOnAction(ActionEvent event) {
@@ -201,20 +224,20 @@ public class IssueBookPageController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
-        SelecterIssueBook_SelectBook.setItems(issueBookController.BookList());
-        SelecterIssueBook_SelectMemeber.setItems(issueBookController.MemberList());
+        selectBook.setItems(issueBookController.bookList());
+        selectMemeber.setItems(issueBookController.memberList());
 
         recentIssuesList = issueBookController.loadRecentIssuesData();
         setRecentIssuesTable();
     }
 
     private void setRecentIssuesTable() {
-        colIssueId.setCellValueFactory(cell-> new SimpleStringProperty(cell.getValue().getOrDefault("borrowing_id","")));
-        colMemberName.setCellValueFactory(cell->new SimpleStringProperty(cell.getValue().getOrDefault("member_name","")));
-        colBookTitle.setCellValueFactory(cell->new SimpleStringProperty(cell.getValue().getOrDefault("title","")));
-        colIssueDate.setCellValueFactory(cell->new SimpleStringProperty(cell.getValue().getOrDefault("issue_date","")));
-        colDueDate.setCellValueFactory(cell->new SimpleStringProperty(cell.getValue().getOrDefault("due_date","")));
-        colStatus.setCellValueFactory(cell->new SimpleStringProperty(cell.getValue().getOrDefault("status","")));
+        colIssueId.setCellValueFactory(cell-> new SimpleStringProperty(cell.getValue().getBorrowingId()));
+        colMemberName.setCellValueFactory(cell->new SimpleStringProperty(cell.getValue().getMemberName()));
+        colBookTitle.setCellValueFactory(cell->new SimpleStringProperty(cell.getValue().getBookTitle()));
+        colIssueDate.setCellValueFactory(cell->new SimpleStringProperty(cell.getValue().getIssueDate()));
+        colDueDate.setCellValueFactory(cell->new SimpleStringProperty(cell.getValue().getDueDate()));
+        colStatus.setCellValueFactory(cell->new SimpleStringProperty(cell.getValue().getStatus()));
 
         tblRecentIssues.setItems(recentIssuesList);
     }
